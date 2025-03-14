@@ -1,0 +1,101 @@
+# Jekyll Theme Notiva Configuration
+# Site settings
+title: Notiva
+description: Developer-friendly technical blog theme for Jekyll
+baseurl: '' # the subpath of your site, e.g. /blog
+url: '' # the base hostname & protocol for your site, e.g. http://example.com
+logo: /assets/images/logo.png
+locale: en
+
+# Theme settings
+theme_mode: auto # auto, light, dark
+code_theme: github-dark # Code highlighting theme
+
+# Author settings
+author:
+  name: Your Name
+  bio: A brief bio about yourself
+  avatar: /assets/images/avatar.jpg
+  email: your-email@example.com
+  github: your username
+  twitter: your username
+  linkedin: your username
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+paginate: 10
+paginate_path: '/page:num/'
+
+# Search settings
+search:
+  enabled: true
+  shortcut: /
+  max_results: 50
+
+# Google Analytics
+google_analytics: UA-XXXXXXXX-X
+
+# Firebase (for visitor tracking)
+firebase:
+  enabled: false
+  apiKey:
+  authDomain:
+  projectId:
+  storageBucket:
+  messagingSenderId:
+  appId:
+
+# PWA settings
+pwa:
+  enabled: true
+  cache_version: 1
+  precache_recent_posts_num: 5
+
+# Internationalization
+i18n:
+  default: en
+  available:
+    - en
+    - ko
+
+# Collections
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+
+# Include/Exclude files/folders
+include:
+  - _pages
+exclude:
+  - node_modules
+  - '*.gem'
+  - '*.gemspec'
+  - docs
+  - 'package*.json'
+  - '*.config.mjs'
+  - README.md
+  - CHANGELOG.md
+  - LICENSE
+  - .vscode
+
+# Front matter defaults
+defaults:
+  - scope:
+      path: ''
+      type: 'posts'
+    values:
+      layout: 'post'
+      comments: true
+      toc: true
+  - scope:
+      path: ''
+      type: 'pages'
+    values:
+      layout: 'page'
+  - scope:
+      path: 'tag'
+    values:
+      layout: 'tag'

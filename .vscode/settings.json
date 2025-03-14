@@ -1,0 +1,25 @@
+{
+  "cSpell.ignoreWords": ["notiva"],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.fixAll.markdownlint": "always"
+  },
+  // File associations
+  "files.associations": {
+    "*.html": "liquid-html",
+    "*.md": "markdown",
+    "*.scss": "scss",
+    "*.yml": "yaml",
+    "*.yaml": "yaml"
+  },
+  "[liquid-html]": {
+    "editor.formatOnSave": false
+  },
+  // Tailwind CSS
+  "tailwindCSS.includeLanguages": {
+    "liquid-html": "html"
+  },
+  "tailwindCSS.emmetCompletions": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
