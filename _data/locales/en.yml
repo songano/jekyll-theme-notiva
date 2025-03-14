@@ -1,0 +1,12 @@
+# Error pages
+error:
+  404_title: 'Page Not Found'
+  404_message: "The page you're looking for doesn't exist or has been moved."
+  404_back_home: 'Return to Homepage'
+  search_prompt: 'Try using the search function.'
+  terminal:
+    prompt: '$'
+    find_command: 'find / -name'
+    find_error: 'find: No such file or directory'
+    locate_command: 'locate'
+    locate_error: 'locate: database is empty, run updatedb'

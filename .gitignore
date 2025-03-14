@@ -5,6 +5,7 @@
 .sass-cache
 _site
 Gemfile.lock
+vendor/
 
 # Node.js-related files
 node_modules

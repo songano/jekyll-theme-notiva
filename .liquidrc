@@ -1,0 +1,17 @@
+{
+  "ignore": [
+    "node_modules/**",
+    "dist/**",
+    "_site/**"
+  ],
+  "rules": {
+    "html_has_valid_syntax": true,
+    "img_has_alt": true,
+    "a_has_href": true,
+    "space_even_in_block_delimiters": true,
+    "no_extra_whitespace": true,
+    "no_space_after_open_tag": true,
+    "no_space_before_close_tag": true,
+    "indentation": 2
+  }
+}

@@ -5,10 +5,10 @@ description: Developer-friendly technical blog theme for Jekyll
 baseurl: '' # the subpath of your site, e.g. /blog
 url: '' # the base hostname & protocol for your site, e.g. http://example.com
 logo: /assets/images/logo.png
-locale: en
+locale: ko-KR
 
 # Theme settings
-theme_mode: auto # auto, light, dark
+theme_mode: dark # auto, light, dark
 code_theme: github-dark # Code highlighting theme
 
 # Author settings
@@ -54,11 +54,7 @@ pwa:
   precache_recent_posts_num: 5
 
 # Internationalization
-i18n:
-  default: en
-  available:
-    - en
-    - ko
+locale: en
 
 # Collections
 collections:
@@ -80,6 +76,7 @@ exclude:
   - CHANGELOG.md
   - LICENSE
   - .vscode
+  - '*-lock.yaml'
 
 # Front matter defaults
 defaults:
@@ -99,3 +96,6 @@ defaults:
       path: 'tag'
     values:
       layout: 'tag'
+
+plugins:
+  - jekyll-paginate

@@ -21,12 +21,12 @@
   "author": "Gano Son",
   "main": "index.js",
   "scripts": {
-    "build": "vite build && bundle exec jekyll build",
+    "build": "npm run build:vite && npm run build:jekyll",
     "build:jekyll": "JEKYLL_ENV=production bundle exec jekyll build",
     "build:vite": "vite build",
-    "clean": "rm -rf _site/ assets/js/dist app.js sw.js",
+    "clean": "rm -rf _site/ assets/dist app.js sw.js",
     "dev": "concurrently \"npm run dev:vite\" \"npm run dev:jekyll\"",
-    "dev:jekyll": "bundle exec jekyll serve --livereload",
+    "dev:jekyll": "JEKYLL_ENV=development bundle exec jekyll serve --livereload",
     "dev:vite": "vite build --watch",
     "format": "prettier --write",
     "lint": "concurrently \"npm run lint:js\"",
@@ -36,20 +36,21 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "pnpm lint",
-      "pnpm format"
+      "npm run lint",
+      "npm run format"
     ],
     "*.{json,css,md}": [
-      "pnpm format"
+      "npm run format"
     ],
     "package.json": [
-      "pnpm package:sort"
+      "npm run package:sort"
     ]
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@eslint/js": "^9.22.0",
+    "@shopify/prettier-plugin-liquid": "^1.9.0",
     "@tailwindcss/vite": "^4.0.14",
     "concurrently": "^9.1.2",
     "eslint": "^9.22.0",
@@ -63,7 +64,7 @@
     "tailwindcss": "^4.0.14",
     "vite": "^6.2.2"
   },
-  "packageManager": "pnpm@10.6.2",
+  "packageManager": "pnpm@10.6.3",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild"
