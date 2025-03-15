@@ -77,6 +77,9 @@ exclude:
   - LICENSE
   - .vscode
   - '*-lock.yaml'
+  - _scripts/
+  - _styles/
+  - tsconfig.json
 
 # Front matter defaults
 defaults:

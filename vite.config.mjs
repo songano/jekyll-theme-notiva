@@ -2,19 +2,17 @@ import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'path';
 
+// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const isDev = mode === 'development';
   const isProd = !isDev;
 
   return {
     build: {
-      // Clean the output directory before build
       emptyOutDir: true,
-      // Output directory for bundled assets
       outDir: 'assets/dist',
-      // Minify production build
+      cssCodeSplit: true,
       minify: isProd,
-      // Generate sourcemaps only in development
       sourcemap: isProd,
       terserOptions: isProd
         ? {
@@ -25,19 +23,16 @@ export default defineConfig(({ mode }) => {
             },
           }
         : undefined,
-
-      cssCodeSplit: true,
       // Configure rollup
       rollupOptions: {
         input: {
-          styles: resolve(__dirname, '_css/main.css'),
+          styles: resolve(__dirname, '_styles/main.css'),
         },
         output: {
           assetFileNames: (assetInfo) => {
             if (/\.(css)$/i.test(assetInfo.name)) {
               return 'css/[name][extname]';
             }
-
             return 'assets/[name][extname]';
           },
         },

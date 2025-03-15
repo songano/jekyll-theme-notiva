@@ -1,0 +1,17 @@
+/* Base styles for typography and elements */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold;
+}
+
+@layer base {
+  /* Typography */
+  /* h1 {
+    @apply text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6;
+  } */
+}

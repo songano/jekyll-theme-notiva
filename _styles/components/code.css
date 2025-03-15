@@ -1,0 +1,8 @@
+@layer components {
+  /* Code block container */
+  .code-block {
+    @apply relative rounded-lg overflow-hidden my-6;
+    @apply bg-gray-100 dark:bg-gray-800;
+    @apply shadow-sm dark:shadow-none;
+  }
+}
