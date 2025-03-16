@@ -4,6 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import fs from 'fs';
 import yaml from 'js-yaml';
 import tailwindcss from '@tailwindcss/vite'
+import banner from 'vite-plugin-banner';
 
 /**
  * Load Jekyll config to synchronize PWA settings
@@ -12,33 +13,48 @@ function loadJekyllConfig() {
   try {
     const configYml = fs.readFileSync('./_config.yml', 'utf8');
     return yaml.load(configYml);
-  } catch (e) {
-    console.error('Error loading _config.yml:', e);
+  } catch (error) {
+    console.error('Error loading Jekyll config:', error);
     return {};
   }
 }
 
-// Load Jekyll configuration
 const jekyllConfig = loadJekyllConfig();
-const pwaConfig = jekyllConfig?.notiva?.pwa || {};
+const pwaConfig = jekyllConfig.pwa || { enable: false };
+
+console.log(pwaConfig);
+
+const pkg = JSON.parse(
+  fs.readFileSync('./package.json', 'utf8')
+);
+
+// Create banner for bundled files
+const bannerContent = `/*!
+ * ${pkg.name} v${pkg.version}
+ * ${pkg.description}
+ * (c) ${new Date().getFullYear()} ${pkg.author}
+ * Released under the ${pkg.license} License
+ */`;
+
+ // Define page-specific entry points
+const pageEntries = {
+  main: resolve(__dirname, '_app/js/main.ts'),
+  // home: resolve(__dirname, '_app/js/pages/home.ts'),
+  // post: resolve(__dirname, '_app/js/pages/post.ts'),
+  // archive: resolve(__dirname, '_app/js/pages/archive.ts'),
+  // search: resolve(__dirname, '_app/js/pages/search.ts'),
+};
+
 
 /**
  * Main Vite configuration
  */
 export default defineConfig({
-  // Set root to the _app directory
-  root: '_app',
-
-  // Configure build settings
+  base: '/',
   build: {
-    // Output to assets/dist directory
-    outDir: '../assets/dist',
+    outDir: 'assets/dist',
     emptyOutDir: true,
-    
-    // Enable source maps for production
     sourcemap: false,
-    
-    // Optimize build
     minify: 'terser',
     terserOptions: {
       compress: {
@@ -50,29 +66,24 @@ export default defineConfig({
     // Configure rollup options for code splitting
     rollupOptions: {
       input: {
-        main: resolve(__dirname, '_app/js/main.ts'),
         styles: resolve(__dirname, '_app/css/main.css'),
-        // home: resolve(__dirname, '_app/js/pages/home.ts'),
-        // post: resolve(__dirname, '_app/js/pages/post.ts'),
-        // archive: resolve(__dirname, '_app/js/pages/archive.ts'),
-        // search: resolve(__dirname, '_app/js/pages/search.ts'),
+        ...pageEntries,
       },
       output: {
         entryFileNames: 'js/[name].min.js',
         chunkFileNames: 'js/chunks/[name]-[hash].min.js',
         assetFileNames: (assetInfo) => {
-          const info = assetInfo.name.split('.');
-          const ext = info[info.length - 1];
-          
-          if (/\.(css)$/i.test(assetInfo.name)) {
+          const name = assetInfo.originalFileNames?.[0] || '';
+
+          if (/\.(css)$/i.test(name)) {
             return 'css/[name].min.[ext]';
           }
           
-          if (/\.(png|jpe?g|gif|svg|webp|ico)$/i.test(assetInfo.name)) {
+          if (/\.(png|jpe?g|gif|svg|webp|ico)$/i.test(name)) {
             return 'img/[name].[ext]';
           }
           
-          if (/\.(woff2?|eot|ttf|otf)$/i.test(assetInfo.name)) {
+          if (/\.(woff2?|eot|ttf|otf)$/i.test(name)) {
             return 'fonts/[name].[ext]';
           }
           
@@ -83,12 +94,10 @@ export default defineConfig({
           if (id.includes('node_modules')) {
             return 'vendor';
           }
-          
-          if (id.includes('components/')) {
+          if (id.includes('_app/js/utils/')) {
             return 'components';
           }
-          
-          if (id.includes('utils/')) {
+          if (id.includes('_app/js/components/')) {
             return 'utils';
           }
         },
@@ -106,98 +115,72 @@ export default defineConfig({
   
   // PWA plugin configuration based on Jekyll config
   plugins: [
+    banner(bannerContent),
     tailwindcss(),
     // PWA plugin
-    pwaConfig.enabled && VitePWA({
-      registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
-      outDir: '../assets/dist',
-      manifestFilename: 'manifest.json',
-      manifest: {
-        name: pwaConfig.app_name || 'Notiva',
-        short_name: pwaConfig.app_name || 'Notiva',
-        description: jekyllConfig.description || 'A Jekyll theme for developers',
-        theme_color: pwaConfig.theme_color || '#ffffff',
-        background_color: pwaConfig.background_color || '#ffffff',
-        display: pwaConfig.display || 'standalone',
-        icons: [
-          {
-            src: '/assets/img/pwa-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/assets/img/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-          {
-            src: '/assets/img/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable',
-          },
-        ],
-      },
-      workbox: {
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-stylesheets',
-              expiration: {
-                maxEntries: 5,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+    pwaConfig.enable
+      ? VitePWA({
+          registerType: 'autoUpdate',
+          includeAssets: ['**/*'],
+          outDir: 'assets/dist',
+          manifestFilename: 'manifest.json',
+          manifest: pwaConfig.manifest || {
+            name: jekyllConfig.title || 'Notiva',
+            short_name: jekyllConfig.title || 'Notiva',
+            description: jekyllConfig.description || 'A Jekyll theme',
+            theme_color: '#252627',
+            background_color: '#252627',
+            display: 'standalone',
+            start_url: '/?utm_source=homescreen',
+            icons: [
+              {
+                src: '/assets/images/icons/icon-192x192.png',
+                sizes: '192x192',
+                type: 'image/png',
               },
-            },
-          },
-          {
-            urlPattern: /^https:\/\/fonts\.gstatic\.com/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-webfonts',
-              expiration: {
-                maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+              {
+                src: '/assets/images/icons/icon-512x512.png',
+                sizes: '512x512',
+                type: 'image/png',
               },
-            },
+            ],
           },
-          {
-            urlPattern: /\.(?:png|jpg|jpeg|svg|gif)$/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'images',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+          workbox: {
+            globPatterns: ['**/*.{js,css,html,png,jpg,svg,woff,woff2}'],
+            runtimeCaching: [
+              {
+                urlPattern: /^https:\/\/fonts\.googleapis\.com/,
+                handler: 'CacheFirst',
+                options: {
+                  cacheName: 'google-fonts-stylesheets',
+                  expiration: {
+                    maxEntries: 5,
+                    maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+                  },
+                },
               },
-            },
-          },
-          {
-            urlPattern: /\.(?:js|css)$/,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'static-resources',
-              expiration: {
-                maxEntries: 30,
-                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+              {
+                urlPattern: /^https:\/\/fonts\.gstatic\.com/,
+                handler: 'CacheFirst',
+                options: {
+                  cacheName: 'google-fonts-webfonts',
+                  expiration: {
+                    maxEntries: 20,
+                    maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+                  },
+                },
               },
-            },
+            ],
           },
-        ],
-      },
-    }),
-  ].filter(Boolean),
+        })
+      : [],
+  ],
   
-  // Resolve paths
   resolve: {
     alias: {
       '@': resolve(__dirname, '_app'),
     },
   },
-  
-  // Server options
   server: {
     hmr: false, // Disable HMR as per requirements
   },

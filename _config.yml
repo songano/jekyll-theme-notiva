@@ -1,199 +1,251 @@
-# Jekyll Theme Notiva - Configuration
-# =============================================================================
-
-# [CUSTOMIZABLE] Site Settings
+# Jekyll Theme Notiva Configuration
 # ----------------------------------------------------------------------
-title: Notiva                       # Site title
-tagline: Developer-friendly Jekyll Theme  # Site tagline
-description: >-                      # Site description (shown in search engines)
-  A sleek and feature-rich Jekyll theme designed for developers
-  and technical blogs.
-url: ""                              # Base hostname & protocol (e.g., https://example.com)
-baseurl: ""                          # Subpath (e.g., /blog)
-favicon: /assets/img/favicon.png     # Path to favicon
-logo: /assets/img/logo.png           # Path to site logo
+# This file contains settings that affect your entire site
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# `jekyll serve`. If you change this file, please restart the server process.
 
-# [CUSTOMIZABLE] Author Information
+# [CUSTOMIZABLE] Theme Settings
 # ----------------------------------------------------------------------
-author:
-  name: Your Name                    # Your display name
-  avatar: /assets/img/avatar.jpg     # Path to avatar image
-  bio: >-                            # Short bio (supports markdown)
-    A passionate developer sharing knowledge and experiences.
-  location: Your Location            # Your location
-  email: your.email@example.com      # Your email
-  links:                             # Your social links
-    twitter: https://twitter.com/username
-    github: https://github.com/username
-    linkedin: https://linkedin.com/in/username
-    # Add more platforms as needed
-
-# [CUSTOMIZABLE] Theme Configuration
-# ----------------------------------------------------------------------
-notiva:
-  # Appearance
-  theme_mode: dark                   # Default theme mode [dark, light]
-  sidebar_position: left             # Sidebar position [left, right]
-  
-  # Features
-  toc: true                          # Enable Table of Contents
-  toc_auto_open: true                # Auto open TOC on desktop
-  math: true                         # Enable mathematical expressions
-  mermaid: true                      # Enable mermaid diagrams
-  back_to_top: true                  # Show back-to-top button
-  reading_time: true                 # Show reading time estimates
-  copy_code: true                    # Enable copy code button
-  code_line_numbers: true            # Show line numbers in code blocks
-  
-  # Post and Page Settings
-  post_view_mode: grid               # Post list view mode [grid, list]
-  show_post_thumbnail: true          # Show post thumbnails in lists
-  show_post_excerpt: true            # Show post excerpts in lists
-  show_post_date: true               # Show post dates
-  show_post_update: true             # Show post update dates
-  show_post_categories: true         # Show post categories
-  show_post_tags: true               # Show post tags
-  
-  # Analytics and Integration
-  # (Use environment variables for sensitive data)
-  google_analytics: ""               # Google Analytics tracking ID
-  firebase:
-    enabled: false                   # Enable Firebase integration
-    api_key: ""                      # Firebase API key
-    auth_domain: ""                  # Firebase Auth domain
-    project_id: ""                   # Firebase project ID
-    database_url: ""                 # Firebase database URL
-  
-  # PWA Settings
-  pwa:
-    enabled: true                    # Enable PWA features
-    cache_version: "1.0.0"           # Cache version (change to force update)
-    app_name: "Notiva"               # PWA app name
-    theme_color: "#ffffff"           # PWA theme color
-    background_color: "#ffffff"      # PWA background color
-    display: "standalone"            # PWA display mode
+  theme_info:
+    name: "Notiva"
+    version: "1.0.0"
+    description: "Developer-friendly Jekyll blog theme"
     
-  # Comments
+  # [CUSTOMIZABLE] Site Settings
+  # ----------------------------------------------------------------------
+  title: "Your Site Title"                     # Site title
+  tagline: "Your Site Tagline"                # Site tagline
+  description: "A developer-friendly Jekyll blog theme" # Site description for SEO
+  url: "https://yourdomain.com"               # Site URL without trailing slash
+  baseurl: ""                                  # Subpath of your site, e.g. "/blog"
+  repository: username/repo-name              # GitHub username/repo-name
+  timezone: Asia/Seoul                         # Default timezone (https://zones.arilyn.cc/)
+  locale: "en"                                 # Default locale (en, ko-KR, zh-CN)
+  
+  # [CUSTOMIZABLE] Author Settings
+  # ----------------------------------------------------------------------
+  author:
+    name: "Your Name"                         # Your name
+    bio: "Your short bio goes here. This will appear in the sidebar."  # Bio (supports markdown)
+    avatar: "/assets/images/avatar.png"       # Path to avatar image
+  
+  # [CUSTOMIZABLE] Layout Settings
+  # ----------------------------------------------------------------------
+  layout:
+    sidebar_position: "left"                  # Sidebar position: "left" or "right"
+    content_width: "medium"                   # Content width: "narrow", "medium", "wide"
+    post_style: "grid"                        # Post list style: "grid" or "list"
+    toc_depth: 3                              # Table of contents depth (1-6)
+    show_scroll_progress: true                # Show scroll progress bar
+    show_scroll_to_top: true                  # Show scroll to top button
+    avatar_shape: "circle"                    # Avatar shape: "circle" or "square"
+  
+  # [CUSTOMIZABLE] Theme Settings
+  # ----------------------------------------------------------------------
+  theme_mode: "dark"                          # Default theme mode: "dark", "light" or "auto" (system preference)
+  code_block:
+    show_line_numbers: true                   # Show line numbers in code blocks
+    copy_button: true                         # Show copy button for code blocks
+  
+  # [CUSTOMIZABLE] Navigation Settings 
+  # ----------------------------------------------------------------------
+  # Sidebar navigation structure is determined by your pages and posts organization.
+  # You can customize navigation labels in the _data/locales/[locale].yml file.
+  
+  # [CUSTOMIZABLE] Pagination Settings
+  # ----------------------------------------------------------------------
+  paginate: 10                                # Number of posts per page
+  paginate_path: "/page/:num/"                # Pagination URL format
+  
+  # [CUSTOMIZABLE] Search Settings
+  # ----------------------------------------------------------------------
+  search:
+    enable: true                              # Enable search functionality
+    shortcut: true                            # Enable search shortcut (Ctrl+K / Cmd+K)
+    max_results: 50                           # Maximum number of search results to display
+  
+  # [CUSTOMIZABLE] Social Media Settings
+  # ----------------------------------------------------------------------
+  # Social media links will be displayed in the sidebar or footer based on your settings.
+  # Configure these links in _data/social.yml
+  
+  # [CUSTOMIZABLE] Comment Settings
+  # ----------------------------------------------------------------------
   comments:
-    provider: giscus                 # Comment provider [giscus, utterances, disqus]
+    provider: "giscus"                         # Comment provider: "giscus", "utterances", "disqus", or false
     giscus:
-      repo: username/repo            # GitHub repository
-      repo_id: ""                    # Repository ID
-      category: ""                   # Discussion category
-      category_id: ""                # Category ID
-      mapping: pathname              # Page-discussion mapping
-      input_position: bottom         # Comment input position
-      theme: dark_dimmed             # Theme
-    utterances:
-      repo: username/repo            # GitHub repository
-      issue_term: pathname           # Issue mapping
-      theme: github-dark             # Theme
-    disqus:
-      shortname: ""                  # Disqus shortname
-
-# [CUSTOMIZABLE] Pagination
-# ----------------------------------------------------------------------
-paginate: 8                          # Posts per page
-paginate_path: /page/:num/           # Pagination URL format
-
-# [CUSTOMIZABLE] Time Settings
-# ----------------------------------------------------------------------
-timezone: Asia/Seoul                 # Timezone (default: Asia/Seoul)
-future: false                        # Show future dated posts
-
-# [CUSTOMIZABLE] Jekyll Archives
-# ----------------------------------------------------------------------
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-  layouts:
-    category: archive-category
-    tag: archive-tag
-  permalinks:
-    category: /categories/:name/
-    tag: /tags/:name/
-
-# [NOT CUSTOMIZABLE] Defaults
-# ----------------------------------------------------------------------
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: default
-  - scope:
-      path: "_posts"
-    values:
-      layout: post
-      comments: true
-      toc: true
-      read_time: true
-  - scope:
-      path: "pages"
-    values:
-      layout: page
-      permalink: /:basename/
-
-# [NOT CUSTOMIZABLE] Markdown Processing
-# ----------------------------------------------------------------------
-markdown: kramdown
-kramdown:
-  input: GFM
-  hard_wrap: false
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    css_class: highlight
-    span:
-      line_numbers: false
-    block:
-      line_numbers: true
-
-# [NOT CUSTOMIZABLE] Required plugins
-# DO NOT REMOVE these plugins
-# ----------------------------------------------------------------------
-plugins:
-  - jekyll-paginate
-  - jekyll-seo-tag
-  - jekyll-archives
-  - jekyll-sitemap
-  - jekyll-include-cache
-  - jekyll-redirect-from
-
-# [NOT CUSTOMIZABLE] Compression Settings
-# ----------------------------------------------------------------------
-compress_html:
-  clippings: all
-  comments: all
-  endings: all
-  ignore:
-    envs: [development]
-  blanklines: false
-  profile: false
-  startings: [html, head, body]
-
-# [NOT CUSTOMIZABLE] Sass conversion settings
-# Note: Notiva theme uses Tailwind CSS instead of Sass/SCSS.
-# This setting is only included for Jekyll's internal compatibility.
-# ----------------------------------------------------------------------
-sass:
-  sass_dir: _sass
-  style: compressed
-
-# [NOT CUSTOMIZABLE] Files and directories to exclude from build
-# ----------------------------------------------------------------------
-exclude:
-  - node_modules
-  - '*.gem'
-  - '*.gemspec'
-  - 'package*.json'
-  - '*.config.mjs'
-  - .git
-  - .github
-  - README.md
-  - CHANGELOG.md
-  - LICENSE
-  - .vscode
-  - '*-lock.yaml'
-  - _scripts/
-  - _app/
-  - tsconfig.json
+      repo: "username/repo-name"               # GitHub repository (username/repo-name)
+      repo_id: "your-repo-id"                  # Repository ID
+      category: "Comments"                     # Discussion category name
+      category_id: "your-category-id"          # Category ID
+      mapping: "pathname"                      # Page to discussions mapping: "pathname", "url", "title", or "og:title"
+      reactions_enabled: 1                     # Enable reactions: 0 = false, 1 = true
+      theme: "preferred_color_scheme"          # Theme: "light", "dark", "preferred_color_scheme"
+  
+  # [CUSTOMIZABLE] Analytics Settings
+  # ----------------------------------------------------------------------
+  analytics:
+    provider: "google-gtag"                    # Analytics provider: "google-gtag", "google", "custom", or false
+    google:
+      tracking_id: "G-XXXXXXXXXX"              # Google Analytics tracking ID
+    
+  # [CUSTOMIZABLE] Firebase Settings
+  # ----------------------------------------------------------------------
+  # Important: For security reasons, don't include your actual Firebase API keys in this file.
+  # Set these values through GitHub Actions environment variables or Jekyll environment variables.
+  firebase:
+    enable: false                              # Enable Firebase for visitor statistics
+    # Settings for Firebase are managed through environment variables:
+    # FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_PROJECT_ID, 
+    # FIREBASE_STORAGE_BUCKET, FIREBASE_MESSAGING_SENDER_ID, FIREBASE_APP_ID
+  
+  # [CUSTOMIZABLE] PWA Settings
+  # ----------------------------------------------------------------------
+  pwa:
+    enable: true                               # Enable Progressive Web App features
+    manifest:
+      name: "Your Site Name"                   # Web App name
+      short_name: "Site Name"                  # Web App short name
+      description: "Your site description"     # Web App description
+      theme_color: "#252627"                   # Theme color for browser
+      background_color: "#252627"              # Background color for splash screen
+      display: "standalone"                    # Display mode
+      start_url: "/?utm_source=homescreen"     # Start URL when launched from home screen
+      icons:
+        - src: "/assets/images/icons/icon-192x192.png"
+          sizes: "192x192"
+          type: "image/png"
+        - src: "/assets/images/icons/icon-512x512.png"
+          sizes: "512x512"
+          type: "image/png"
+  
+  # [CUSTOMIZABLE] Site Verification Settings
+  # ----------------------------------------------------------------------
+  verification:
+    google: ""                                 # Google verification code
+    bing: ""                                   # Bing verification code
+    yandex: ""                                 # Yandex verification code
+    naver: ""                                  # Naver verification code
+  
+  # [CUSTOMIZABLE] Advanced Settings
+  # ----------------------------------------------------------------------
+  markdown: kramdown
+  highlighter: rouge
+  kramdown:
+    input: GFM                                 # GitHub Flavored Markdown
+    syntax_highlighter: rouge                  # Syntax highlighter
+    syntax_highlighter_opts:                   # Syntax highlighter options
+      css_class: "highlight"                   # CSS class for highlighted code
+      span:
+        line_numbers: false                    # Don't show line numbers for inline code
+      block:
+        line_numbers: true                     # Show line numbers for code blocks
+        start_line: 1                          # Start line number
+  
+  # [CUSTOMIZABLE] Collections
+  # ----------------------------------------------------------------------
+  collections:
+    wiki:
+      output: true
+      permalink: /:collection/:path/
+  
+  # [CUSTOMIZABLE] Default Settings for Front Matter
+  # ----------------------------------------------------------------------
+  defaults:
+    # Default settings for all posts
+    - scope:
+        path: ""
+        type: posts
+      values:
+        layout: post
+        comments: true
+        toc: true
+        math: false
+        mermaid: false
+        pin: false
+        image: 
+          path: /assets/images/default-post.jpg
+          width: 800
+          height: 500
+        
+    # Default settings for all pages
+    - scope:
+        path: ""
+        type: pages
+      values:
+        layout: page
+        comments: false
+        toc: false
+        math: false
+        mermaid: false
+        
+    # Default settings for wiki
+    - scope:
+        path: ""
+        type: wiki
+      values:
+        layout: page
+        comments: false
+        toc: true
+  
+  # [NOT CUSTOMIZABLE] Required Plugins
+  # ----------------------------------------------------------------------
+  plugins:
+    - jekyll-paginate
+    - jekyll-seo-tag
+    - jekyll-archives
+    - jekyll-sitemap
+    - jekyll-include-cache
+    - jekyll-redirect-from
+  
+  # [NOT CUSTOMIZABLE] Jekyll Archives Settings
+  # ----------------------------------------------------------------------
+  jekyll-archives:
+    enabled:
+      - categories
+      - tags
+    layouts:
+      category: archive-category
+      tag: archive-tag
+    permalinks:
+      category: /categories/:name/
+      tag: /tags/:name/
+  
+  # [NOT CUSTOMIZABLE] Exclude from processing
+  # ----------------------------------------------------------------------
+  exclude:
+    - node_modules
+    - '*.gem'
+    - '*.gemspec'
+    - 'package*.json'
+    - '*.config.mjs'
+    - .git
+    - .github
+    - README.md
+    - CHANGELOG.md
+    - LICENSE
+    - .vscode
+    - '*-lock.yaml'
+    - _scripts/
+    - tsconfig.json
+    - .husky
+  
+  # [NOT CUSTOMIZABLE] Compression Settings
+  # ----------------------------------------------------------------------
+  compress_html:
+    clippings: all
+    comments: all
+    endings: all
+    ignore:
+      envs: [development]
+    blanklines: false
+    profile: false
+    startings: [html, head, body]
+  
+  # [NOT CUSTOMIZABLE] Sass conversion settings
+  # Note: Notiva theme uses Tailwind CSS instead of Sass/SCSS.
+  # This setting is only included for Jekyll's internal compatibility.
+  # ----------------------------------------------------------------------
+  sass:
+    sass_dir: _sass
+    style: compressed
