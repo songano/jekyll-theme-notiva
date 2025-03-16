@@ -1,0 +1,54 @@
+<!-- _includes/head/head.html -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Title and SEO tags -->
+  {% seo %}
+
+  <!-- Favicon -->
+  <link rel="icon" href="{{ site.favicon | relative_url }}" type="image/png">
+  <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
+
+  <!-- Web Manifest for PWA -->
+  {% if site.notiva.pwa.enabled %}
+    <link rel="manifest" href="{{ '/assets/dist/manifest.json' | relative_url }}">
+    <meta name="theme-color" content="{{ site.notiva.pwa.theme_color | default: '#ffffff' }}">
+  {% endif %}
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ '/assets/dist/css/styles.min.css' | relative_url }}">
+
+  <!-- Load fonts from CDN -->
+  {% if site.data.cdn.fonts %}
+    {% for font in site.data.cdn.fonts %}
+      <link rel="stylesheet" href="{{ font.url }}" type="text/css">
+    {% endfor %}
+  {% endif %}
+
+  <!-- Load submodules based on page needs -->
+  {% include head/submodules.html %}
+
+  <!-- Google Analytics -->
+  {% if site.notiva.google_analytics and jekyll.environment == 'production' %}
+    <!-- Load from submodule instead of Google CDN -->
+    <script
+      async
+      src="{{ '/assets/lib/google-analytics/gtag.js' | relative_url }}?id={{ site.notiva.google_analytics }}"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', '{{ site.notiva.google_analytics }}');
+    </script>
+  {% endif %}
+
+  <!-- Page specific head elements -->
+  {% if page.head_extras %}
+    {{ page.head_extras }}
+  {% endif %}
+</head>

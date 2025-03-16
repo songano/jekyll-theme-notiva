@@ -1,104 +1,199 @@
-# Jekyll Theme Notiva Configuration
-# Site settings
-title: Notiva
-description: Developer-friendly technical blog theme for Jekyll
-baseurl: '' # the subpath of your site, e.g. /blog
-url: '' # the base hostname & protocol for your site, e.g. http://example.com
-logo: /assets/images/logo.png
-locale: ko-KR
+# Jekyll Theme Notiva - Configuration
+# =============================================================================
 
-# Theme settings
-theme_mode: dark # auto, light, dark
-code_theme: github-dark # Code highlighting theme
+# [CUSTOMIZABLE] Site Settings
+# ----------------------------------------------------------------------
+title: Notiva                       # Site title
+tagline: Developer-friendly Jekyll Theme  # Site tagline
+description: >-                      # Site description (shown in search engines)
+  A sleek and feature-rich Jekyll theme designed for developers
+  and technical blogs.
+url: ""                              # Base hostname & protocol (e.g., https://example.com)
+baseurl: ""                          # Subpath (e.g., /blog)
+favicon: /assets/img/favicon.png     # Path to favicon
+logo: /assets/img/logo.png           # Path to site logo
 
-# Author settings
+# [CUSTOMIZABLE] Author Information
+# ----------------------------------------------------------------------
 author:
-  name: Your Name
-  bio: A brief bio about yourself
-  avatar: /assets/images/avatar.jpg
-  email: your-email@example.com
-  github: your username
-  twitter: your username
-  linkedin: your username
+  name: Your Name                    # Your display name
+  avatar: /assets/img/avatar.jpg     # Path to avatar image
+  bio: >-                            # Short bio (supports markdown)
+    A passionate developer sharing knowledge and experiences.
+  location: Your Location            # Your location
+  email: your.email@example.com      # Your email
+  links:                             # Your social links
+    twitter: https://twitter.com/username
+    github: https://github.com/username
+    linkedin: https://linkedin.com/in/username
+    # Add more platforms as needed
 
-# Build settings
+# [CUSTOMIZABLE] Theme Configuration
+# ----------------------------------------------------------------------
+notiva:
+  # Appearance
+  theme_mode: dark                   # Default theme mode [dark, light]
+  sidebar_position: left             # Sidebar position [left, right]
+  
+  # Features
+  toc: true                          # Enable Table of Contents
+  toc_auto_open: true                # Auto open TOC on desktop
+  math: true                         # Enable mathematical expressions
+  mermaid: true                      # Enable mermaid diagrams
+  back_to_top: true                  # Show back-to-top button
+  reading_time: true                 # Show reading time estimates
+  copy_code: true                    # Enable copy code button
+  code_line_numbers: true            # Show line numbers in code blocks
+  
+  # Post and Page Settings
+  post_view_mode: grid               # Post list view mode [grid, list]
+  show_post_thumbnail: true          # Show post thumbnails in lists
+  show_post_excerpt: true            # Show post excerpts in lists
+  show_post_date: true               # Show post dates
+  show_post_update: true             # Show post update dates
+  show_post_categories: true         # Show post categories
+  show_post_tags: true               # Show post tags
+  
+  # Analytics and Integration
+  # (Use environment variables for sensitive data)
+  google_analytics: ""               # Google Analytics tracking ID
+  firebase:
+    enabled: false                   # Enable Firebase integration
+    api_key: ""                      # Firebase API key
+    auth_domain: ""                  # Firebase Auth domain
+    project_id: ""                   # Firebase project ID
+    database_url: ""                 # Firebase database URL
+  
+  # PWA Settings
+  pwa:
+    enabled: true                    # Enable PWA features
+    cache_version: "1.0.0"           # Cache version (change to force update)
+    app_name: "Notiva"               # PWA app name
+    theme_color: "#ffffff"           # PWA theme color
+    background_color: "#ffffff"      # PWA background color
+    display: "standalone"            # PWA display mode
+    
+  # Comments
+  comments:
+    provider: giscus                 # Comment provider [giscus, utterances, disqus]
+    giscus:
+      repo: username/repo            # GitHub repository
+      repo_id: ""                    # Repository ID
+      category: ""                   # Discussion category
+      category_id: ""                # Category ID
+      mapping: pathname              # Page-discussion mapping
+      input_position: bottom         # Comment input position
+      theme: dark_dimmed             # Theme
+    utterances:
+      repo: username/repo            # GitHub repository
+      issue_term: pathname           # Issue mapping
+      theme: github-dark             # Theme
+    disqus:
+      shortname: ""                  # Disqus shortname
+
+# [CUSTOMIZABLE] Pagination
+# ----------------------------------------------------------------------
+paginate: 8                          # Posts per page
+paginate_path: /page/:num/           # Pagination URL format
+
+# [CUSTOMIZABLE] Time Settings
+# ----------------------------------------------------------------------
+timezone: Asia/Seoul                 # Timezone (default: Asia/Seoul)
+future: false                        # Show future dated posts
+
+# [CUSTOMIZABLE] Jekyll Archives
+# ----------------------------------------------------------------------
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive-category
+    tag: archive-tag
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+
+# [NOT CUSTOMIZABLE] Defaults
+# ----------------------------------------------------------------------
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: "_posts"
+    values:
+      layout: post
+      comments: true
+      toc: true
+      read_time: true
+  - scope:
+      path: "pages"
+    values:
+      layout: page
+      permalink: /:basename/
+
+# [NOT CUSTOMIZABLE] Markdown Processing
+# ----------------------------------------------------------------------
 markdown: kramdown
-highlighter: rouge
-permalink: /:year/:month/:day/:title/
-paginate: 10
-paginate_path: '/page:num/'
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
 
-# Search settings
-search:
-  enabled: true
-  shortcut: /
-  max_results: 50
+# [NOT CUSTOMIZABLE] Required plugins
+# DO NOT REMOVE these plugins
+# ----------------------------------------------------------------------
+plugins:
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-archives
+  - jekyll-sitemap
+  - jekyll-include-cache
+  - jekyll-redirect-from
 
-# Google Analytics
-google_analytics: UA-XXXXXXXX-X
+# [NOT CUSTOMIZABLE] Compression Settings
+# ----------------------------------------------------------------------
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  ignore:
+    envs: [development]
+  blanklines: false
+  profile: false
+  startings: [html, head, body]
 
-# Firebase (for visitor tracking)
-firebase:
-  enabled: false
-  apiKey:
-  authDomain:
-  projectId:
-  storageBucket:
-  messagingSenderId:
-  appId:
+# [NOT CUSTOMIZABLE] Sass conversion settings
+# Note: Notiva theme uses Tailwind CSS instead of Sass/SCSS.
+# This setting is only included for Jekyll's internal compatibility.
+# ----------------------------------------------------------------------
+sass:
+  sass_dir: _sass
+  style: compressed
 
-# PWA settings
-pwa:
-  enabled: true
-  cache_version: 1
-  precache_recent_posts_num: 5
-
-# Internationalization
-locale: en
-
-# Collections
-collections:
-  pages:
-    output: true
-    permalink: /:path/
-
-# Include/Exclude files/folders
-include:
-  - _pages
+# [NOT CUSTOMIZABLE] Files and directories to exclude from build
+# ----------------------------------------------------------------------
 exclude:
   - node_modules
   - '*.gem'
   - '*.gemspec'
-  - docs
   - 'package*.json'
   - '*.config.mjs'
+  - .git
+  - .github
   - README.md
   - CHANGELOG.md
   - LICENSE
   - .vscode
   - '*-lock.yaml'
   - _scripts/
-  - _styles/
+  - _app/
   - tsconfig.json
-
-# Front matter defaults
-defaults:
-  - scope:
-      path: ''
-      type: 'posts'
-    values:
-      layout: 'post'
-      comments: true
-      toc: true
-  - scope:
-      path: ''
-      type: 'pages'
-    values:
-      layout: 'page'
-  - scope:
-      path: 'tag'
-    values:
-      layout: 'tag'
-
-plugins:
-  - jekyll-paginate

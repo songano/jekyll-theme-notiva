@@ -3,7 +3,7 @@ layout: default
 title: 404 - Page not found
 permalink: /404.html
 ---
-<!--
+{% comment %}
   CUSTOMIZATION GUIDE:
 
   This 404 page is fully customizable:
@@ -12,12 +12,10 @@ permalink: /404.html
   2. Replace error messages or terminal text content
   3. Adjust the animation in the script section
   4. Add your own custom components or elements
-  5. For major styling changes, consider adding specific Tailwind classes
-    in your tailwind.config.js file
 
   The page maintains Notiva's theme consistency while providing
   a developer-friendly error experience.
--->
+{% endcomment %}
 
 <div
   class="min-h-full flex justify-center items-center p-8 dark:bg-gray-900 bg-gray-50 text-gray-800 dark:text-gray-200"
@@ -31,9 +29,9 @@ permalink: /404.html
     <div class="w-full max-w-2xl rounded-lg overflow-hidden shadow-lg">
       <div class="bg-gray-700 px-4 py-3 flex items-center">
         <div class="flex gap-2 mr-4">
-          <span class="w-3 h-3 rounded-full bg-red-500"></span>
-          <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+          <span class="size-3 rounded-full bg-red-500"></span>
+          <span class="size-3 rounded-full bg-amber-500"></span>
+          <span class="size-3 rounded-full bg-emerald-500"></span>
         </div>
         <div class="text-sm text-gray-400 flex-grow">terminal</div>
       </div>

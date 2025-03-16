@@ -1,28 +1,43 @@
 {
-  "cSpell.ignoreWords": ["notiva"],
-  "editor.formatOnSave": true,
+  // Ignore specific words in spell checking
+  "cSpell.ignoreWords": ["notiva", "endcomment"],
+
+  // Auto-fix ESLint and MarkdownLint issues on save
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
     "source.fixAll.markdownlint": "always"
   },
 
+  // Associate file extensions with specific languages
   "files.associations": {
-    "*.css": "tailwindcss"
-    // "*.html": "liquid"
+    "*.css": "tailwindcss",
+    "*.html": "liquid"
   },
 
+  // Enable Emmet for Liquid as HTML
   "emmet.includeLanguages": {
     "liquid": "html"
   },
 
-  "tailwindCSS.emmetCompletions": true,
-  "tailwindCSS.includeLanguages": {
-    "plaintext": "html"
-  },
-  "themeCheck.checkOnChange": true,
-
-  "[liquid]": {
+  // Set default formatter and enable format on save for HTML & Liquid
+  "[html][liquid]": {
     "editor.defaultFormatter": "Shopify.theme-check-vscode",
     "editor.formatOnSave": true
+  },
+
+  // Enable Shopify Theme Check on change
+  "themeCheck.checkOnChange": true,
+
+  // Set default formatter for Markdown
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+
+  // Enable Emmet completions for TailwindCSS
+  "tailwindCSS.emmetCompletions": true,
+
+  // Enable TailwindCSS support in plaintext files
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "html"
   }
 }
