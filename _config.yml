@@ -107,25 +107,30 @@
       name: "Your Site Name"                   # Web App name
       short_name: "Site Name"                  # Web App short name
       description: "Your site description"     # Web App description
-      theme_color: "#252627"                   # Theme color for browser
-      background_color: "#252627"              # Background color for splash screen
+      theme_color: "#121021"                   # Theme color for browser
+      background_color: "#121021"              # Background color for splash screen
       display: "standalone"                    # Display mode
       start_url: "/?utm_source=homescreen"     # Start URL when launched from home screen
       icons:
-        - src: "/assets/images/icons/icon-192x192.png"
+        - src: "/assets/images/icons/pwa-192x192.png"
           sizes: "192x192"
           type: "image/png"
-        - src: "/assets/images/icons/icon-512x512.png"
-          sizes: "512x512"
+        - src: "/assets/images/icons/pwa-512x512.png"
+          sizes: "512x512" 
           type: "image/png"
   
   # [CUSTOMIZABLE] Site Verification Settings
   # ----------------------------------------------------------------------
-  verification:
+verification:
     google: ""                                 # Google verification code
     bing: ""                                   # Bing verification code
     yandex: ""                                 # Yandex verification code
     naver: ""                                  # Naver verification code
+    pinterest: ""                             # Pinterest verification code
+    facebook: ""                              # Facebook domain verification code
+    baidu: ""                                 # Baidu verification code
+    brave: ""                                 # Brave Browser publisher verification
+    
   
   # [CUSTOMIZABLE] Advanced Settings
   # ----------------------------------------------------------------------
@@ -236,11 +241,10 @@
     clippings: all
     comments: all
     endings: all
-    ignore:
-      envs: [development]
+    # ignore:
+    #   envs: [development]
     blanklines: false
     profile: false
-    startings: [html, head, body]
   
   # [NOT CUSTOMIZABLE] Sass conversion settings
   # Note: Notiva theme uses Tailwind CSS instead of Sass/SCSS.

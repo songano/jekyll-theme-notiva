@@ -15,5 +15,3 @@ if (document.readyState === 'loading') {
 } else {
   initializeCore();
 }
-
-// Export utils for use in other modules

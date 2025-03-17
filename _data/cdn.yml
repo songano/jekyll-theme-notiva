@@ -1,0 +1,12 @@
+# CDN links for Notiva theme
+
+# Fonts
+fonts:
+  # - url: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+  #   type: "woff2"
+  # - url: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+  #   type: "woff2"
+
+# Icons
+icons:
+  - url: "https://cdn.jsdelivr.net/npm/heroicons-css@0.1.1/heroicons.min.css"

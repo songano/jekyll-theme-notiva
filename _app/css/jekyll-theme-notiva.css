@@ -1,0 +1,46 @@
+/**
+* Jekyll Theme Notiva - Tailwind CSS Customizations
+* 
+* This file allows you to customize the Notiva theme using Tailwind CSS.
+* Changes here will be processed by Vite and bundled into the final CSS.
+* 
+* HOW TO USE:
+* 1. Add your Tailwind CSS customizations here
+* 2. Run the build process (npm run build) to apply changes
+* 3. Your styles will be processed by Tailwind and added to the site
+* 
+* TIPS:
+* - Use Tailwind's utility classes to customize elements
+* - For custom styles that can't be achieved with utility classes, 
+*   use @apply to compose your own classes
+* - Check Tailwind documentation at https://tailwindcss.com/docs
+* 
+* EXAMPLE:
+* .my-custom-button {
+*   @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+* }
+* 
+* IMPORTANT:
+* - If you don't want to use Tailwind CSS, use the Jekyll-processed file instead:
+*   assets/css/jekyll-theme-notiva.scss
+*/
+
+/* Add your Tailwind customizations below */
+
+/* Example custom component using @apply */
+/* 
+.custom-card {
+  @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300;
+}
+*/
+
+/* Example customizing existing theme elements */
+/*
+.sidebar-nav {
+  @apply space-y-2;
+}
+
+.post-card {
+  @apply border border-gray-200 hover:border-primary-500 transition-colors duration-300;
+}
+*/

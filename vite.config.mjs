@@ -6,9 +6,6 @@ import yaml from 'js-yaml';
 import tailwindcss from '@tailwindcss/vite'
 import banner from 'vite-plugin-banner';
 
-/**
- * Load Jekyll config to synchronize PWA settings
- */
 function loadJekyllConfig() {
   try {
     const configYml = fs.readFileSync('./_config.yml', 'utf8');
@@ -109,7 +106,10 @@ export default defineConfig({
   css: {
     devSourcemap: true,
     preprocessorOptions: {
-      // Add any preprocessor options if needed
+      scss: {
+        // Custom import paths to allow user customizations
+        includePaths: ['_sass'],
+      }
     },
   },
   
@@ -121,30 +121,9 @@ export default defineConfig({
     pwaConfig.enable
       ? VitePWA({
           registerType: 'autoUpdate',
-          includeAssets: ['**/*'],
           outDir: 'assets/dist',
-          manifestFilename: 'manifest.json',
-          manifest: pwaConfig.manifest || {
-            name: jekyllConfig.title || 'Notiva',
-            short_name: jekyllConfig.title || 'Notiva',
-            description: jekyllConfig.description || 'A Jekyll theme',
-            theme_color: '#252627',
-            background_color: '#252627',
-            display: 'standalone',
-            start_url: '/?utm_source=homescreen',
-            icons: [
-              {
-                src: '/assets/images/icons/icon-192x192.png',
-                sizes: '192x192',
-                type: 'image/png',
-              },
-              {
-                src: '/assets/images/icons/icon-512x512.png',
-                sizes: '512x512',
-                type: 'image/png',
-              },
-            ],
-          },
+          includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+          manifest: pwaConfig.manifest,
           workbox: {
             globPatterns: ['**/*.{js,css,html,png,jpg,svg,woff,woff2}'],
             runtimeCaching: [

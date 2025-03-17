@@ -1,0 +1,55 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+/**
+ * Jekyll Theme Notiva - Custom Stylesheet
+ * 
+ * This is the main custom stylesheet for Notiva theme that will be compiled by Jekyll.
+ * You can add your own styles here to customize the appearance of your site.
+ * 
+ * HOW TO USE:
+ * 1. Add your custom SCSS/CSS rules below
+ * 2. Save this file
+ * 3. Jekyll will automatically compile your changes on build
+ *
+ * TIPS:
+ * - These styles will override theme defaults
+ * - For more complex customizations, you can create Sass partials in _sass/ directory
+ *   and import them here
+ * 
+ * IMPORTANT:
+ * - If you want to use Tailwind CSS, do not modify this file
+ * - Instead, edit the file at _app/css/jekyll-theme-notiva.css
+ * - Tailwind CSS changes require rebuilding with Vite (npm run build)
+ */
+
+// Import theme variables and mixins if needed
+// @import "variables";
+// @import "mixins";
+
+// Basic example customizations:
+
+// body {
+//   font-family: "Your Preferred Font", sans-serif;
+// }
+
+// a {
+//   color: #0066cc;
+//   text-decoration: none;
+//   
+//   &:hover {
+//     text-decoration: underline;
+//   }
+// }
+
+// .sidebar {
+//   background-color: #f5f5f5;
+// }
+
+// .post-title {
+//   font-size: 2.5rem;
+//   font-weight: 700;
+// }
+
+// Write your custom styles below this line

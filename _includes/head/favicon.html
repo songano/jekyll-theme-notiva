@@ -1,0 +1,18 @@
+<!-- Favicon and icons -->
+
+{% capture favicon_path %}{{ '/assets/images/icons' | relative_url }}{% endcapture %}
+{% capture icon_color %}{{ site.pwa.manifest.theme_color | default: '#252627' }}{% endcapture %}
+
+<link rel="apple-touch-icon" sizes="180x180" href="{{ favicon_path }}/apple-touch-icon-180x180.png">
+{% comment %}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ favicon_path }}/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ favicon_path }}/favicon-16x16.png">
+{% endcomment %}
+<link
+  rel="mask-icon"
+  href="{{ favicon_path }}/icons/maskable-icon-512x512.png"
+  color="{{ icon_color }}"
+>
+<link rel="shortcut icon" href="{{ favicon_path }}/favicon.ico">
+<meta name="msapplication-TileColor" content="{{ icon_color }}">
+<meta name="msapplication-config" content="{{ favicon_path }}/browserconfig.xml">

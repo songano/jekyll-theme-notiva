@@ -1,13 +1,24 @@
 ---
+layout: compress
+
 # Default layout template
 # This is the base layout used by all pages
 ---
 <!doctype html>
 <html
   lang="{{ site.locale | default: 'en' }}"
-  data-theme="{% if site.theme_mode == 'dark' or page.theme_mode == 'dark' %}dark{% endif %}"
+  data-theme="{{ site.theme_mode | default: 'dark' }}"
 >
+  <head>
+    {% include head/head.html %}
+  </head>
   <body>
     This is default layout template used by all pages
+    <p>
+      {% include components/icon.html shape="outline" name="home" class="mb-4 size-24" %}
+    </p>
+    <p>
+      {% include components/icon.html name="home" shape="solid" class="mb-4 size-24 text-amber-300" %}
+    </p>
   </body>
 </html>

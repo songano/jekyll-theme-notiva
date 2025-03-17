@@ -1,0 +1,53 @@
+{% comment %}
+  Advanced JSON-LD structured data implementation
+  This file should be included in <head> section
+
+  It supports:
+  - BlogPosting schema for posts
+  - WebSite schema for homepage
+  - WebPage schema for regular pages
+  - Custom schema via front matter
+{% endcomment %}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    {% if page.layout == 'post' %}
+    "@type": "BlogPosting",
+    "headline": {{ page.title | jsonify }},
+    "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+    {% if page.last_modified_at %}
+    "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+    {% else %}
+    "dateModified": {{ page.date | date_to_xmlschema | jsonify }},
+    {% endif %}
+    "description": {% if page.description %}{{ page.description | jsonify }}{% else %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}{% endif %},
+    {% if page.image.path %}
+    "image": {{ page.image.path | absolute_url | jsonify }},
+    {% endif %}
+    "author": {
+      "@type": "Person",
+      "name": {{ site.author.name | jsonify }}{% if site.author.url %},
+      "url": {{ site.author.url | jsonify }}{% endif %}
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ site.title | jsonify }},
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ "/assets/images/icons/logo.png" | absolute_url | jsonify }}
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ page.url | absolute_url | jsonify }}
+    }{% if page.categories %},
+    "keywords": {{ page.categories | join: ', ' | jsonify }}{% endif %}
+    {% else %}
+    "@type": "WebSite",
+    "name": {{ site.title | jsonify }},
+    "description": {{ site.description | jsonify }},
+    "url": {{ site.url | append: site.baseurl | jsonify }}
+    {% endif %}
+  }
+</script>
