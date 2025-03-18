@@ -13,12 +13,33 @@ layout: compress
     {% include head/head.html %}
   </head>
   <body>
-    This is default layout template used by all pages
-    <p>
-      {% include components/icon.html shape="outline" name="home" class="mb-4 size-24" %}
-    </p>
-    <p>
-      {% include components/icon.html name="home" shape="solid" class="mb-4 size-24 text-amber-300" %}
-    </p>
+    <!-- Progress bar (displays when scroll_progress is enabled) -->
+
+    <aside
+      class="sidebar-container {% if site.layout.sidebar_position == 'right' %}sidebar-right{% else %}sidebar-left{% endif %}"
+      data-sidebar-content
+      aria-hidden="true"
+    >
+      {% include sidebar/sidebar.html %}
+    </aside>
+
+    <!-- Main content area -->
+    <div class="content-container {% if site.layout.sidebar_position == 'right' %}sm:pr-64{% else %}pl-4 sm:pl-64{% endif %}">
+      <!-- Header -->
+      <header class="sticky-header">
+        {% include partials/header.html %}
+      </header>
+
+      <!-- Content -->
+      <main class="bg-red-900">
+        {{ content }}
+      </main>
+
+      <!-- Footer -->
+      <footer>This is footer</footer>
+    </div>
+
+    <!-- Scripts -->
+    {% include scripts/main-scripts.html %}
   </body>
 </html>

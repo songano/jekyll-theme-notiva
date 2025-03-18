@@ -1,0 +1,30 @@
+<div class="h-full flex flex-col gap-y-8">
+  <!-- Close Button -->
+
+  <!-- User profile section -->
+  <div class="pt-14 px-4 space-y-4">
+    {% include sidebar/profile.html %}
+    <!-- Social links (if configured to show in sidebar) -->
+    {% if site.social.location == 'sidebar' %}
+      {% include components/social-links.html %}
+    {% endif %}
+  </div>
+
+  <!-- Site stats if Firebase is enabled -->
+  {% if site.firebase.enable %}
+    <div class="grid grid-cols-3 px-3">
+      <div class="text-center flex flex-col gap-2">
+        <p class="text-xs text-muted-foreground">{{ site.data.locales[site.locale].sidebar.total_visitors }}</p>
+        <p class="font-semibold text-base" data-active-count>0</p>
+      </div>
+      <div class="text-center flex flex-col gap-2">
+        <p class="text-xs text-muted-foreground">{{ site.data.locales[site.locale].sidebar.current_visitors }}</p>
+        <p class="font-semibold text-base" data-active-count>0</p>
+      </div>
+      <div class="text-center flex flex-col gap-2">
+        <p class="text-xs text-muted-foreground">{{ site.data.locales[site.locale].sidebar.today_visitors }}</p>
+        <p class="font-semibold text-base" data-active-count>0</p>
+      </div>
+    </div>
+  {% endif %}
+</div>

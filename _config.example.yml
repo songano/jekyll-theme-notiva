@@ -13,21 +13,21 @@ theme_info:
     
 # [CUSTOMIZABLE] Site Settings
 # ----------------------------------------------------------------------
-title: "Notiva"                     # Site title
-tagline: "A Jekyll theme"                # Site tagline
+title: "Your Site Title"                     # Site title
+tagline: "Your Site Tagline"                # Site tagline
 description: "A developer-friendly Jekyll blog theme" # Site description for SEO
 url: "https://yourdomain.com"               # Site URL without trailing slash
 baseurl: ""                                  # Subpath of your site, e.g. "/blog"
-repository: songano/jekyll-theme-notiva              # GitHub username/repo-name
+repository: username/repo-name              # GitHub username/repo-name
 timezone: Asia/Seoul                         # Default timezone (https://zones.arilyn.cc/)
 locale: "en"                                 # Default locale (en, ko-KR, zh-CN)
   
 # [CUSTOMIZABLE] Author Settings
 # ----------------------------------------------------------------------
 author:
-  name: "Gano"                         # Your name
-  bio: "Your short bio goes here. This will appear in the sidebar. **is work** this is very long bio in this section test here again"  # Bio (supports markdown)
-  avatar: "/assets/images/avatar.jpg"       # Path to avatar image
+  name: "Your Name"                         # Your name
+  bio: "Your short bio goes here. This will appear in the sidebar."  # Bio (supports markdown)
+  avatar: "/assets/images/avatar.png"       # Path to avatar image
 
 # [CUSTOMIZABLE] Layout Settings
 # ----------------------------------------------------------------------
@@ -38,7 +38,7 @@ layout:
   toc_depth: 3                              # Table of contents depth (1-6)
   show_scroll_progress: true                # Show scroll progress bar
   show_scroll_to_top: true                  # Show scroll to top button
-  avatar_shape: "square"                    # Avatar shape: "circle" or "square"
+  avatar_shape: "circle"                    # Avatar shape: "circle" or "square"
 
 # [CUSTOMIZABLE] Theme Settings
 # ----------------------------------------------------------------------
@@ -70,13 +70,12 @@ search:
 # I recommend adding no more than 3 social media links to maintain a clean and user-friendly design.
 social:
   location: 'sidebar' 
-  shape: 'circle'                           # Social Icon shape: "circle" or "square"
   links:
     twitter:
     facebook:
     instagram:
     linkedin:
-    github: 'https://github.com/songano'
+    github:
     email:
 
 # [CUSTOMIZABLE] Comment Settings
@@ -104,7 +103,7 @@ analytics:
 # Important: For security reasons, don't include your actual Firebase API keys in this file.
 # Set these values through GitHub Actions environment variables or Jekyll environment variables.
 firebase:
-  enable: true                              # Enable Firebase for visitor statistics
+  enable: false                              # Enable Firebase for visitor statistics
   # Settings for Firebase are managed through environment variables:
   # FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_PROJECT_ID, 
   # FIREBASE_STORAGE_BUCKET, FIREBASE_MESSAGING_SENDER_ID, FIREBASE_APP_ID
@@ -114,9 +113,9 @@ firebase:
 pwa:
   enable: true                               # Enable Progressive Web App features
   manifest:
-    name: "Notiva"                   # Web App name
-    short_name: "Notiva"                  # Web App short name
-    description: "A Jekyll theme"     # Web App description
+    name: "Your Site Name"                   # Web App name
+    short_name: "Site Name"                  # Web App short name
+    description: "Your site description"     # Web App description
     theme_color: "#121021"                   # Theme color for browser
     background_color: "#121021"              # Background color for splash screen
     display: "standalone"                    # Display mode

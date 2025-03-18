@@ -1,0 +1,52 @@
+<!-- User profile -->
+<div class="text-center">
+  <!-- Avatar -->
+  <div class="mx-auto mb-4 overflow-hidden {% if site.layout.avatar_shape == 'square' %}rounded-2xl{% else %}rounded-full{% endif %} size-20 bg-background">
+    {% if site.author.avatar %}
+      <img
+        src="{{ site.author.avatar | relative_url }}"
+        alt="{{ site.author.name }}"
+        class="object-cover w-full h-full"
+      >
+    {% else %}
+      <!-- Default avatar icon if no avatar is set -->
+      <div class="flex items-center justify-center w-full h-full text-light-text-secondary dark:text-dark-text-secondary">
+        {% include components/icon.html name="user" size="48" %}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Name -->
+  <h1 class="text-xl font-semibold mb-2">{{ site.author.name }}</h1>
+
+  <!-- Bio with expandable functionality -->
+  {% if site.author.bio %}
+    <div>
+      <div id="bio-short" class="text-xs text-gray-300">
+        {{ site.author.bio | strip_html | truncate: 60 }}
+        {% if site.author.bio.size > 60 %}
+          <button
+            id="bio-expand-btn"
+            class="text-muted-foreground text-xs hover:underline cursor-pointer"
+            aria-expanded="false"
+            aria-controls="bio-full"
+          >
+            {{ site.data.locales[site.locale].sidebar.read_more }}
+          </button>
+        {% endif %}
+      </div>
+
+      {% if site.author.bio.size > 100 %}
+        <div id="bio-full" class="hidden mt-2 text-sm">
+          {{ site.author.bio | markdownify }}
+          <button
+            id="bio-collapse-btn"
+            class="text-primary-600 dark:text-primary-400 hover:underline focus:outline-none"
+          >
+            {{ site.data.locales[site.locale].sidebar.read_less }}
+          </button>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

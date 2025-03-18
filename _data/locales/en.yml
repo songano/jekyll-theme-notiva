@@ -1,0 +1,94 @@
+# English locale for Notiva theme
+
+# Date format
+date_format: "%b %-d, %Y"
+
+# Common text elements
+not_found:
+  title: "Page Not Found"
+  message: "The page you're looking for doesn't exist or has been moved."
+  back_home: "Back to Home"
+
+# Search related text
+search:
+  label: "Search"
+  placeholder: "Search posts..."
+  shortcut_key: "Ctrl+K"
+  initial_message: "Type to start searching..."
+  no_results: "No results found."
+  close: "Close"
+
+# Breadcrumbs
+breadcrumbs:
+  home: "Home"
+  archives: "Archives"
+
+# Sidebar
+sidebar:
+  home: "Home"
+  archives: "Archives"
+  categories: "Categories"
+  tags: "Tags"
+  wiki: "Wiki"
+  read_more: "Read more"
+  read_less: "Read less"
+  current_visitors: "Current"
+  today_visitors: "Today's"
+  total_visitors: "Total"
+
+# Header
+header:
+  loading_time: "Loading time..."
+
+# Table of Contents
+toc:
+  title: "Table of Contents"
+  toggle: "Toggle TOC"
+  expand: "Expand TOC"
+
+# Home page
+home:
+  pinned_posts: "Pinned Posts"
+  recent_posts: "Recent Posts"
+  trending_tags: "Trending Tags"
+
+# Pagination
+pagination:
+  more_posts: "More Posts"
+  previous: "Previous"
+  next: "Next"
+  page: "Page"
+  of: "of"
+
+# Post
+post:
+  min_read: "min read"
+  updated: "Updated"
+  previous: "Previous Post"
+  next: "Next Post"
+  related: "Related Posts"
+  comments: "Comments"
+  share: "Share:"
+
+# Page
+page:
+  comments: "Comments"
+
+# Archive
+archives:
+  title: "Archives"
+  description: "Browse all posts by date."
+
+# Categories
+categories:
+  posts_in: "Posts in category"
+  all_categories: "All Categories"
+
+# Tags
+tags:
+  posts_tagged: "Posts tagged with"
+  popular_tags: "Popular Tags"
+
+# Footer
+footer:
+  powered_by: "Powered by"

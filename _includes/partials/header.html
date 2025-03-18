@@ -1,0 +1,23 @@
+<!-- Header Compontn -->
+<div class="flex items-content justify-between p-4 transition-all duration-300">
+  <!-- Left Side -->
+  <div class="flex items-center gap-3">
+    <!-- Sidebar Toggler for Mobile -->
+    <button class="btn">{% include components/icon.html name="bars-3" %}</button>
+    <!-- Site Title -->
+    <a href="#">{{ site.title }}</a>
+  </div>
+
+  <!-- Right Side -->
+  <div class="flex items-center gap-2">
+    <!-- Search Button -->
+    <button>
+      {% include components/icon.html name="magnifying-glass" %}
+      {% comment %} {{ site.data.locales[site.locale].search.label }} {% endcomment %}
+    </button>
+    <!-- Theme Toggle Button -->
+    <button>
+      {% include components/icon.html name="moon" %}
+    </button>
+  </div>
+</div>
