@@ -1,11 +1,16 @@
+// vite.config.mjs
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import { VitePWA } from 'vite-plugin-pwa';
 import fs from 'fs';
 import yaml from 'js-yaml';
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from '@tailwindcss/vite';
 import banner from 'vite-plugin-banner';
+import { VitePWA } from 'vite-plugin-pwa';
 
+/**
+ * Load Jekyll configuration from _config.yml
+ * @returns {Object} Jekyll configuration
+ */
 function loadJekyllConfig() {
   try {
     const configYml = fs.readFileSync('./_config.yml', 'utf8');
@@ -16,14 +21,10 @@ function loadJekyllConfig() {
   }
 }
 
+// Load Jekyll config and package.json
 const jekyllConfig = loadJekyllConfig();
 const pwaConfig = jekyllConfig.pwa || { enable: false };
-
-console.log(pwaConfig);
-
-const pkg = JSON.parse(
-  fs.readFileSync('./package.json', 'utf8')
-);
+const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 // Create banner for bundled files
 const bannerContent = `/*!
@@ -33,93 +34,107 @@ const bannerContent = `/*!
  * Released under the ${pkg.license} License
  */`;
 
- // Define page-specific entry points
-const pageEntries = {
-  main: resolve(__dirname, '_app/js/main.ts'),
-  // home: resolve(__dirname, '_app/js/pages/home.ts'),
-  // post: resolve(__dirname, '_app/js/pages/post.ts'),
-  // archive: resolve(__dirname, '_app/js/pages/archive.ts'),
-  // search: resolve(__dirname, '_app/js/pages/search.ts'),
+/**
+ * Get dynamic page entries from _app/js/pages
+ * @returns {Object} Entry points for page-specific scripts
+ */
+const getPageEntries = () => {
+  const pagesDir = resolve(__dirname, '_app/js/pages');
+  const entries = {};
+  
+  if (fs.existsSync(pagesDir)) {
+    fs.readdirSync(pagesDir).forEach(file => {
+      if (file.endsWith('.ts') || file.endsWith('.js')) {
+        const name = file.replace(/\.(ts|js)$/, '');
+        entries[name] = resolve(pagesDir, file);
+      }
+    });
+  }
+  
+  return entries;
 };
 
-
-/**
- * Main Vite configuration
- */
-export default defineConfig({
-  base: '/',
-  build: {
-    outDir: 'assets/dist',
-    emptyOutDir: true,
-    sourcemap: false,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: process.env.NODE_ENV === 'production',
-        drop_debugger: process.env.NODE_ENV === 'production',
+// Configuration
+export default defineConfig(({ mode }) => {
+  const isProd = mode === 'production';
+  console.log(isProd);
+  const pageEntries = getPageEntries();
+  
+  return {
+    base: '/',
+    build: {
+      outDir: 'assets/dist',
+      emptyOutDir: true,
+      minify: 'terser',
+      terserOptions: isProd ? {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      } : undefined,
+      
+      // Configure rollup options for code splitting
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, '_app/scripts/main.ts'),
+          styles: resolve(__dirname, '_app/styles/main.css'),
+          ...pageEntries,
+        },
+        output: {
+          entryFileNames: 'js/[name].min.js',
+          chunkFileNames: 'js/chunks/[name]-[hash].min.js',
+          assetFileNames: (assetInfo) => {
+            const name = assetInfo.name || '';
+            
+            if (/\.css$/i.test(name)) {
+              return 'css/[name].min.[ext]';
+            }
+            
+            if (/\.(png|jpe?g|gif|svg|webp|ico)$/i.test(name)) {
+              return 'img/[name].[ext]';
+            }
+            
+            if (/\.(woff2?|eot|ttf|otf)$/i.test(name)) {
+              return 'fonts/[name].[ext]';
+            }
+            
+            return 'assets/[name].[ext]';
+          },
+          // Extract common chunks
+          manualChunks: (id) => {
+            if (id.includes('node_modules/firebase')) {
+              return 'vendor/firebase';
+            }
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
+            if (id.includes('_app/js/utils/')) {
+              return 'utils';
+            }
+            if (id.includes('_app/js/components/')) {
+              return 'components';
+            }
+          },
+        },
       },
     },
     
-    // Configure rollup options for code splitting
-    rollupOptions: {
-      input: {
-        styles: resolve(__dirname, '_app/css/main.css'),
-        ...pageEntries,
-      },
-      output: {
-        entryFileNames: 'js/[name].min.js',
-        chunkFileNames: 'js/chunks/[name]-[hash].min.js',
-        assetFileNames: (assetInfo) => {
-          const name = assetInfo.originalFileNames?.[0] || '';
-
-          if (/\.(css)$/i.test(name)) {
-            return 'css/[name].min.[ext]';
-          }
-          
-          if (/\.(png|jpe?g|gif|svg|webp|ico)$/i.test(name)) {
-            return 'img/[name].[ext]';
-          }
-          
-          if (/\.(woff2?|eot|ttf|otf)$/i.test(name)) {
-            return 'fonts/[name].[ext]';
-          }
-          
-          return '[name].[ext]';
-        },
-        // // Extract common chunks
-        manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            return 'vendor';
-          }
-          if (id.includes('_app/js/utils/')) {
-            return 'components';
-          }
-          if (id.includes('_app/js/components/')) {
-            return 'utils';
-          }
-        },
-      },
+    // CSS processing
+    css: {
+      devSourcemap: true,
     },
-  },
-  
-  // CSS processing
-  css: {
-    devSourcemap: true,
-    preprocessorOptions: {
-      scss: {
-        // Custom import paths to allow user customizations
-        includePaths: ['_sass'],
-      }
-    },
-  },
-  
-  // PWA plugin configuration based on Jekyll config
-  plugins: [
-    banner(bannerContent),
-    tailwindcss(),
-    // PWA plugin
-    pwaConfig.enable
-      ? VitePWA({
+    
+    // Plugins
+    plugins: [
+      // Add Tailwind CSS plugin
+      tailwindcss(),
+      
+      // Add banner plugin
+      banner(bannerContent),
+      
+      // PWA plugin if enabled in _config.yml
+      ...(pwaConfig.enable ? [
+        VitePWA({
           registerType: 'autoUpdate',
           outDir: 'assets/dist',
           includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
@@ -152,15 +167,16 @@ export default defineConfig({
             ],
           },
         })
-      : [],
-  ],
-  
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, '_app'),
+      ] : []),
+    ],
+    
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, '_app'),
+      },
     },
-  },
-  server: {
-    hmr: false, // Disable HMR as per requirements
-  },
+    server: {
+      hmr: false, // Disable HMR as per requirements
+    },
+  };
 });

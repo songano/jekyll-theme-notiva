@@ -4,16 +4,16 @@
   - name: Name of the icon from _data/icons.yml (required)
   - stroke: Stroke width of the icon (default: 1.5)
   - class: Additional CSS classes (size follows Tailwind CSS size- classes)
-  - shape: Shape of the icon (default: 'outline')
+  - type: Shape of the icon (default: 'outline' | 'solid' | 'social')
 
   Usage:
   {% include components/icon.html name="home" %}
-  {% include components/icon.html name="home" shape="solid" class="mb-4 size-12 text-amber-300" %}
+  {% include components/icon.html name="home" type="solid" class="mb-4 size-12 text-amber-300" %}
   {% include components/icon.html name="heart" class="size-12 mb-3" %}
 {% endcomment %}
 
 {% assign stroke_width = include.stroke | default: 1.5 %}
-{% assign icon_shape = include.shape | default: 'outline' %}
+{% assign icon_type = include.type | default: 'outline' %}
 {% assign icon_class = include.class %}
 
 {% if icon_class %}
@@ -26,13 +26,14 @@
 
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  fill="{% if icon_shape == 'solid' %}currentColor{% else %}none{% endif %}"
+  fill="{% if icon_type != 'outline' %}currentColor{% else %}none{% endif %}"
   viewBox="0 0 24 24"
-  {% if icon_shape != 'solid' %}
+  {% if icon_type == 'outline' %}
     stroke-width="{{stroke_width}}" stroke="currentColor"
   {% endif %}
   aria-hidden="true"
+  role="img"
   class="{{icon_class}}"
 >
-  {{ site.data.icons[icon_shape][include.name] }}
+  {{ site.data.icons[icon_type][include.name] }}
 </svg>

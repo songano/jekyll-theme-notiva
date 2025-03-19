@@ -25,17 +25,17 @@
   "scripts": {
     "build": "npm run build:vite && npm run build:jekyll",
     "build:jekyll": "JEKYLL_ENV=production bundle exec jekyll build",
-    "build:vite": "vite build",
+    "build:vite": "vite --mode production build",
     "clean": "rm -rf _site/ assets/dist",
     "dev": "concurrently --names \"VITE,JEKYLL\" --prefix \"[{name}]\" --timestamp --timestamp-format \"HH:mm:ss\" --prefix-colors \"blue.bold,magenta.bold\" --kill-others-on-fail \"npm run dev:vite\" \"npm run dev:jekyll\"",
     "dev:jekyll": "JEKYLL_ENV=development bundle exec jekyll serve --livereload",
-    "dev:vite": "vite build --watch",
+    "dev:vite": "vite build --mode development --watch",
     "format": "prettier --write \"_app\"",
     "lint": "npm run lint:js",
     "lint:js": "eslint _app/**/*.ts --fix",
     "package:sort": "sort-package-json",
     "prepare": "husky",
-    "pwa-assets": "pwa-assets-generator --preset minimal-2023 assets/images/logo.svg"
+    "pwa-assets": "pwa-assets-generator --preset minimal-2023 assets/images/icons/logo.svg"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

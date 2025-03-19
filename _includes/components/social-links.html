@@ -1,20 +1,21 @@
 <div class="flex flex-wrap gap-2 justify-center">
-  {% for %}
-  <div
-    class="size-8 bg-background {% if site.social.shape == 'circle' %}rounded-full{% else %}rounded-lg{% endif %}"
-  ></div>
-  <div
-    class="size-8 bg-background {% if site.social.shape == 'circle' %}rounded-full{% else %}rounded-lg{% endif %}"
-  ></div>
-  <div
-    class="size-8 bg-background {% if site.social.shape == 'circle' %}rounded-full{% else %}rounded-lg{% endif %}"
-  ></div>
-  <div
-    class="size-8 bg-background {% if site.social.shape == 'circle' %}rounded-full{% else %}rounded-lg{% endif %}"
-  ></div>
-  <div
-    class="size-8 bg-background {% if site.social.shape == 'circle' %}rounded-full{% else %}rounded-lg{% endif %}"
-  ></div>
+  {% for item in site.social.links %}
+    {% assign platform = item[0] %}
+    {% assign url = item[1] %}
+    {% if url and url != '' %}
+      <a
+        class="dark:text-gray-500 dark:hover:text-gray-100 transition-colors duration-200 bg-background/40 size-7 flex items-center justify-center {% if site.social.shape == 'circle' %}rounded-full{% else %}rounded-xl{% endif %}"
+        href="{{ url }}"
+        target="_blank"
+        rel="noopener"
+        aria-label="{{ platform | capitalize }}"
+      >
+        {% if jekyll.environment == 'production' %}
+          {% include_cached components/icon.html name=platform type='social' class="size-3.5" %}
+        {% else %}
+          {% include components/icon.html name=platform type='social' class="size-3.5" %}
+        {% endif %}
+      </a>
+    {% endif %}
+  {% endfor %}
 </div>
-
-

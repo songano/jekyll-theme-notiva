@@ -22,9 +22,9 @@
   <!-- Bio with expandable functionality -->
   {% if site.author.bio %}
     <div>
-      <div id="bio-short" class="text-xs text-gray-300">
-        {{ site.author.bio | strip_html | truncate: 60 }}
-        {% if site.author.bio.size > 60 %}
+      <div id="bio-short" class="text-xs dark:text-gray-300 text-gray-700">
+        {{ site.author.bio | strip_html | truncate: 100 }}
+        {% if site.author.bio.size > 100 %}
           <button
             id="bio-expand-btn"
             class="text-muted-foreground text-xs hover:underline cursor-pointer"

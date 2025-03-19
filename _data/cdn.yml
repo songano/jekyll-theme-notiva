@@ -9,4 +9,4 @@ fonts:
 
 # Icons
 icons:
-  - url: "https://cdn.jsdelivr.net/npm/heroicons-css@0.1.1/heroicons.min.css"
+  # - url: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"

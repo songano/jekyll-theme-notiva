@@ -1,7 +1,11 @@
-<!-- Vendor scripts -->
-{% if site.pwa.enabled %}
-  <script src="/assets/dist/registerSW.js"></script>
-{% endif %}
+<!-- Core scripts for Notiva theme -->
+<script src="{{ '/assets/dist/js/main.min.js' | relative_url }}" crossorigin type="module"></script>
+
+{% comment %}
+  {% if site.pwa.enable %}
+    <script src="/assets/dist/registerSW.js"></script>
+  {% endif %}
+{% endcomment %}
 
 {% if site.comments.provider == 'giscus' and page.comments != false %}
   <!-- Load Giscus comments -->
