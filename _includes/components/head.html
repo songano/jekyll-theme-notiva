@@ -1,0 +1,53 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta
+  name="viewport"
+  content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
+>
+
+<!-- SEO -->
+{% seo title=false %}
+
+<title>
+  {%- unless page.layout == 'home' -%}
+    {{ page.title | append: ' | ' }}
+  {%- endunless -%}
+  {{ site.title }}
+</title>
+
+<!-- Mobile app capabilities -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Favicon and app icons -->
+{% capture icon_path %}{{ '/assets/images/icons' | relative_url}}{% endcapture %}
+<link rel="shortcut icon" href="{{ icon_path }}/favicon.ico">
+{% comment %}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ icon_path }}/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ icon_path }}/favicon-16x16.png">
+{% endcomment %}
+<link rel="apple-touch-icon" size="180x180" href="{{ icon_path }}/apple-touch-icon-180x180.png">
+{% if site.pwa.enabled %}
+  <link rel="manifest" href="{{ '/assets/dist/site.webmanifest' || relative_url }}">
+{% endif %}
+<meta name="apple-mobile-web-app-title" content="{{ site.title }}">
+<meta name="application-name" content="{{ site.title }}">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="{{ icon_path }}/browserconfig.xml">
+<meta name="theme-color" content="{{ site.pwa.theme_color | default: '#4a5568' }}">
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{ '/assets/dist/css/styles.min.css' | relative_url }}">
+
+<!-- External resources (fonts, icons, etc.) -->
+{% if site.data.cdn %}
+  {% for resource in site.data.cdn.styles %}
+    <link
+      rel="stylesheet"
+      href="{{ resource.url }}"
+      {% if resource.crossorigin %}
+        crossorigin="{{ resource.crossorigin }}"
+      {% endif %}
+    >
+  {% endfor %}
+{% endif %}

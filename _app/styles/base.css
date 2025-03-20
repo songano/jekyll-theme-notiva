@@ -13,4 +13,11 @@
   ::selection {
     @apply bg-primary text-primary-foreground;
   }
+
+  /* Custom button styling */
+  button {
+    @apply text-foreground py-1 px-2 rounded-lg border;
+    @apply flex items-center justify-center;
+    @apply cursor-pointer;
+  }
 }

@@ -83,6 +83,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    @apply flex flex-col min-h-screen antialiased;
   }
 }
 
@@ -93,6 +94,9 @@
   .sidebar-container {
     @apply fixed top-0 z-40 h-full border-r bg-sidebar-accent border-sidebar-border;
     @apply w-64;
+  }
+  .main-container {
+    @apply flex flex-col flex-1;
   }
 }
 

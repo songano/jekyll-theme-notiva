@@ -1,0 +1,21 @@
+<!-- Main JavaScript -->
+<script type="module" src="{{ '/assets/dist/js/main.min.js' | relative_url }}"></script>
+
+<!-- Page-specific JavaScript, if available -->
+{% comment %}
+  {% if page.layout %}
+    {% assign layout_script = '/assets/dist/js/' | append: page.layout | append: '.min.js' %}
+    {% assign layout_script_path = layout_script | relative_url %}
+    <script type="module" src="{{ layout_script_path }}"></script>
+  {% endif %}
+
+  <!-- Firebase configuration -->
+  {% if site.firebase.enabled %}
+    {% include_cached snippets/firebase-config.html %}
+  {% endif %}
+
+  <!-- Google Analytics -->
+  {% if site.google_analytics and jekyll.environment == 'production' %}
+    {% include_cached snippets/analytics.html %}
+  {% endif %}
+{% endcomment %}

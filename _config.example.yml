@@ -12,40 +12,42 @@ theme_info:
   description: "Developer-friendly Jekyll blog theme"
 
 # [CUSTOMIZABLE] Site Settings
+# + SEO Setting, reference: https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ----------------------------------------------------------------------
-title: "Your Site Title" # Site title
-tagline: "Your Site Tagline" # Site tagline
+title: "Notiva"                           # Site title
+tagline: "A Jekyll theme"                 # Site tagline
 description: "A developer-friendly Jekyll blog theme" # Site description for SEO
-url: "https://yourdomain.com" # Site URL without trailing slash
-baseurl: "" # Subpath of your site, e.g. "/blog"
-repository: username/repo-name # GitHub username/repo-name
-timezone: Asia/Seoul # Default timezone (https://zones.arilyn.cc/)
-locale: "en" # Default locale (en, ko-KR, zh-CN)
+url: "https://yourdomain.com"             # Site URL without trailing slash
+baseurl: ""                               # Subpath of your site, e.g. "/blog"
+repository: username/jekyll-theme-notiva  # GitHub username/repo-name (Change this to yours)
+timezone: Asia/Seoul                      # Default timezone (https://zones.arilyn.cc/)
+locale: "en"                              # Default locale (en, ko-KR, zh-CN)
 
 # [CUSTOMIZABLE] Author Settings
 # ----------------------------------------------------------------------
 author:
-  name: "Your Name" # Your name
-  bio: "Your short bio goes here. This will appear in the sidebar." # Bio (supports markdown)
-  avatar: "/assets/images/avatar.png" # Path to avatar image
+  name: "Your Name"                       # Your name
+  bio: "Your short bio goes here. This will appear in the sidebar. **Markdown** is supported." # Bio (supports markdown)
+  avatar: "/assets/images/avatar.jpg"     # Path to avatar image
+  email: "your-email@example.com"         # Your email
 
 # [CUSTOMIZABLE] Layout Settings
 # ----------------------------------------------------------------------
 layout:
-  sidebar_position: "left" # Sidebar position: "left" or "right"
-  content_width: "medium" # Content width: "narrow", "medium", "wide"
-  post_style: "grid" # Post list style: "grid" or "list"
-  toc_depth: 3 # Table of contents depth (1-6)
-  show_scroll_progress: true # Show scroll progress bar
-  show_scroll_to_top: true # Show scroll to top button
-  avatar_shape: "circle" # Avatar shape: "circle" or "square"
+  sidebar_position: "left"                # Sidebar position: "left" or "right"
+  content_width: "medium"                 # Content width: "narrow", "medium", "wide"
+  post_style: "grid"                      # Post list style: "grid" or "list"
+  toc_depth: 3                            # Table of contents depth (1-6)
+  show_scroll_progress: true              # Show scroll progress bar
+  show_scroll_to_top: true                # Show scroll to top button
+  avatar_shape: "square"                  # Avatar shape: "circle" or "square"
 
 # [CUSTOMIZABLE] Theme Settings
 # ----------------------------------------------------------------------
-theme_mode: "dark" # Default theme mode: "dark", "light" or "auto" (system preference)
+theme_mode: "dark"                        # Default theme mode: "dark", "light" or "auto" (system preference)
 code_block:
-  show_line_numbers: true # Show line numbers in code blocks
-  copy_button: true # Show copy button for code blocks
+  show_line_numbers: true                 # Show line numbers in code blocks
+  copy_button: true                       # Show copy button for code blocks
 
 # [CUSTOMIZABLE] Navigation Settings
 # ----------------------------------------------------------------------
@@ -54,56 +56,63 @@ code_block:
 
 # [CUSTOMIZABLE] Pagination Settings
 # ----------------------------------------------------------------------
-paginate: 10 # Number of posts per page
-paginate_path: "/page/:num/" # Pagination URL format
+paginate: 10                              # Number of posts per page
+paginate_path: "/page/:num/"              # Pagination URL format
 
 # [CUSTOMIZABLE] Search Settings
 # ----------------------------------------------------------------------
 search:
-  enable: true # Enable search functionality
-  shortcut: true # Enable search shortcut (Ctrl+K / Cmd+K)
-  max_results: 50 # Maximum number of search results to display
+  enable: true                            # Enable search functionality
+  shortcut: true                          # Enable search shortcut (Ctrl+K / Cmd+K)
+  max_results: 50                         # Maximum number of search results to display
 
 # [CUSTOMIZABLE] Social Media Settings
+# https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ----------------------------------------------------------------------
 # Social media links will be displayed in the sidebar or footer based on your settings.
-# I recommend adding no more than 3 social media links to maintain a clean and user-friendly design.
+github:
+  username: github_username # change to your GitHub username
+
+twitter:
+  username: twitter_username # change to your Twitter username
+
 social:
-  location: "sidebar"
+  location: "sidebar"                     # Where to display social links: "sidebar" or "footer"
+  shape: "circle"                         # Social Icon shape: "circle" or "square"
+  name: "Your name"                       # Enter your name
   links:
-    twitter:
-    facebook:
-    instagram:
-    linkedin:
-    github:
-    email:
+    - https://twitter.com/username
+    - https://www.facebook.com/username
+    - https://github.com/username
+    # - https://www.linkedin.com/in/username
+    # - https://keybase.io/username
 
 # [CUSTOMIZABLE] Comment Settings
 # ----------------------------------------------------------------------
 comments:
-  provider: "giscus" # Comment provider: "giscus", "utterances", "disqus", or false
+  provider: "giscus"                      # Comment provider: "giscus", "utterances", "disqus", or false
   giscus:
-    repo: "username/repo-name" # GitHub repository (username/repo-name)
-    repo_id: "your-repo-id" # Repository ID
-    category: "Comments" # Discussion category name
-    category_id: "your-category-id" # Category ID
-    mapping: "pathname" # Page to discussions mapping: "pathname", "url", "title", or "og:title"
-    reactions_enabled: 1 # Enable reactions: 0 = false, 1 = true
-    theme: "preferred_color_scheme" # Theme: "light", "dark", "preferred_color_scheme"
+    repo: "username/repo-name"            # GitHub repository (username/repo-name)
+    repo_id: "your-repo-id"               # Repository ID
+    category: "Comments"                  # Discussion category name
+    category_id: "your-category-id"       # Category ID
+    mapping: "pathname"                   # Page to discussions mapping: "pathname", "url", "title", or "og:title"
+    reactions_enabled: 1                  # Enable reactions: 0 = false, 1 = true
+    theme: "preferred_color_scheme"       # Theme: "light", "dark", "preferred_color_scheme"
 
 # [CUSTOMIZABLE] Analytics Settings
 # ----------------------------------------------------------------------
 analytics:
-  provider: "google-gtag" # Analytics provider: "google-gtag", "google", "custom", or false
+  provider: "google-gtag"                 # Analytics provider: "google-gtag", "google", "custom", or false
   google:
-    tracking_id: "G-XXXXXXXXXX" # Google Analytics tracking ID
+    tracking_id: "G-XXXXXXXXXX"           # Google Analytics tracking ID
 
 # [CUSTOMIZABLE] Firebase Settings
 # ----------------------------------------------------------------------
-# Important: For security reasons, don"t include your actual Firebase API keys in this file.
+# IMPORTANT: For security reasons, don't include your actual Firebase API keys in this file.
 # Set these values through GitHub Actions environment variables or Jekyll environment variables.
 firebase:
-  enable: false # Enable Firebase for visitor statistics
+  enable: true                            # Enable Firebase for visitor statistics
   # Settings for Firebase are managed through environment variables:
   # FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_PROJECT_ID,
   # FIREBASE_STORAGE_BUCKET, FIREBASE_MESSAGING_SENDER_ID, FIREBASE_APP_ID
@@ -111,15 +120,15 @@ firebase:
 # [CUSTOMIZABLE] PWA Settings
 # ----------------------------------------------------------------------
 pwa:
-  enable: true # Enable Progressive Web App features
+  enable: true                            # Enable Progressive Web App features
   manifest:
-    name: "Your Site Name" # Web App name
-    short_name: "Site Name" # Web App short name
-    description: "Your site description" # Web App description
-    theme_color: "#121021" # Theme color for browser
-    background_color: "#121021" # Background color for splash screen
-    display: "standalone" # Display mode
-    start_url: "/?utm_source=homescreen" # Start URL when launched from home screen
+    name: "Notiva"                        # Web App name
+    short_name: "Notiva"                  # Web App short name
+    description: "A Jekyll theme"         # Web App description
+    theme_color: "#121021"                # Theme color for browser
+    background_color: "#121021"           # Background color for splash screen
+    display: "standalone"                 # Display mode
+    start_url: "/?utm_source=homescreen"  # Start URL when launched from home screen
     icons:
       - src: "/assets/images/icons/pwa-192x192.png"
         sizes: "192x192"
@@ -130,30 +139,28 @@ pwa:
 
 # [CUSTOMIZABLE] Site Verification Settings
 # ----------------------------------------------------------------------
-verification:
-  google: "" # Google verification code
-  bing: "" # Bing verification code
-  yandex: "" # Yandex verification code
-  naver: "" # Naver verification code
-  pinterest: "" # Pinterest verification code
-  facebook: "" # Facebook domain verification code
-  baidu: "" # Baidu verification code
-  brave: "" # Brave Browser publisher verification
+webmaster_verifications:
+  google: ""                              # Google verification code
+  bing: ""                                # Bing verification code
+  alexa: ""                               # Yandex verification code
+  yandex: ""                              # Pinterest verification code
+  baidu: ""                               # Facebook domain verification code
+  facebook: ""                            # Baidu verification code
 
 # [CUSTOMIZABLE] Advanced Settings
 # ----------------------------------------------------------------------
 markdown: kramdown
 highlighter: rouge
 kramdown:
-  input: GFM # GitHub Flavored Markdown
-  syntax_highlighter: rouge # Syntax highlighter
-  syntax_highlighter_opts: # Syntax highlighter options
-    css_class: "highlight" # CSS class for highlighted code
+  input: GFM                              # GitHub Flavored Markdown
+  syntax_highlighter: rouge               # Syntax highlighter
+  syntax_highlighter_opts:                # Syntax highlighter options
+    css_class: "highlight"                # CSS class for highlighted code
     span:
-      line_numbers: false # Don"t show line numbers for inline code
+      line_numbers: false                 # Don't show line numbers for inline code
     block:
-      line_numbers: true # Show line numbers for code blocks
-      start_line: 1 # Start line number
+      line_numbers: true                  # Show line numbers for code blocks
+      start_line: 1                       # Start line number
 
 # [CUSTOMIZABLE] Collections
 # ----------------------------------------------------------------------
@@ -256,7 +263,7 @@ compress_html:
 
 # [NOT CUSTOMIZABLE] Sass conversion settings
 # Note: Notiva theme uses Tailwind CSS instead of Sass/SCSS.
-# This setting is only included for Jekyll"s internal compatibility.
+# This setting is only included for Jekyll's internal compatibility.
 # ----------------------------------------------------------------------
 sass:
   sass_dir: _sass

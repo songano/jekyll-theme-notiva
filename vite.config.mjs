@@ -39,7 +39,7 @@ const bannerContent = `/*!
  * @returns {Object} Entry points for page-specific scripts
  */
 const getPageEntries = () => {
-  const pagesDir = resolve(__dirname, '_app/js/pages');
+  const pagesDir = resolve(__dirname, '_app/scripts/pages');
   const entries = {};
   
   if (fs.existsSync(pagesDir)) {
@@ -57,7 +57,6 @@ const getPageEntries = () => {
 // Configuration
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
-  console.log(isProd);
   const pageEntries = getPageEntries();
   
   return {
@@ -78,6 +77,7 @@ export default defineConfig(({ mode }) => {
         input: {
           main: resolve(__dirname, '_app/scripts/main.ts'),
           styles: resolve(__dirname, '_app/styles/main.css'),
+
           ...pageEntries,
         },
         output: {
@@ -102,17 +102,8 @@ export default defineConfig(({ mode }) => {
           },
           // Extract common chunks
           manualChunks: (id) => {
-            if (id.includes('node_modules/firebase')) {
-              return 'vendor/firebase';
-            }
             if (id.includes('node_modules')) {
               return 'vendor';
-            }
-            if (id.includes('_app/js/utils/')) {
-              return 'utils';
-            }
-            if (id.includes('_app/js/components/')) {
-              return 'components';
             }
           },
         },
@@ -135,8 +126,8 @@ export default defineConfig(({ mode }) => {
       // PWA plugin if enabled in _config.yml
       ...(pwaConfig.enable ? [
         VitePWA({
-          registerType: 'autoUpdate',
           outDir: 'assets/dist',
+          registerType: 'autoUpdate',
           includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
           manifest: pwaConfig.manifest,
           workbox: {

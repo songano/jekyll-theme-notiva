@@ -10,28 +10,25 @@ layout: compress
   data-theme="{{ site.theme_mode | default: 'dark' }}"
 >
   <head>
-    {% include head/head.html %}
+    {% include components/head.html %}
   </head>
   <body>
     <!-- Progress bar (displays when scroll_progress is enabled) -->
 
     <aside
-      class="sidebar-container {% if site.layout.sidebar_position == 'right' %}sidebar-right{% else %}sidebar-left{% endif %}"
+      class="sidebar-container {% if site.theme_settings.sidebar_position == 'right' %}sidebar-right{% else %}sidebar-left{% endif %}"
       data-sidebar-content
-      {% comment %} aria-hidden="true" {% endcomment %}
     >
-      {% include sidebar/sidebar.html %}
+      sidebar
     </aside>
 
     <!-- Main content area -->
-    <div class="content-container {% if site.layout.sidebar_position == 'right' %}sm:pr-64{% else %}pl-4 sm:pl-64{% endif %}">
+    <div class="main-container {% if site.theme_settings.sidebar_position == 'right' %}sm:pr-64{% else %}pl-4 sm:pl-64{% endif %}">
       <!-- Header -->
-      <header class="sticky-header">
-        {% include partials/header.html %}
-      </header>
+      <header class="sticky-header">header</header>
 
       <!-- Content -->
-      <main class="bg-red-900">
+      <main class="bg-red-900 flex-1">
         {{ content }}
       </main>
 
@@ -40,6 +37,6 @@ layout: compress
     </div>
 
     <!-- Scripts -->
-    {% include scripts/main-scripts.html %}
+    {% include components/scripts.html %}
   </body>
 </html>
