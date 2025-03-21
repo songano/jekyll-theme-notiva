@@ -1,0 +1,23 @@
+<div class="mt-14 text-center space-y-3 px-4">
+  {% if site.avatar %}
+    <div class="overflow-hidden size-23 mx-auto border-border {% if site.appearance.avatar_shape == 'rounded' %}rounded-xl{% else %}rounded-full{% endif %}">
+      <img src="{{ site.avatar | relative_url }}" alt="{{ site.author.name }} avatar image">
+    </div>
+  {% endif %}
+
+  <div class="space-y-2">
+    <h4 class="text-lg">
+      <a href="/">{{ site.author.name }}</a>
+    </h4>
+    {% if site.author.bio %}
+      <div id="bio-short" class="text-sm mb-0 text-gray-400 text-medium">
+        {{ site.author.bio | strip_html }}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Social Links (if in sidebar) -->
+  {% if site.social_display.position == 'sidebar' or site.social_display.position == 'both' %}
+    {% include components/shared/social-links.html %}
+  {% endif %}
+</div>

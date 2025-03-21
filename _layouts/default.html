@@ -15,20 +15,21 @@ layout: compress
   <body>
     <!-- Progress bar (displays when scroll_progress is enabled) -->
 
+    <!-- Sidebar -->
     <aside
-      class="sidebar-container {% if site.theme_settings.sidebar_position == 'right' %}sidebar-right{% else %}sidebar-left{% endif %}"
+      class="sidebar-container {% if site.theme_settings.sidebar_position == 'right' %}border-l right-0{% else %}border-r{% endif %}"
       data-sidebar-content
     >
-      sidebar
+      {% include components/sidebar/sidebar.html %}
     </aside>
 
     <!-- Main content area -->
-    <div class="main-container {% if site.theme_settings.sidebar_position == 'right' %}sm:pr-64{% else %}pl-4 sm:pl-64{% endif %}">
+    <div class="main-container {% if site.theme_settings.sidebar_position == 'right' %}sm:pr-65{% else %}pl-4 sm:pl-65{% endif %}">
       <!-- Header -->
       <header class="sticky-header">header</header>
 
       <!-- Content -->
-      <main class="bg-red-900 flex-1">
+      <main class="flex-1">
         {{ content }}
       </main>
 

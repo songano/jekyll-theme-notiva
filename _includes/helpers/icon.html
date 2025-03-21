@@ -1,0 +1,41 @@
+{% comment %}
+  Universal icon include for both Heroicons and Font Awesome
+  USAGE:
+    Heroicons: https://heroicons.com
+      {% include helpers/icon.html type="heroicons" name="home" class="text-blue-500" %}
+    Font Awesome: https://fontawesome.com/search?ic=free
+      {% include helpers/icon.html type="fontawesome" name="github" class="mr-2" %}
+
+  PARAMETERS:
+    - type: (required) 'heroicons' or 'fontawesome'
+    - name: (required) icon name as defined in _data/icons.yml
+    - class: (optional) additional CSS classes
+{% endcomment %}
+
+{% assign icon_class = include.class | default: '' %}
+
+{% if include.type == 'heroicons' %}
+  {% assign icon = site.data.icons.heroicons[include.name] %}
+  {% if icon %}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="{{ icon_class }}"
+      {% if icon.type == 'outline' %}
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      {% else %}
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      {% endif %}
+      aria-hidden="true"
+    >
+      {{ icon.svg }}
+    </svg>
+  {% endif %}
+{% elsif include.type == 'fontawesome' %}
+  {% assign icon = site.data.icons.fontawesome[include.name] %}
+  {% if icon %}
+    <i class="{{ icon.class }} {{ icon_class }}"></i>
+  {% endif %}
+{% endif %}

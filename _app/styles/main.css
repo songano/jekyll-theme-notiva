@@ -75,6 +75,8 @@
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
+  --font-body: 'Pretendard JP', 'system-ui', 'sans-serif';
+  --font-mono: 'Victor Mono', 'monospace';
 }
 
 @layer base {
@@ -84,6 +86,7 @@
   body {
     @apply bg-background text-foreground;
     @apply flex flex-col min-h-screen antialiased;
+    @apply font-body;
   }
 }
 
@@ -92,11 +95,32 @@
     @apply max-w-7xl mx-auto;
   }
   .sidebar-container {
-    @apply fixed top-0 z-40 h-full border-r bg-sidebar-accent border-sidebar-border;
-    @apply w-64;
+    @apply fixed top-0 z-40 h-full bg-sidebar border-sidebar-border;
+    @apply w-65;
   }
   .main-container {
     @apply flex flex-col flex-1;
+  }
+}
+
+/* Utility classes */
+@utility scrollbar-thin {
+  &::-webkit-scrollbar {
+    width: 0.3rem;
+    height: 0.3rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-muted);
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-secondary);
   }
 }
 

@@ -1,94 +1,119 @@
-# English locale for Notiva theme
-
-# Date format
-date_format: "%b %-d, %Y"
-
-# Common text elements
-not_found:
-  title: "Page Not Found"
-  message: "The page you're looking for doesn't exist or has been moved."
-  back_home: "Back to Home"
-
-# Search related text
-search:
-  label: "Search"
-  placeholder: "Search posts..."
-  shortcut_key: "Ctrl+K"
-  initial_message: "Type to start searching..."
-  no_results: "No results found."
-  close: "Close"
-
-# Breadcrumbs
-breadcrumbs:
-  home: "Home"
-  archives: "Archives"
+# English locale strings
+# This is the default language
 
 # Sidebar
 sidebar:
   home: "Home"
-  archives: "Archives"
+  about: "About"
   categories: "Categories"
   tags: "Tags"
-  wiki: "Wiki"
+  archives: "Archives"
+  search: "Search"
+  online_now: "Online"
+  today: "Today"
+  total: "Total"
   read_more: "Read more"
   read_less: "Read less"
-  current_visitors: "Current"
-  today_visitors: "Today's"
-  total_visitors: "Total"
+  resources: "Resources"
 
 # Header
 header:
-  loading_time: "Loading time..."
+  search: "Search"
 
-# Table of Contents
-toc:
-  title: "Table of Contents"
-  toggle: "Toggle TOC"
-  expand: "Expand TOC"
+# Search
+search:
+  placeholder: "Search posts, categories, and tags..."
+  start: "Type to start searching"
+  no_results: "No results found"
+  shortcut_tip: "Press ESC to close, ↑/↓ to navigate, Enter to select"
 
-# Home page
+# Post
+post:
+  toc_title: "Table of Contents"
+  tags_title: "Tags"
+  share_title: "Share"
+  comments_title: "Comments"
+  related_posts: "Related Posts"
+  next_post: "Next Post"
+  prev_post: "Previous Post"
+  written_by: "Written by"
+  last_updated: "Last updated"
+  back_to_top: "Back to top"
+
+# Page
+page:
+  comments_title: "Comments"
+
+# Home
 home:
   pinned_posts: "Pinned Posts"
   recent_posts: "Recent Posts"
+  popular_posts: "Popular Posts"
   trending_tags: "Trending Tags"
+  view_all: "View All"
+
+# Archives
+archives:
+  title: "Archives"
+  posts_in: "Posts in"
+  all_posts: "All Posts"
+  year: "Year"
+  month: "Month"
+  by_year: "By Year"
+  by_month: "By Month"
+
+# Categories
+categories:
+  title: "Categories"
+  all_categories: "All Categories"
+  posts_in_category: "Posts in category:"
+  category_description: "Browse all posts in the %s category."
+
+# Tags
+tags:
+  title: "Tags"
+  all_tags: "All Tags"
+  posts_with_tag: "Posts tagged with:"
+  tag_description: "Browse all posts tagged with %s."
 
 # Pagination
 pagination:
-  more_posts: "More Posts"
   previous: "Previous"
   next: "Next"
   page: "Page"
   of: "of"
+  previous_page: "Previous Page"
+  next_page: "Next Page"
 
-# Post
-post:
-  min_read: "min read"
-  updated: "Updated"
-  previous: "Previous Post"
-  next: "Next Post"
-  related: "Related Posts"
-  comments: "Comments"
-  share: "Share:"
+# Date formatting
+date:
+  format: "%b %-d, %Y"  # Jan 1, 2023
+  modified_format: "%b %-d, %Y %H:%M"  # Jan 1, 2023 15:30
+  iso_format: "%Y-%m-%d"
+  year_format: "%Y"
+  month_format: "%B %Y"  # January 2023
 
-# Page
-page:
-  comments: "Comments"
-
-# Archive
-archives:
-  title: "Archives"
-  description: "Browse all posts by date."
-
-# Categories
-categories:
-  posts_in: "Posts in category"
-  all_categories: "All Categories"
-
-# Tags
-tags:
-  posts_tagged: "Posts tagged with"
-  popular_tags: "Popular Tags"
+# Reading time
+reading_time:
+  one_minute: "1 min read"
+  minutes: "min read"
+  
+# Share
+share:
+  twitter: "Twitter"
+  facebook: "Facebook"
+  linkedin: "LinkedIn"
+  reddit: "Reddit"
+  email: "Email"
 
 # Footer
 footer:
   powered_by: "Powered by"
+  theme: "Theme"
+  copyright: "All rights reserved."
+
+# Misc
+misc:
+  back_to_home: "Back to Home"
+  error_404: "Page not found"
+  error_404_message: "Sorry, the page you are looking for does not exist or has been moved."

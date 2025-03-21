@@ -1,0 +1,62 @@
+<!--
+  USAGE INSTRUCTIONS:
+
+  1. Add social media links in your _config.yml file:
+    social:
+      github: https://github.com/yourusername
+      twitter: https://twitter.com/yourusername
+      linkedin: https://linkedin.com/in/yourusername
+      rss: true  # Set to true to display RSS feed icon
+
+  2. Icons are pulled from _data/icons.yml
+    Make sure this file contains entries for each platform you want to display
+
+  3. To add a new platform:
+    - Add the URL to _config.yml under social
+    - Ensure the corresponding icon exists in _data/icons/fontawesome.yml
+    - Format in icons.yml should be:
+      platform_name:
+        name: "Platform Name"
+        class: "fab fa-platform-icon-class"
+-->
+
+{% assign container_class = 'bg-muted rounded-full size-7 flex items-center justify-center' %}
+{% assign link_class = 'text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm' %}
+
+<div class="social-links flex flex-wrap justify-center space-x-1.5">
+  {% for item in site.social %}
+    {% assign platform = item[0] %}
+    {% assign url = item[1] %}
+    {% if url and url != '' and platform != 'rss' %}
+      {% assign icon = site.data.icons.fontawesome[platform] %}
+      {% if icon %}
+        <div class="{{ container_class }}">
+          <a
+            href="{{ url }}"
+            class="{{ link_class }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="{{ icon.name }}"
+          >
+            <i class="{{ icon.class }}"></i>
+          </a>
+        </div>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% if site.social.rss == true %}
+    <div class="{{ container_class }}">
+      {% assign icon = site.data.icons.fontawesome.rss %}
+      <a
+        href="{{ '/feed.xml' | relative_url }}"
+        class="{{ link_class }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="{{ icon.name }}"
+      >
+        <i class="{{ icon.class }}"></i>
+      </a>
+    </div>
+  {% endif %}
+</div>

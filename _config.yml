@@ -1,94 +1,106 @@
-# Jekyll Theme Notiva Configuration
-# ----------------------------------------------------------------------
-# Visit the GitHub page for detailed documentation: https://github.com/songano/jekyll-theme-notiva
+# Notiva Jekyll Theme
+# Author: Your Name
+# Version: 1.0.0
+# Homepage: https://github.com/username/jekyll-theme-notiva
+# License: MIT
 
-# [CUSTOMIZABLE] Site Settings
-# ----------------------------------------------------------------------
-title: Notiva                   # Site title
-tagline: A Developer-Friendly Blog Theme  # Site tagline
-description: >-                 # Site description (shown in search engines)
-  Notiva is a modern, feature-rich Jekyll theme designed for developers
-  who want to create impressive technical blogs with minimal effort.
-url: ""                         # Site base hostname & protocol (e.g., https://example.com)
-baseurl: ""                     # Sub-path of your site, e.g. /blog
-repository: username/repo-name  # GitHub username/repo-name for the site
-avatar: /assets/images/avatar.jpg  # Your avatar image path
-lang: en                        # Primary language (en, ko-KR, zh-CN, etc.)
-timezone: Asia/Seoul            # Your timezone (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+# ---------------------------------------------------------------
+# [CUSTOMIZABLE] Theme Settings
+# ---------------------------------------------------------------
+theme: jekyll-theme-notiva
 
-# [CUSTOMIZABLE] Author Information
+# Site Settings
+# ----------------------------------------------------------------------
+title: Notiva                         # Site title
+tagline: A modern Jekyll theme        # Site tagline
+description: >-                       # Site description (used for SEO)
+  Notiva is a modern, developer-friendly Jekyll theme for tech blogs.
+url: ""                               # Site base URL (e.g., https://username.github.io)
+baseurl: ""                           # Subpath (e.g., /blog)
+avatar: /assets/images/avatar.jpg     # Path to your avatar image
+favicon: /assets/images/favicon.ico   # Path to your favicon
+locale: en                            # Site Locale (e.g., en, Ko-KR, zh-CN...)
+timezone: Asia/Seoul                  # Timezone (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
+# User Info
 # ----------------------------------------------------------------------
 author:
-  name: Your Name
-  bio: >-
-    Software Developer specializing in web technologies.
-    Passionate about open source and sharing knowledge.
-  location: Seoul, Korea
-  email: your.email@example.com
-  links:
-    - label: GitHub
-      icon: github
-      url: https://github.com/username
-    - label: Twitter
-      icon: twitter
-      url: https://twitter.com/username
-    - label: LinkedIn
-      icon: linkedin
-      url: https://linkedin.com/in/username
+  name: Your Name                     # Your name
+  bio: >-                             # Your bio
+    Developer, writer, and open source enthusiast.
+    Passionate about web technologies and technical writing.
+  email: your.email@example.com       # Your email
+  
 
-# [CUSTOMIZABLE] Theme Settings
+# Social Links
+# Use full URLs. Leave blank to hide.
 # ----------------------------------------------------------------------
-theme_settings:
-  # Color scheme: dark, light, or auto (system preference)
-  color_scheme: auto
+social:
+  github: https://github.com/username
+  twitter: https://twitter.com/username
+  linkedin: https://linkedin.com/in/username
+  stackoverflow: 
+  facebook: 
+  instagram: 
+  youtube: 
+  discord: 
+  telegram: 
+  medium: 
+  dev: 
+  rss: true                           # Set to true to enable RSS feed
 
-  # Avatar shape (circle, rounded, square)
-  avatar_shape: rounded
-  
-  # Layout settings
-  sidebar_position: left        # Position of sidebar (left or right)
-  sidebar_collapsed: false      # Whether sidebar is collapsed by default on mobile
-  
-  # Post settings
-  show_post_thumbnail: true     # Show post thumbnails in listings
-  show_post_date: true          # Show post date in listings
-  show_post_categories: true    # Show post categories in listings
-  show_post_tags: true          # Show post tags in listings
-  show_reading_time: true       # Show estimated reading time for posts
-  show_post_modified_date: true # Show last modified date on posts
-  
-  # Display settings
-  post_layout_style: grid       # Post listing style (grid or list)
-  toc_enabled: true             # Enable table of contents by default
-  toc_floating: true            # Enable floating TOC for posts
-  
-  # Home page settings
-  home_posts_limit: 10          # Number of posts to show on home page
-  show_trending_tags: true      # Show trending tags section
-  show_popular_posts: true      # Show popular posts section
-  pinned_posts_enabled: true    # Enable pinned posts feature
-  
-  # Comments system (uncomment to enable)
-  # comments_provider: disqus     # Options: disqus, giscus, utterances
-  # disqus_shortname: your-disqus-shortname
-  # giscus_repo: username/repo
-  # giscus_repo_id: your-repo-id
-  # giscus_category: Announcements
-  # giscus_category_id: your-category-id
-  # utterances_repo: username/repo
+# Social Links Display
+# ----------------------------------------------------------------------
+social_display:
+  position: sidebar                   # Where to display social links: [sidebar|footer|both]
+
+# Theme Appearance
+# ----------------------------------------------------------------------
+appearance:
+  theme_mode: auto                    # [light|dark|auto] - Default theme mode
+  code_highlight: true                # Enable syntax highlighting
+  code_copy: true                     # Enable code copy button
+  animated: true                      # Enable animations
+  back_to_top: true                   # Enable back to top button
+  toc_enabled: true                   # Enable table of contents
+  toc_collapsed: true                 # Collapse TOC by default
+  sidebar_position: left              # Sidebar position [left|right]
+  sidebar_collapsed: false            # Collapse sidebar by default on mobile
+  display_mode: list                  # How to display posts on home [grid|list]
+  avatar_shape: rounded               # [circle|rounded] - Avatar shape
+
+# [CUSTOMIZABLE] Post Settings
+# ----------------------------------------------------------------------
+post:
+  related_posts_count: 5              # Number of related posts to display
+  recent_posts_count: 5               # Number of recent posts to display
+  show_date: true                     # Show post date
+  show_categories: true               # Show post categories
+  show_tags: true                     # Show post tags
+  show_comments: true                 # Show comments
+  show_author: true                   # Show post author
+  show_reading_time: true             # Show estimated reading time
+  reading_time_wpm: 200               # Words per minute for reading time calculation
+  excerpt_length: 200                 # Length of post excerpts
+  permalink: /:year/:month/:day/:title/  # Post URL format
+
+# [CUSTOMIZABLE] Pagination Settings
+# ----------------------------------------------------------------------
+paginate: 10                          # Posts per page
+paginate_path: "/page:num/"           # Pagination path
 
 # [CUSTOMIZABLE] PWA Settings
 # ----------------------------------------------------------------------
 pwa:
-  enable: true                            # Enable Progressive Web App features
-  cache_version: 1                        # Increment when making changes to force cache refresh
+  enable: true                        # Enable Progressive Web App features
+  cache_version: 1                    # Increment when making changes to force cache refresh
   manifest:
-    name: "Notiva"                        # Web App name
-    short_name: "Notiva"                  # Web App short name
-    description: "A Jekyll theme"         # Web App description
-    theme_color: "#121021"                # Theme color for browser
-    background_color: "#121021"           # Background color for splash screen
-    display: "standalone"                 # Display mode
+    name: "Notiva"                    # Web App name
+    short_name: "Notiva"              # Web App short name
+    description: "A Jekyll theme"     # Web App description
+    theme_color: "#121021"            # Theme color for browser
+    background_color: "#121021"       # Background color for splash screen
+    display: "standalone"             # Display mode
     start_url: "/?utm_source=homescreen"  # Start URL when launched from home screen
     icons:
       - src: "/assets/images/icons/pwa-192x192.png"
@@ -98,75 +110,70 @@ pwa:
         sizes: "512x512"
         type: "image/png"
 
-# [CUSTOMIZABLE] Site Verification Settings
-# ----------------------------------------------------------------------
-# These verification codes are used to verify ownership of your site
-# for various search engines and webmaster tools
-webmaster_verifications:
-  google: "google-site-verification-code" # Replace with your verification code
-  bing:                                 # Replace with your verification code
-  yandex:                             # Replace with your verification code
-  naver:                               # Replace with your verification code
-  baidu:                               # Replace with your verification code
-
 # [CUSTOMIZABLE] Analytics Settings
 # ----------------------------------------------------------------------
-# Google Analytics
-# Replace UA-XXXXXXXX-X with your Google Analytics tracking ID
-# or use gtag format G-XXXXXXXXXX
-google_analytics: G-XXXXXXXXXX
+analytics:
+  google:
+    id:                               # Google Analytics ID (e.g., UA-XXXXXXXX-X or G-XXXXXXXXXX)
+  firebase:
+    # For Firebase configurations, it's recommended to use GitHub Actions secrets
+    # instead of putting these values directly in _config.yml
+    # See GitHub repository wiki for setup instructions
+    enable: true                     # Enable Firebase analytics and visitor counting
+    api_key: ""                       # Firebase API Key (use GitHub Actions secrets)
+    auth_domain: ""                   # Firebase Auth domain (use GitHub Actions secrets)
+    project_id: ""                    # Firebase project ID (use GitHub Actions secrets)
+    storage_bucket: ""                # Firebase storage bucket (use GitHub Actions secrets)
+    messaging_sender_id: ""           # Firebase messaging sender ID (use GitHub Actions secrets)
+    app_id: ""                        # Firebase app ID (use GitHub Actions secrets)
+    measurement_id: ""                # Firebase measurement ID (use GitHub Actions secrets)
 
-# Firebase (for visitor statistics)
-# IMPORTANT: Don't put your actual Firebase config here, use GitHub Actions secrets instead
-# These are just placeholders that will be replaced during the build process
-firebase:
-  enabled: true
-  # For actual deployment, set these as GitHub Actions secrets and refer to them as:
-  # api_key: ${{ secrets.FIREBASE_API_KEY }}
-  # auth_domain: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
-  # project_id: ${{ secrets.FIREBASE_PROJECT_ID }}
-  # storage_bucket: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
-  # messaging_sender_id: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
-  # app_id: ${{ secrets.FIREBASE_APP_ID }}
-  # measurement_id: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
-
-# [CUSTOMIZABLE] Sharing & SEO Settings
+# [CUSTOMIZABLE] Comments Settings
 # ----------------------------------------------------------------------
-# Allow overriding of default OG/Twitter cards for each post
-sharing:
-  twitter:
-    username: "@username"        # Twitter username (without @)
-  facebook:
-    app_id:                      # Facebook App ID
-    publisher:                   # Facebook Page URL
-  og_default_image: /assets/images/og-default.jpg  # Default OG image
+comments:
+  # Global switch for the post-comment system. Keeping it empty means disabled.
+  provider:                           # [disqus|utterances|giscus]
+  # The provider options are as follows:
+  disqus:
+    shortname:                        # Fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+  # utterances settings › https://utteranc.es/
+  utterances:
+    repo:                             # <gh-username>/<repo>
+    issue_term:                       # < url | pathname | title | ...>
+  # Giscus options › https://giscus.app
+  giscus:
+    repo:                             # <gh-username>/<repo>
+    repo_id:
+    category:
+    category_id:
+    mapping:                          # optional, default to 'pathname'
+    strict:                           # optional, default to '0'
+    input_position:                   # optional, default to 'bottom'
+    lang:                             # optional, default to the value of `site.lang`
+    reactions_enabled:                # optional, default to the value of `1`
 
-# [CUSTOMIZABLE] Code Highlighting Settings
+# [CUSTOMIZABLE] Site Verification Settings
 # ----------------------------------------------------------------------
-code_highlight:
-  enabled: true
-  show_line_numbers: true        # Show line numbers in code blocks
-  show_title: true               # Show file name in code blocks
-  default_theme: github-dark     # Default theme (github-dark, github-light, etc.)
+site_verification:
+  google:                             # Google verification code
+  bing:                               # Bing verification code
+  naver:                              # Naver verification code
 
-# [CUSTOMIZABLE] Math & Diagram Settings
+# [CUSTOMIZABLE] Additional Feature Settings
 # ----------------------------------------------------------------------
-math:
-  enabled: true                  # Enable math rendering (KaTeX)
-  auto_render: false             # Auto-render all math (can impact performance)
+features:
+  math: true                          # Enable math expressions (KaTeX)
+  mermaid: true                       # Enable Mermaid diagrams
+  image_zoom: true                    # Enable image zoom on click
+  site_search: true                   # Enable site search
+  show_visitor_stats: true            # Show visitor statistics (requires Firebase)
+  scroll_progress: true               # Show scroll progress
+  image_lazyload: true                # Enable image lazy loading
 
-mermaid:
-  enabled: true                  # Enable Mermaid diagrams
-
-# [CUSTOMIZABLE] Build Settings
+# [NOT CUSTOMIZABLE] Build Settings
 # ----------------------------------------------------------------------
-permalink: /posts/:title/
-paginate: 10
-paginate_path: /page/:num/
 markdown: kramdown
-
 kramdown:
-  input: GFM
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: highlight
@@ -176,35 +183,7 @@ kramdown:
     block:
       line_numbers: true
       start_line: 1
-
-# [NOT CUSTOMIZABLE] Required plugins - DO NOT REMOVE these plugins
-# ----------------------------------------------------------------------
-plugins:
-  - jekyll-paginate
-  - jekyll-seo-tag
-  - jekyll-archives
-  - jekyll-sitemap
-  - jekyll-include-cache
-  - jekyll-redirect-from
-
-# [CUSTOMIZABLE] Archives Configuration
-# ----------------------------------------------------------------------
-jekyll-archives:
-  enabled:
-    - year
-    - month
-    - categories
-    - tags
-  layouts:
-    year: archive
-    month: archive
-    category: archive
-    tag: archive
-  permalinks:
-    year: '/archives/:year/'
-    month: '/archives/:year/:month/'
-    category: '/categories/:name/'
-    tag: '/tags/:name/'
+  auto_ids: true
 
 # [NOT CUSTOMIZABLE] Compression Settings
 # ----------------------------------------------------------------------
@@ -218,28 +197,51 @@ compress_html:
   profile: false
   startings: [html, head, body]
 
-# [NOT CUSTOMIZABLE] Sass conversion settings
-# Note: Notiva theme uses Tailwind CSS instead of Sass/SCSS.
-# This setting is only included for Jekyll's internal compatibility.
-# ----------------------------------------------------------------------
-sass:
-  sass_dir: _sass
-  style: compressed
+# Required plugins - DO NOT REMOVE these plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-archives
+  - jekyll-sitemap
+  - jekyll-include-cache
+  - jekyll-redirect-from
 
-# [NOT CUSTOMIZABLE] Exclude Files/Folders
+# [CUSTOMIZABLE] Jekyll Archives Settings
+# ----------------------------------------------------------------------
+jekyll-archives:
+  # enabled:
+  #   - categories
+  #   - tags
+  #   - year
+  #   - month
+  # layouts:
+  #   category: category
+  #   tag: tag
+  #   year: archive
+  #   month: archive
+  # permalinks:
+  #   category: "/categories/:name/"
+  #   tag: "/tags/:name/"
+  #   year: "/archives/:year/"
+  #   month: "/archives/:year/:month/"
+
+# [CUSTOMIZABLE] Files and Paths to Exclude from build
 # ----------------------------------------------------------------------
 exclude:
   - node_modules
-  - '*.gem'
-  - '*.gemspec'
-  - 'package*.json'
-  - '*.config.mjs'
+  - "*.gem"
+  - "*.gemspec"
+  - "package*.json"
+  - "*.config.mjs"
   - .git
   - .github
   - README.md
   - CHANGELOG.md
   - LICENSE
   - .vscode
-  - '*-lock.yaml'
+  - "*-lock.yaml"
+  - _scripts/
+  - _styles/
   - _app/
   - tsconfig.json
+  - vite.config.ts
