@@ -7,14 +7,15 @@
       {% include helpers/icon.html type="fontawesome" name="github" class="mr-2" %}
 
   PARAMETERS:
-    - type: (required) 'heroicons' or 'fontawesome'
+    - type: (required) 'heroicons' or 'fontawesome' (default: 'heroicons')
     - name: (required) icon name as defined in _data/icons.yml
     - class: (optional) additional CSS classes
 {% endcomment %}
 
-{% assign icon_class = include.class | default: '' %}
+{% assign icon_class = include.class | default: 'size-5' %}
+{% assign platform = include.type | default: 'heroicons' %}
 
-{% if include.type == 'heroicons' %}
+{% if platform == 'heroicons' %}
   {% assign icon = site.data.icons.heroicons[include.name] %}
   {% if icon %}
     <svg
@@ -23,17 +24,18 @@
       {% if icon.type == 'outline' %}
         fill="none"
         viewBox="0 0 24 24"
+        stroke-width="1.5"
         stroke="currentColor"
       {% else %}
         fill="currentColor"
-        viewBox="0 0 20 20"
+        viewBox="0 0 24 24"
       {% endif %}
       aria-hidden="true"
     >
       {{ icon.svg }}
     </svg>
   {% endif %}
-{% elsif include.type == 'fontawesome' %}
+{% elsif platform == 'fontawesome' %}
   {% assign icon = site.data.icons.fontawesome[include.name] %}
   {% if icon %}
     <i class="{{ icon.class }} {{ icon_class }}"></i>

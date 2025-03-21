@@ -3,21 +3,23 @@
  * This file loads common components and functionality used across all pages
  */
 
+import { initSidebar } from './common/sidebar';
+import { initThemeToggle } from './common/theme-switch';
+
 /**
  * Initialize common components
  */
 function initializeCommon(): void {
-  console.log('initialize--');
+  // Initialize dark mode
+  initThemeToggle();
+  initSidebar();
 }
 
 /**
  * Initialize on DOM content loaded
  */
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('-> 👋 Initializing on DOM content loaded');
   initializeCommon();
-
-  console.log('is iT work?');
 
   // Dispatch event for page-specific scripts
   document.dispatchEvent(new CustomEvent('notiva:ready'));

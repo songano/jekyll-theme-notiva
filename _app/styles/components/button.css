@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+
+/* 버튼 컴포넌트를 TailwindCSS 레이어에서 정의 */
+@layer components {
+  /* 기본 버튼 스타일 */
+  .btn {
+    @apply inline-flex items-center whitespace-nowrap justify-center gap-2 rounded-lg text-sm font-medium transition-colors duration-300;
+    @apply [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none;
+  }
+
+  .btn-default {
+    @apply bg-primary text-primary-foreground shadow-xs hover:bg-primary/90;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80;
+  }
+
+  .btn-destructive {
+    @apply bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60;
+  }
+
+  .btn-outline {
+    @apply border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50;
+  }
+
+  /* 버튼 크기 (size) */
+  .btn-sm {
+    @apply px-3 py-1.5;
+  }
+  .btn-md {
+    @apply h-9 px-4 py-2 has-[>svg]:px-3;
+  }
+
+  .btn-lg {
+    @apply px-5 py-2.5 text-base;
+  }
+}

@@ -1,0 +1,51 @@
+{% assign locale = site.data.locales[site.lang] %}
+
+<header class="header fixed top-0 left-0 right-0 h-14 {% if site.appearance.sidebar_position == 'left' %}sm:left-68{% else %}sm:right-68{% endif %}">
+  <div class="flex items-center justify-between h-full container">
+    <!-- Left Side: Toggle & Time -->
+    <div class="flex items-center space-x-2">
+      <button id="sidebar-toggle" class="size-8 btn btn-ghost" aria-label="Sidebar toggle">
+        {% include helpers/icon.html name="bars-3" %}
+      </button>
+      <h4>{{ page.layout | capitalize }}</h4>
+    </div>
+
+    <!-- Right Side: Search & Theme Toggle -->
+    <div class="flex items-center space-x-2">
+      <!-- Search Button -->
+      {% if site.features.site_search %}
+        <button class="bg-muted/85 px-3 py-1 h-8 rounded-full" aria-label="Search button">
+          {% include helpers/icon.html name="magnifying-glass" class="size-4 mr-1" %}
+          <kbd class="font-mono text-xs/4 text-gray-500 dark:text-gray-400 [.os-macos_&amp;]:block">⌘K</kbd>
+          <kbd class="hidden font-sans text-xs/4 text-gray-500 not-[.os-macos_&amp;]:block dark:text-gray-400"
+            >Ctrl&nbsp;K</kbd
+          >
+          <span class="text-sm pl-3 text-gray-600 hidden sm:block">{{ 'header.search' | t }}</span>
+        </button>
+      {% endif %}
+
+      <!-- Theme Toggle -->
+      <button
+        id="theme-toggle"
+        class="btn btn-link size-8"
+        aria-label="Toggle Theme"
+      >
+        <!-- Light Mode Icon (shown in dark mode) -->
+        {% include helpers/icon.html name="sun" class="size-5 theme-light hidden" %}
+        {% include helpers/icon.html name="moon" class="size-5 theme-dark hidden" %}
+        {% include helpers/icon.html name="computer" class="size-5 theme-auto hidden" %}
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Search Modal -->
+{% if site.features.site_search %}
+  <div
+    id="search-modal"
+    class="fixed inset-0 z-50 items-center justify-center p-4 bg-foreground/20 backdrop-blur-sm hidden"
+  ></div>
+{% endif %}
+
+<!-- Space for fixed header -->
+<div class="h-14"></div>

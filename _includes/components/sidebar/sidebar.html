@@ -1,22 +1,41 @@
-<div class="flex flex-col h-full space-y-8">
-  <!-- Profile -->
-  {% include components/sidebar/profile.html %}
+<aside
+  id="sidebar"
+  class="sidebar sidebar-container fixed top-0 h-screen overflow-y-auto transition-all duration-300 shadow-lg z-[40px] scrollbar-thin
+    {% if site.appearance.sidebar_position == 'left' %}
+      left-0 -translate-x-full sm:translate-x-0 sm:w-68
+    {% else %}
+      right-0 translate-x-full sm:translate-x-0 sm:w-68
+    {% endif %}
+  "
+>
+  <div class="flex flex-col h-full space-y-8">
+    <!-- Profile -->
+    {% include components/sidebar/profile.html %}
+  
+    <!-- Site Stats (if Firebase enabled) -->
+    {% if site.features.show_visitor_stats and site.analytics.firebase.enable %}
+      <div class="site-stats grid grid-cols-3 gap-1 text-sm px-4">
+        <div class="stat p-2 rounded bg-primary/5">
+          <div class="text-xs text-muted-foreground">{{ "sidebar.total" | t }}</div>
+          <div class="stat-value" id="total-visitors">35M</div>
+        </div>
+        <div class="stat p-2 rounded bg-primary/5">
+          <div class="text-xs text-muted-foreground">{{ "sidebar.today" | t }}</div>
+          <div class="stat-value id="today-visitors">2</div>
+        </div>
+        <div class="stat p-2 rounded bg-primary/5">
+          <div class="text-xs text-muted-foreground">{{ "sidebar.online_now" | t }}</div>
+          <div class="stat-value" id="online-visitors">24.2K</div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</aside>
 
-  <!-- Site Stats (if Firebase enabled) -->
-  {% if site.features.show_visitor_stats and site.analytics.firebase.enable %}
-    <div class="site-stats grid grid-cols-3 gap-1 text-sm px-4">
-      <div class="stat p-2 rounded bg-primary/5">
-        <div class="text-xs text-muted-foreground">{{ "sidebar.total" | t }}</div>
-        <div class="stat-value" id="total-visitors">35M</div>
-      </div>
-      <div class="stat p-2 rounded bg-primary/5">
-        <div class="text-xs text-muted-foreground">{{ "sidebar.today" | t }}</div>
-        <div class="stat-value id="today-visitors">2</div>
-      </div>
-      <div class="stat p-2 rounded bg-primary/5">
-        <div class="text-xs text-muted-foreground">{{ "sidebar.online_now" | t }}</div>
-        <div class="stat-value" id="online-visitors">24.2K</div>
-      </div>
-    </div>
-  {% endif %}
-</div>
+<!-- Sidebar Overlay for Mobile -->
+<div
+  id="sidebar-overlay"
+  class="fixed inset-0 bg-black/30 backdrop-blur-sm hidden sm:hidden z-30"
+></div>
+
+

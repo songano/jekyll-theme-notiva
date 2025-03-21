@@ -1,4 +1,14 @@
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    @apply flex flex-col min-h-screen antialiased;
+    @apply font-body;
+    /* @apply scrollbar-thin */
+  }
+
   /* Heading styles */
   h1,
   h2,
@@ -12,5 +22,11 @@
   /* Custom selection styling */
   ::selection {
     @apply bg-primary text-primary-foreground;
+  }
+
+  button {
+    @apply flex items-center justify-center;
+    @apply cursor-pointer;
+    @apply rounded-lg;
   }
 }

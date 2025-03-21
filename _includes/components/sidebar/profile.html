@@ -1,6 +1,6 @@
 <div class="mt-14 text-center space-y-3 px-4">
   {% if site.avatar %}
-    <div class="overflow-hidden size-23 mx-auto border-border {% if site.appearance.avatar_shape == 'rounded' %}rounded-xl{% else %}rounded-full{% endif %}">
+    <div class="overflow-hidden size-23 mx-auto border-border border {% if site.appearance.avatar_shape == 'rounded' %}rounded-xl{% else %}rounded-full{% endif %}">
       <img src="{{ site.avatar | relative_url }}" alt="{{ site.author.name }} avatar image">
     </div>
   {% endif %}

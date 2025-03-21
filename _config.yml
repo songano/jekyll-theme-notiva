@@ -65,9 +65,9 @@ appearance:
   toc_enabled: true                   # Enable table of contents
   toc_collapsed: true                 # Collapse TOC by default
   sidebar_position: left              # Sidebar position [left|right]
-  sidebar_collapsed: false            # Collapse sidebar by default on mobile
   display_mode: list                  # How to display posts on home [grid|list]
   avatar_shape: rounded               # [circle|rounded] - Avatar shape
+  # mouse_tracker: true                 # Mouse Tracker by default
 
 # [CUSTOMIZABLE] Post Settings
 # ----------------------------------------------------------------------

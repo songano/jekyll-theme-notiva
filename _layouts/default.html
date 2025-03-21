@@ -13,20 +13,13 @@ layout: compress
     {% include components/head.html %}
   </head>
   <body>
-    <!-- Progress bar (displays when scroll_progress is enabled) -->
-
     <!-- Sidebar -->
-    <aside
-      class="sidebar-container {% if site.theme_settings.sidebar_position == 'right' %}border-l right-0{% else %}border-r{% endif %}"
-      data-sidebar-content
-    >
-      {% include components/sidebar/sidebar.html %}
-    </aside>
+    {% include components/sidebar/sidebar.html %}
 
     <!-- Main content area -->
-    <div class="main-container {% if site.theme_settings.sidebar_position == 'right' %}sm:pr-65{% else %}pl-4 sm:pl-65{% endif %}">
+    <div class="main-container {% if site.appearance.sidebar_position == 'right' %}sm:pr-68{% else %}sm:pl-68{% endif %}">
       <!-- Header -->
-      <header class="sticky-header">header</header>
+      {% include components/header/header.html %}
 
       <!-- Content -->
       <main class="flex-1">
