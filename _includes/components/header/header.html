@@ -1,11 +1,21 @@
 {% assign locale = site.data.locales[site.lang] %}
 
-<header class="header fixed top-0 left-0 right-0 h-14 {% if site.appearance.sidebar_position == 'left' %}sm:left-68{% else %}sm:right-68{% endif %}">
+<header
+  id="header"
+  class="
+    header fixed top-0 left-0 right-0 h-14
+    {% if site.appearance.sidebar_position == 'left' %}
+      sm:ml-70 sidebar-collapsed:sm:ml-0
+    {% else %}
+      sm:mr-70 sidebar-collapsed:sm:mr-0
+    {% endif %}
+  "
+>
   <div class="flex items-center justify-between h-full container">
     <!-- Left Side: Toggle & Time -->
     <div class="flex items-center space-x-2">
       <button id="sidebar-toggle" class="size-8 btn btn-ghost" aria-label="Sidebar toggle">
-        {% include helpers/icon.html name="bars-3" %}
+        {% include helpers/icon.html type="custom" name="sidebar-layout" %}
       </button>
       <h4>{{ page.layout | capitalize }}</h4>
     </div>
@@ -14,7 +24,7 @@
     <div class="flex items-center space-x-2">
       <!-- Search Button -->
       {% if site.features.site_search %}
-        <button class="bg-muted/85 px-3 py-1 h-8 rounded-full" aria-label="Search button">
+        <button class="bg-muted px-3 py-1 h-8 rounded-full" aria-label="Search button">
           {% include helpers/icon.html name="magnifying-glass" class="size-4 mr-1" %}
           <kbd class="font-mono text-xs/4 text-gray-500 dark:text-gray-400 [.os-macos_&amp;]:block">⌘K</kbd>
           <kbd class="hidden font-sans text-xs/4 text-gray-500 not-[.os-macos_&amp;]:block dark:text-gray-400"
@@ -25,16 +35,24 @@
       {% endif %}
 
       <!-- Theme Toggle -->
-      <button
-        id="theme-toggle"
-        class="btn btn-link size-8"
-        aria-label="Toggle Theme"
+      {% assign theme_modes = 'auto,light,dark' | split: ',' %}
+      {% assign icon_names = 'computer,sun,moon' | split: ',' %}
+      {% assign default_theme = site.appearance.theme_mode %}
+
+      <div
+        data-default-theme="{{ default_theme }}"
+        class="flex items-center bg-muted h-8 px-1 rounded-full **:data-active:bg-accent-foreground **:data-active:text-accent"
       >
-        <!-- Light Mode Icon (shown in dark mode) -->
-        {% include helpers/icon.html name="sun" class="size-5 theme-light hidden" %}
-        {% include helpers/icon.html name="moon" class="size-5 theme-dark hidden" %}
-        {% include helpers/icon.html name="computer" class="size-5 theme-auto hidden" %}
-      </button>
+        {% for mode in theme_modes %}
+          {% assign index = forloop.index0 %}
+          {% assign icon_name = icon_names[index] %}
+          {% capture theme_class %}size-4 theme-{{ mode }}{% endcapture %}
+
+          <button class="btn btn-ghost size-6 rounded-full">
+            {% include helpers/icon.html name=icon_name class=theme_class %}
+          </button>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </header>

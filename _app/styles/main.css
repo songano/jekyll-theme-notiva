@@ -4,6 +4,7 @@
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant sidebar-collapsed (&:where([data-sidebar-collapsed] *));
 
 :root {
   --background: oklch(1 0 0);
@@ -113,21 +114,9 @@
   }
 }
 
-@layer components {
-  .sidebar-container {
-    @apply fixed top-0 z-40 h-full bg-sidebar border-sidebar-border;
-    @apply w-68;
-  }
-  .main-container {
-    @apply flex flex-col flex-1;
-  }
-}
-
 .container {
-  @apply max-w-6xl mx-auto px-4;
+  @apply max-w-7xl mx-auto px-4;
 }
-
-/* Component imports */
 
 @import './base.css';
 @import './components/button.css';

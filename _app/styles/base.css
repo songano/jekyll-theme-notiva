@@ -4,9 +4,8 @@
   }
   body {
     @apply bg-background text-foreground;
-    @apply flex flex-col min-h-screen antialiased;
-    @apply font-body;
-    /* @apply scrollbar-thin */
+    @apply font-body antialiased;
+    @apply flex flex-col min-h-screen;
   }
 
   /* Heading styles */

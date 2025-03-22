@@ -5,92 +5,125 @@
 
 type Theme = 'light' | 'dark' | 'auto';
 const THEME_KEY = 'notiva-theme';
+const VALID_THEMES = ['light', 'dark', 'auto'] as const;
 
-function getInitialTheme(): Theme {
-  const savedTheme = localStorage.getItem(THEME_KEY) as Theme | null;
-  if (savedTheme && ['light', 'dark', 'auto'].includes(savedTheme)) {
-    return savedTheme;
-  }
-  const dataTheme = document.documentElement.getAttribute('data-theme') as Theme | null;
-
-  if (dataTheme && ['light', 'dark', 'auto'].includes(dataTheme)) {
-    return dataTheme;
-  }
-  return 'auto';
-}
-
+/**
+ * Checks if the system prefers dark mode
+ * @returns {boolean} True if dark mode is preferred
+ */
 function systemPrefersDark(): boolean {
   return window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
-function applyTheme(theme: Theme): void {
-  if (theme === 'auto')
-    document.documentElement.setAttribute('data-theme', systemPrefersDark() ? 'dark' : 'light');
-  else document.documentElement.setAttribute('data-theme', theme);
+/**
+ * Gets the initial theme value
+ * @returns {Theme} The initial theme (light, dark, or auto)
+ */
+function getInitialTheme(): Theme {
+  // Check localStorage first
+  const savedTheme = localStorage.getItem(THEME_KEY) as Theme | null;
+  if (savedTheme && VALID_THEMES.includes(savedTheme as Theme)) {
+    return savedTheme;
+  }
 
-  updateThemeToggleUI(theme);
+  // Get default theme from HTML
+  const themeContainer = document.querySelector('[data-default-theme]');
+  if (themeContainer) {
+    const defaultTheme = themeContainer.getAttribute('data-default-theme') as Theme;
+    if (defaultTheme && VALID_THEMES.includes(defaultTheme as Theme)) {
+      return defaultTheme;
+    }
+  }
+
+  // Default is auto
+  return 'auto';
 }
 
-// Update the theme toggle button UI
-function updateThemeToggleUI(theme: Theme): void {
-  const themeToggle = document.getElementById('theme-toggle');
-  if (!themeToggle) return;
+/**
+ * Extracts the theme from an element with theme-* class
+ * @param {Element} element - The element to extract theme from
+ * @returns {Theme|null} The extracted theme or null if not found
+ */
+function extractThemeFromElement(element: Element): Theme | null {
+  if (!element.classList) return null;
 
-  // Hide all icons first
-  const lightIcon = themeToggle.querySelector('.theme-light');
-  const darkIcon = themeToggle.querySelector('.theme-dark');
-  const autoIcon = themeToggle.querySelector('.theme-auto');
+  for (const className of element.classList) {
+    if (className.startsWith('theme-')) {
+      const theme = className.replace('theme-', '') as Theme;
+      if (VALID_THEMES.includes(theme as Theme)) {
+        return theme;
+      }
+    }
+  }
 
-  if (lightIcon) lightIcon.classList.add('hidden');
-  if (darkIcon) darkIcon.classList.add('hidden');
-  if (autoIcon) autoIcon.classList.add('hidden');
+  return null;
+}
 
-  // Show the appropriate icon
-  if (theme === 'light') {
-    darkIcon?.classList.remove('hidden');
-  } else if (theme === 'dark') {
-    lightIcon?.classList.remove('hidden');
-  } else {
-    autoIcon?.classList.remove('hidden');
+/**
+ * Updates the active state of theme buttons
+ * @param {Theme} theme - The current theme
+ */
+function updateActiveButton(theme: Theme): void {
+  // Remove active state from all buttons
+  document.querySelectorAll('button[data-active]').forEach((btn) => {
+    btn.removeAttribute('data-active');
+  });
+
+  // Find and activate the theme button
+  const buttons = document.querySelectorAll('button');
+  for (const button of buttons) {
+    const iconElement = button.querySelector('[class*="theme-"]');
+    if (iconElement && extractThemeFromElement(iconElement) === theme) {
+      button.setAttribute('data-active', '');
+      break; // Stop iteration once found
+    }
   }
 }
 
-// Initialize dark mode
+/**
+ * Applies the specified theme
+ * @param {Theme} theme - The theme to apply (light, dark, or auto)
+ */
+function applyTheme(theme: Theme): void {
+  // Apply theme (auto is based on system preference)
+  const appliedTheme = theme === 'auto' ? (systemPrefersDark() ? 'dark' : 'light') : theme;
+  document.documentElement.setAttribute('data-theme', appliedTheme);
+
+  // Save theme to localStorage
+  localStorage.setItem(THEME_KEY, theme);
+
+  // Update UI
+  updateActiveButton(theme);
+}
+
+/**
+ * Initializes the theme toggle functionality
+ */
 export function initThemeToggle(): void {
   const currentTheme = getInitialTheme();
 
-  // Apply the initial theme
+  // Apply initial theme
   applyTheme(currentTheme);
 
-  // Set up theme toggle button
-  const themeToggle = document.getElementById('theme-toggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const currentStoredTheme = (localStorage.getItem(THEME_KEY) as Theme) || 'auto';
+  // Set up theme button event listeners
+  const themeSelector = 'button';
+  document.querySelectorAll(themeSelector).forEach((button) => {
+    const iconElement = button.querySelector('[class*="theme-"]');
+    if (!iconElement) return; // Skip if no theme icon
 
-      // Cycle through themes: light -> dark -> auto -> light
-      let newTheme: Theme;
-
-      if (currentStoredTheme === 'light') {
-        newTheme = 'dark';
-      } else if (currentStoredTheme === 'dark') {
-        newTheme = 'auto';
-      } else {
-        newTheme = 'light';
+    button.addEventListener('click', () => {
+      const theme = extractThemeFromElement(iconElement);
+      if (theme) {
+        applyTheme(theme);
       }
-
-      // Store the new theme preference
-      localStorage.setItem(THEME_KEY, newTheme);
-
-      // Apply the new theme
-      applyTheme(newTheme);
     });
-  }
+  });
 
-  // Listen for system preference changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  // Detect system theme changes
+  const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  darkModeMediaQuery.addEventListener('change', (e) => {
     if (localStorage.getItem(THEME_KEY) === 'auto') {
-      applyTheme('auto');
+      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
     }
   });
 }

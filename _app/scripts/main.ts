@@ -6,6 +6,8 @@
 import { initSidebar } from './common/sidebar';
 import { initThemeToggle } from './common/theme-switch';
 
+// const cleanupFunctions: Record<string, () => void> = {};
+
 /**
  * Initialize common components
  */

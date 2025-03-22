@@ -1,13 +1,15 @@
 {% comment %}
-  Universal icon include for both Heroicons and Font Awesome
+  Universal icon include for both Heroicons, Font Awesome, and Custom icons
   USAGE:
     Heroicons: https://heroicons.com
       {% include helpers/icon.html type="heroicons" name="home" class="text-blue-500" %}
     Font Awesome: https://fontawesome.com/search?ic=free
       {% include helpers/icon.html type="fontawesome" name="github" class="mr-2" %}
+    Custom icons:
+      {% include helpers/icon.html type="custom" name="sidebar-layout" class="text-gray-500" %}
 
   PARAMETERS:
-    - type: (required) 'heroicons' or 'fontawesome' (default: 'heroicons')
+    - type: (required) 'heroicons', 'fontawesome', or 'custom' (default: 'heroicons')
     - name: (required) icon name as defined in _data/icons.yml
     - class: (optional) additional CSS classes
 {% endcomment %}
@@ -15,8 +17,12 @@
 {% assign icon_class = include.class | default: 'size-5' %}
 {% assign platform = include.type | default: 'heroicons' %}
 
-{% if platform == 'heroicons' %}
-  {% assign icon = site.data.icons.heroicons[include.name] %}
+{% if platform == 'heroicons' or platform == 'custom' %}
+  {% if platform == 'heroicons' %}
+    {% assign icon = site.data.icons.heroicons[include.name] %}
+  {% else %}
+    {% assign icon = site.data.icons.custom[include.name] %}
+  {% endif %}
   {% if icon %}
     <svg
       xmlns="http://www.w3.org/2000/svg"

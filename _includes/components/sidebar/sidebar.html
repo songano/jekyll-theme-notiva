@@ -1,11 +1,11 @@
 <aside
   id="sidebar"
-  class="sidebar sidebar-container fixed top-0 h-screen overflow-y-auto transition-all duration-300 shadow-lg z-[40px] scrollbar-thin
-    {% if site.appearance.sidebar_position == 'left' %}
-      left-0 -translate-x-full sm:translate-x-0 sm:w-68
-    {% else %}
-      right-0 translate-x-full sm:translate-x-0 sm:w-68
-    {% endif %}
+  class="fixed top-0 z-40 h-full bg-sidebar border-sidebar-border overflow-y-auto transition-transform duration-300 shadow-lg scrollbar-thin w-70 
+  {% if site.appearance.sidebar_position == 'left' %}
+    left-0 -translate-x-full sm:translate-x-0 sidebar-collapsed:sm:-translate-x-full
+  {% else %}
+    right-0 translate-x-full sm:translate-x-0 sidebar-collapsed:sm:translate-x-full
+  {% endif %}
   "
 >
   <div class="flex flex-col h-full space-y-8">
@@ -30,6 +30,9 @@
       </div>
     {% endif %}
   </div>
+
+  <!-- Navigation -->
+  
 </aside>
 
 <!-- Sidebar Overlay for Mobile -->
