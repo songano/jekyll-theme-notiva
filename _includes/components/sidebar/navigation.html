@@ -1,0 +1,58 @@
+<nav class="px-4">
+  <ul class="space-y-0.5 text-sm text-muted-foreground font-semibold">
+    <li>
+      {% include components/shared/divider.html text="Main" text_align="start" class="my-3" %}
+    </li>
+    <!-- Home -->
+    <li class="">
+      <a
+        href="{{ '/' | relative_url }}"
+        class="
+          flex items-center gap-2 rounded-xl p-2
+          {% if page.url == '/' %}
+            bg-primary/10 text-primary
+          {% endif %}
+        "
+      >
+        {% include /helpers/icon.html name="home" %}
+        <span>{{ 'sidebar.home' | t | upcase }}</span>
+      </a>
+    </li>
+
+    <!-- About -->
+    <li class="">
+      <a
+        href="{{ '/about' | relative_url }}"
+        class="flex items-center gap-2 rounded-xl p-2 {% if page.url contains '/about' %}bg-primary/10 text-primary{% endif %}"
+      >
+        {% include /helpers/icon.html name="rocket-launch" %}
+        <span>{{ 'sidebar.about' | t | upcase }}</span>
+      </a>
+    </li>
+
+    <li>
+      {% include components/shared/divider.html text="Categories" text_align="start" class="my-3" %}
+    </li>
+
+    <!-- Categories -->
+    <li>
+      <ul>
+        {{ site.categories }}
+      </ul>
+    </li>
+
+    <!-- Tags -->
+    <li>
+      <ul>
+        {{ site.tags }}
+      </ul>
+    </li>
+
+    <!-- archives -->
+    <li>
+      <ul>
+        {{ site.archives }}
+      </ul>
+    </li>
+  </ul>
+</nav>

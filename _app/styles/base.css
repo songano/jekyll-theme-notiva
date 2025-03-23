@@ -8,17 +8,6 @@
     @apply flex flex-col min-h-screen;
   }
 
-  /* Heading styles */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-bold text-foreground;
-  }
-
-  /* Custom selection styling */
   ::selection {
     @apply bg-primary text-primary-foreground;
   }
@@ -26,6 +15,15 @@
   button {
     @apply flex items-center justify-center;
     @apply cursor-pointer;
-    @apply rounded-lg;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 20px;
+    font-weight: bold;
   }
 }

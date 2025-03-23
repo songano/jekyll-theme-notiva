@@ -1,9 +1,8 @@
-{% assign locale = site.data.locales[site.lang] %}
-
 <header
   id="header"
   class="
     header fixed top-0 left-0 right-0 h-14
+    scroll-
     {% if site.appearance.sidebar_position == 'left' %}
       sm:ml-70 sidebar-collapsed:sm:ml-0
     {% else %}
@@ -12,12 +11,12 @@
   "
 >
   <div class="flex items-center justify-between h-full container">
-    <!-- Left Side: Toggle & Time -->
+    <!-- Left Side: Toggle & -->
     <div class="flex items-center space-x-2">
       <button id="sidebar-toggle" class="size-8 btn btn-ghost" aria-label="Sidebar toggle">
         {% include helpers/icon.html type="custom" name="sidebar-layout" %}
       </button>
-      <h4>{{ page.layout | capitalize }}</h4>
+      <h1 class="text-base font-semibold">{{ site.title | capitalize }}</h1>
     </div>
 
     <!-- Right Side: Search & Theme Toggle -->

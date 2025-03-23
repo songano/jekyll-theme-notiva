@@ -1,6 +1,6 @@
 <aside
   id="sidebar"
-  class="fixed top-0 z-40 h-full bg-sidebar border-sidebar-border overflow-y-auto transition-transform duration-300 shadow-lg scrollbar-thin w-70 
+  class="fixed top-0 z-40 h-full bg-sidebar border-sidebar-border overflow-y-auto transition-transform duration-300 scrollbar-thin w-70 
   {% if site.appearance.sidebar_position == 'left' %}
     left-0 -translate-x-full sm:translate-x-0 sidebar-collapsed:sm:-translate-x-full
   {% else %}
@@ -15,24 +15,24 @@
     <!-- Site Stats (if Firebase enabled) -->
     {% if site.features.show_visitor_stats and site.analytics.firebase.enable %}
       <div class="site-stats grid grid-cols-3 gap-1 text-sm px-4">
-        <div class="stat p-2 rounded bg-primary/5">
+        <div class="stat p-2 rounded">
           <div class="text-xs text-muted-foreground">{{ "sidebar.total" | t }}</div>
           <div class="stat-value" id="total-visitors">35M</div>
         </div>
-        <div class="stat p-2 rounded bg-primary/5">
+        <div class="stat p-2 rounded">
           <div class="text-xs text-muted-foreground">{{ "sidebar.today" | t }}</div>
           <div class="stat-value id="today-visitors">2</div>
         </div>
-        <div class="stat p-2 rounded bg-primary/5">
+        <div class="stat p-2 rounded">
           <div class="text-xs text-muted-foreground">{{ "sidebar.online_now" | t }}</div>
           <div class="stat-value" id="online-visitors">24.2K</div>
         </div>
       </div>
     {% endif %}
-  </div>
 
-  <!-- Navigation -->
-  
+    <!-- Navigation -->
+    {% include components/sidebar/navigation.html %}
+  </div>
 </aside>
 
 <!-- Sidebar Overlay for Mobile -->

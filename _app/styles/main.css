@@ -115,9 +115,10 @@
 }
 
 .container {
-  @apply max-w-7xl mx-auto px-4;
+  @apply max-w-7xl mx-auto sm:px-10 px-4;
 }
 
 @import './base.css';
 @import './components/button.css';
+@import './components/divider.css';
 @import './jekyll-theme-notiva.css';

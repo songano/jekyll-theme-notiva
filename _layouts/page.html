@@ -1,5 +1,13 @@
 ---
 layout: default
 ---
+<article class="page">
+  <header class="page-header mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{ page.title }}</h1>
+    <div class="bg-indigo-500 h-1 w-24"></div>
+  </header>
 
-{{ content }}
+  <div class="page-content prose prose-indigo dark:prose-invert max-w-none">
+    {{ content }}
+  </div>
+</article>

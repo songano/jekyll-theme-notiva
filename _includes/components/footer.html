@@ -1,0 +1,33 @@
+<footer class="border-t border-border py-5 border-dashed">
+  <div class="container">
+    <div class="md:flex justify-between items-center space-y-3">
+      <!-- Left -->
+      <div class="text-center md:text-left">
+        <div class="copyright text-sm text-gray-500">
+          &copy; {{ site.time | date: '%Y' }}
+          {% if site.author.name %}
+            <span class="text-sm">{{ site.author.name }}</span>
+          {% else %}
+            <span class="text-sm">{{ site.title }}</span>
+          {% endif %}
+        </div>
+        <div class="mt-1 text-sm text-gray-500">
+          <span>Powered by</span>
+          <a href="https://jekyllrb.com" target="_blank" rel="noopener" class="text-primary hover:underline transition-colors">Jekyll</a>
+          <span class="mx-1">•</span>
+          <span>Theme</span>
+          <a href="https://github.com/songano/jekyll-theme-notiva" target="_blank" rel="noopener" class="font-medium transition-colors text-primary hover:text-primary">Notiva</a>
+          <span>by</span>
+          <a href="https://github.com/songano" target="_blank" rel="noopener" class="font-medium text-primary hover:underline transition-colors">Songano</a>
+        </div>
+      </div>
+  
+      <!-- Right -->
+      <div>
+        {% if site.social_display.position == 'both' or site.social_display.position == 'footer' %}
+          {% include components/shared/social-links.html %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+<footer>

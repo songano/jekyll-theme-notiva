@@ -1,0 +1,76 @@
+/**
+ * Divider Component Styles
+ * -----------------------
+ * 
+ * Optimized styles for the custom divider component with text positioning,
+ * orientation, and line style options.
+ */
+
+@layer components {
+  /* Base divider styles */
+  .divider {
+    @apply relative flex w-full items-center;
+    @apply has-[.divider-text]:gap-2;
+  }
+
+  /* Handle vertical orientation */
+  .divider-vertical {
+    @apply flex-col;
+  }
+
+  /* Common properties for divider lines */
+  .divider::before,
+  .divider::after {
+    content: '';
+    display: block;
+    @apply border-border;
+  }
+
+  /* Horizontal divider line styles */
+  .divider:not(.divider-vertical)::before,
+  .divider:not(.divider-vertical)::after {
+    @apply w-full h-0 border-t;
+  }
+
+  /* Vertical divider line styles */
+  .divider-vertical::before,
+  .divider-vertical::after {
+    @apply w-0 h-full border-r-[1px] border-t-0;
+  }
+
+  /* Text positioning logic */
+  .divider:has(.divider-text-start)::before {
+    @apply hidden;
+  }
+
+  .divider:has(.divider-text-end)::after {
+    @apply hidden;
+  }
+
+  /* Border styles */
+  .divider-solid::before,
+  .divider-solid::after {
+    @apply border-solid;
+  }
+
+  .divider-dashed::before,
+  .divider-dashed::after {
+    @apply border-dashed;
+  }
+
+  .divider-dotted::before,
+  .divider-dotted::after {
+    @apply border-dotted;
+  }
+
+  .divider-double::before,
+  .divider-double::after {
+    @apply border-double;
+  }
+
+  /* Text style */
+  .divider-text {
+    @apply text-slate-300 dark:text-slate-700 text-[11px] font-semibold;
+    @apply whitespace-nowrap;
+  }
+}

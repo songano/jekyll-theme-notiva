@@ -33,11 +33,13 @@ layout: compress
 
       <!-- Content -->
       <main class="flex-1">
-        {{ content }}
+        <div class="container pb-20">
+          {{ content }}
+        </div>
       </main>
 
       <!-- Footer -->
-      <footer>This is footer</footer>
+      {% include components/footer.html %}
     </div>
 
     <!-- Scripts -->

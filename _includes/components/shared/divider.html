@@ -1,0 +1,37 @@
+{% comment %}
+  Divider Component
+  ================
+
+  A versatile divider component with text positioning, orientation, and line style options.
+
+  Parameters:
+  - text: Text to display in the divider (optional)
+  - text_align: Text alignment - 'left', 'center', 'right' (default: 'center')
+  - orientation: Divider orientation - 'horizontal', 'vertical' (default: 'horizontal')
+  - line_style: Line style - 'solid', 'dashed', 'dotted', 'double' (default: 'solid')
+  - class: Additional CSS classes (optional)
+  - style: Additional inline styles (optional)
+
+  Usage:
+  {% include components/shared/divider.html %}
+  {% include components/shared/divider.html text="Section Title" %}
+  {% include components/shared/divider.html text="Left Aligned" text_align="left" %}
+  {% include components/shared/divider.html text="Dashed Line" line_style="dashed" %}
+  {% include components/shared/divider.html orientation="vertical" class="h-20" %}
+{% endcomment %}
+
+{% assign text = include.text %}
+{% assign text_align = include.text_align | default: 'center' %}
+{% assign orientation = include.orientation | default: 'horizontal' %}
+{% assign line_style = include.line_style | default: 'solid' %}
+{% assign additional_class = include.class | default: '' %}
+{% assign additional_style = include.style | default: '' %}
+
+<div
+  class="divider divider-{{ orientation }} divider-{{ line_style }} {{ additional_class }}"
+  style="{{ additional_style }}"
+>
+  {% if text %}
+    <span class="divider-text divider-text-{{ text_align }}">{{ text }}</span>
+  {% endif %}
+</div>
