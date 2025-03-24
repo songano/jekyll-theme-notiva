@@ -33,25 +33,7 @@
         </button>
       {% endif %}
 
-      <!-- Theme Toggle -->
-      {% assign theme_modes = 'auto,light,dark' | split: ',' %}
-      {% assign icon_names = 'computer,sun,moon' | split: ',' %}
-      {% assign default_theme = site.appearance.theme_mode %}
-
-      <div
-        data-default-theme="{{ default_theme }}"
-        class="flex items-center bg-muted h-8 px-1 rounded-full **:data-active:bg-accent-foreground **:data-active:text-accent"
-      >
-        {% for mode in theme_modes %}
-          {% assign index = forloop.index0 %}
-          {% assign icon_name = icon_names[index] %}
-          {% capture theme_class %}size-4 theme-{{ mode }}{% endcapture %}
-
-          <button class="btn btn-ghost size-6 rounded-full">
-            {% include components/shared/icon.html name=icon_name class=theme_class %}
-          </button>
-        {% endfor %}
-      </div>
+      {% include components/header/theme-switch.html %}
     </div>
   </div>
 </header>

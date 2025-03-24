@@ -40,44 +40,17 @@ function getInitialTheme(): Theme {
 }
 
 /**
- * Extracts the theme from an element with theme-* class
- * @param {Element} element - The element to extract theme from
- * @returns {Theme|null} The extracted theme or null if not found
- */
-function extractThemeFromElement(element: Element): Theme | null {
-  if (!element.classList) return null;
-
-  for (const className of element.classList) {
-    if (className.startsWith('theme-')) {
-      const theme = className.replace('theme-', '') as Theme;
-      if (VALID_THEMES.includes(theme as Theme)) {
-        return theme;
-      }
-    }
-  }
-
-  return null;
-}
-
-/**
- * Updates the active state of theme buttons
+ * Updates the active state of theme buttons using direct ID selectors
  * @param {Theme} theme - The current theme
  */
 function updateActiveButton(theme: Theme): void {
-  // Remove active state from all buttons
-  document.querySelectorAll('button[data-active]').forEach((btn) => {
-    btn.removeAttribute('data-active');
+  // Remove active state from all theme buttons
+  VALID_THEMES.forEach((t) => {
+    document.getElementById(`theme-${t}`)?.removeAttribute('data-active');
   });
 
-  // Find and activate the theme button
-  const buttons = document.querySelectorAll('button');
-  for (const button of buttons) {
-    const iconElement = button.querySelector('[class*="theme-"]');
-    if (iconElement && extractThemeFromElement(iconElement) === theme) {
-      button.setAttribute('data-active', '');
-      break; // Stop iteration once found
-    }
-  }
+  // Set active state for current theme button
+  document.getElementById(`theme-${theme}`)?.setAttribute('data-active', '');
 }
 
 /**
@@ -87,14 +60,28 @@ function updateActiveButton(theme: Theme): void {
 function applyTheme(theme: Theme): void {
   // Apply theme (auto is based on system preference)
   const appliedTheme = theme === 'auto' ? (systemPrefersDark() ? 'dark' : 'light') : theme;
+
+  // Set theme attribute early in the process
   document.documentElement.setAttribute('data-theme', appliedTheme);
 
   // Save theme to localStorage
   localStorage.setItem(THEME_KEY, theme);
 
-  // Update UI
+  // Update UI immediately
   updateActiveButton(theme);
 }
+
+/**
+ * Apply theme as early as possible - before DOMContentLoaded
+ * This prevents flickering during page transitions
+ */
+(function preloadTheme() {
+  const currentTheme = getInitialTheme();
+  const appliedTheme =
+    currentTheme === 'auto' ? (systemPrefersDark() ? 'dark' : 'light') : currentTheme;
+
+  document.documentElement.setAttribute('data-theme', appliedTheme);
+})();
 
 /**
  * Initializes the theme toggle functionality
@@ -102,20 +89,14 @@ function applyTheme(theme: Theme): void {
 export function initThemeToggle(): void {
   const currentTheme = getInitialTheme();
 
-  // Apply initial theme
+  // Apply theme and update UI
   applyTheme(currentTheme);
 
-  // Set up theme button event listeners
-  const themeSelector = 'button';
-  document.querySelectorAll(themeSelector).forEach((button) => {
-    const iconElement = button.querySelector('[class*="theme-"]');
-    if (!iconElement) return; // Skip if no theme icon
-
-    button.addEventListener('click', () => {
-      const theme = extractThemeFromElement(iconElement);
-      if (theme) {
-        applyTheme(theme);
-      }
+  // Set up theme button event listeners using direct ID selectors
+  VALID_THEMES.forEach((theme) => {
+    const button = document.getElementById(`theme-${theme}`);
+    button?.addEventListener('click', () => {
+      applyTheme(theme);
     });
   });
 
@@ -124,6 +105,7 @@ export function initThemeToggle(): void {
   darkModeMediaQuery.addEventListener('change', (e) => {
     if (localStorage.getItem(THEME_KEY) === 'auto') {
       document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      updateActiveButton('auto');
     }
   });
 }

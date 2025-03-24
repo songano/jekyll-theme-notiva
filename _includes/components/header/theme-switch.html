@@ -1,0 +1,37 @@
+<!-- Theme Toggle -->
+{% assign theme_modes = 'auto,light,dark' | split: ',' %}
+{% assign icon_names = 'computer,sun,moon' | split: ',' %}
+{% assign default_theme = site.appearance.theme_mode %}
+
+<div
+  data-default-theme="{{ default_theme }}"
+  class="flex items-center bg-muted h-8 px-1 !mr-0 rounded-full **:data-active:bg-accent-foreground **:data-active:text-accent"
+>
+  {% for mode in theme_modes %}
+    {% assign index = forloop.index0 %}
+    {% assign icon_name = icon_names[index] %}
+
+    <button class="btn btn-ghost size-6 rounded-full" id="theme-{{ mode }}">
+      {% include components/shared/icon.html name=icon_name class='size-4' %}
+    </button>
+  {% endfor %}
+</div>
+
+<script>
+  // Immediate theme application to prevent flickering
+  (function () {
+    const THEME_KEY = 'notiva-theme';
+    const themeContainer = document.querySelector('[data-default-theme]');
+    const defaultTheme = themeContainer ? themeContainer.getAttribute('data-default-theme') : 'auto';
+
+    const savedTheme = localStorage.getItem(THEME_KEY) || defaultTheme;
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const appliedTheme = savedTheme === 'auto' ? (systemPrefersDark ? 'dark' : 'light') : savedTheme;
+
+    // Apply theme immediately
+    document.documentElement.setAttribute('data-theme', appliedTheme);
+
+    // Apply active state directly to the correct button using ID
+    document.getElementById(`theme-${savedTheme}`)?.setAttribute('data-active', '');
+  })();
+</script>

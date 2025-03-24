@@ -1,0 +1,28 @@
+{% assign _content = include.content %}
+
+<!-- Make tables responsive with Tailwind classes -->
+{% if _content contains '<table' %}
+  {% assign _content = _content
+    | replace: '<table', '<div class="overflow-x-auto w-full"><table class="w-full"'
+    | replace: '</table>', '</table></div>'
+    | replace: '<code><div class="overflow-x-auto w-full">', '<code>'
+    | replace: '</table></div></code>', '</table></code>'
+  %}
+{% endif %}
+
+<!--
+  Fix for nested pre tags in kramdown code highlighting
+  This include fixes the issue with Jekyll's compress layout causing
+  problems with nested pre tags when using Rouge syntax highlighting.
+
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+{% if _content contains '<pre class="highlight">' %}
+  {% assign _content = _content
+    | replace: '<div class="highlight"><pre class="highlight"><code', '<div class="highlight"><code'
+    | replace: '</code></pre></div>', '</code></div>'
+  %}
+{% endif %}
+
+<!-- Return processed content -->
+{{ _content }}

@@ -7,6 +7,4 @@ tags: [react]
 
 ## Hi THis is post
 
-```html
-<div>Test code block</div>
-```
+This is Test
