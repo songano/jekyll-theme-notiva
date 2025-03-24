@@ -1,0 +1,40 @@
+{% comment %}
+  _includes/components/sidebar/category-item.html - Tailwind CSS 버전
+{% endcomment %}
+
+<li class="mb-2 category-item level-{{ include.level }}">
+  <div class="flex items-center cursor-pointer category-header">
+    <button>
+      {% include components/shared/icon.html name="folder" class="size-4" %}
+    </button>
+    <a
+      href="{{ site.baseurl }}/categories/{{ include.category.slug }}/"
+      class="{% if include.level == 1 %}text-muted-foreground{% endif %} hover:underline pl-1"
+    >
+      {{ include.category.name }}
+    </a>
+    <span class="ml-1 text-sm text-gray-500">({{ include.category.total_posts }})</span>
+  </div>
+
+  <ul class="list-none pl-4 mt-1 overflow-hidden post-list">
+    {% for post in include.category.direct_posts %}
+      <li class="mb-1 flex justify-between flex-wrap">
+        <a href="{{ site.baseurl }}{{ post.url }}" class="hover:underline flex gap-1">
+          {% include components/shared/icon.html name="document" class="size-4" %}
+          {{ post.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if include.category.children.size > 0 %}
+    <ul class="list-none pl-4 overflow-hidden subcategory-list">
+      {% for child_pair in include.category.children %}
+        {% assign child_name = child_pair[0] %}
+        {% assign child = child_pair[1] %}
+        {% assign next_level = include.level | plus: 1 %}
+        {% include components/sidebar/category-item.html category=child level=next_level %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</li>

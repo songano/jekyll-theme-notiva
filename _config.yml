@@ -69,7 +69,7 @@ social_display:
 # Theme Appearance
 # ----------------------------------------------------------------------
 appearance:
-  theme_mode: auto                    # [light|dark|auto] - Default theme mode
+  theme_mode: auto                    # [light|dark] - Default theme mode
   code_highlight: true                # Enable syntax highlighting
   code_copy: true                     # Enable code copy button
   animated: true                      # Enable animations

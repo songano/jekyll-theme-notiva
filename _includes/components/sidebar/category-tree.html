@@ -1,0 +1,13 @@
+<div class="overflow-hidden" id="categories-content">
+  <div class="pt-3">
+    <ul class="list-none pl-0 ml-0">
+      {% for category_pair in site.data.category_hierarchy %}
+        {% assign category_name = category_pair[0] %}
+        {% assign category = category_pair[1] %}
+
+        {% assign next_level = 1 %}
+        {% include components/sidebar/category-item.html category=category level=next_level %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

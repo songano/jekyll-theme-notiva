@@ -1,6 +1,7 @@
 /* https://tailwindcss.com/docs/adding-custom-styles */
 @import 'tailwindcss';
 
+/* @plugin "@tailwindcss/typography"; */
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -90,7 +91,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --font-body: 'Pretendard JP', 'system-ui', 'sans-serif';
-  --font-mono: 'Victor Mono', 'monospace';
+  /* --font-mono: 'Victor Mono', 'monospace'; */
 }
 
 /* Utility classes */
@@ -121,4 +122,5 @@
 @import './base.css';
 @import './components/button.css';
 @import './components/divider.css';
+@import './components/navigation.css';
 @import './jekyll-theme-notiva.css';

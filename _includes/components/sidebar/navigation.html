@@ -1,55 +1,54 @@
 <nav class="px-4">
   <ul class="space-y-0.5 text-sm text-muted-foreground font-semibold">
-    <li>
-      {% include components/shared/divider.html text="Main" text_align="start" class="my-3" %}
-    </li>
     <!-- Home -->
-    <li class="">
-      <a
-        href="{{ '/' | relative_url }}"
-        class="
-          flex items-center gap-2 rounded-xl p-2
-          {% if page.url == '/' %}
-            bg-primary/10 text-primary
-          {% endif %}
-        "
-      >
-        {% include /helpers/icon.html name="home" %}
+    <li class="{% if page.url == '/' %} bg-primary/5 text-primary {% endif %} nav-item">
+      <a href="{{ '/' | relative_url }}" class="nav-link">
+        {% include components/shared/icon.html name="home" %}
         <span>{{ 'sidebar.home' | t | upcase }}</span>
       </a>
     </li>
 
     <!-- About -->
-    <li class="">
-      <a
-        href="{{ '/about' | relative_url }}"
-        class="flex items-center gap-2 rounded-xl p-2 {% if page.url contains '/about' %}bg-primary/10 text-primary{% endif %}"
-      >
-        {% include /helpers/icon.html name="rocket-launch" %}
+    <li class="{% if page.url contains '/about' %}bg-primary/5 text-primary{% endif %} nav-item">
+      <a class="nav-link" href="{{ '/about' | relative_url }}">
+        {% include components/shared/icon.html name="information-circle" %}
         <span>{{ 'sidebar.about' | t | upcase }}</span>
       </a>
     </li>
 
-    <li>
-      {% include components/shared/divider.html text="Categories" text_align="start" class="my-3" %}
-    </li>
-
     <!-- Categories -->
-    <li>
-      <ul>
-        {{ site.categories }}
-      </ul>
+    {% capture category_class %}
+      {% if page.url contains '/categories/' or page.url contains '/posts/' %}
+        bg-primary/5 text-primary
+      {% endif %}
+    {% endcapture %}
+
+    <li class="nav-item rounded-xl {{ category_class }}">
+      <a href="{{ '/categories' | relative_url }}" class="nav-link" id="categories-header">
+        <button class="btn btn-link">
+          {% include components/shared/icon.html name="folder" %}
+        </button>
+        <span>{{ 'sidebar.categories' | t | upcase }}</span>
+      </a>
+
+      {% include components/sidebar/category-tree.html %}
     </li>
 
     <!-- Tags -->
-    <li>
-      <ul>
-        {{ site.tags }}
-      </ul>
+    <li class="nav-item">
+      <a href="{{ '/tags' | relative_url }}" class="nav-link">
+        {% include components/shared/icon.html name="tag" %}
+        <span>{{ 'sidebar.tags' | t | upcase }}</span>
+      </a>
+      <ul></ul>
     </li>
 
     <!-- archives -->
-    <li>
+    <li class="nav-item">
+      <a href="{{ '/archives' | relative_url }}" class="nav-link">
+        {% include components/shared/icon.html name="archive-box" %}
+        <span>{{ 'sidebar.archives' | t | upcase }}</span>
+      </a>
       <ul>
         {{ site.archives }}
       </ul>

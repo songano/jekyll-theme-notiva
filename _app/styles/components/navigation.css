@@ -1,0 +1,8 @@
+@layer components {
+  .nav-item {
+    @apply px-3 rounded-xl;
+  }
+  .nav-link {
+    @apply flex items-center gap-2 rounded-xl py-2;
+  }
+}

@@ -7,7 +7,7 @@ layout: compress
 <!doctype html>
 <html
   lang="{{ site.locale | default: 'en' }}"
-  data-theme="{{ site.theme_mode | default: 'dark' }}"
+  {% comment %} data-theme will be handled by script {% endcomment %}
 >
   <head>
     {% include components/head.html %}
@@ -29,7 +29,7 @@ layout: compress
       "
     >
       <!-- Header -->
-      {% include components/header/header.html %}
+      {% include_cached components/header/header.html %}
 
       <!-- Content -->
       <main class="flex-1">
@@ -39,7 +39,7 @@ layout: compress
       </main>
 
       <!-- Footer -->
-      {% include components/footer.html %}
+      {% include_cached components/footer.html %}
     </div>
 
     <!-- Scripts -->

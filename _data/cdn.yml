@@ -12,11 +12,15 @@ styles:
   # Font Awesome (for social icons)
   - url: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.1/css/all.min.css
     crossorigin: anonymous
-    
+  
+  - url: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css
 
 scripts:
   # Font Awesome (for social icons)
   # - url: https://kit.fontawesome.com/YOUR_KIT_ID.js
-  - url: https://kit.fontawesome.com/46e942b022.js
-    crossorigin: anonymous
-    async: true
+  # - url: https://kit.fontawesome.com/46e942b022.js
+  #   crossorigin: anonymous
+  #   async: true
+
+  - url: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js
+  - url: https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js

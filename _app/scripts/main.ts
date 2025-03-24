@@ -12,7 +12,8 @@ import { initThemeToggle } from './common/theme-switch';
  * Initialize common components
  */
 function initializeCommon(): void {
-  // Initialize dark mode
+  // Initialize dark
+  //  mode
   initThemeToggle();
   initSidebar();
 }
