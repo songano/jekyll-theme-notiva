@@ -17,3 +17,5 @@
     @apply cursor-pointer;
   }
 }
+
+@import './base/typography.css';

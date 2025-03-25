@@ -1,7 +1,9 @@
+{% assign active_class = 'bg-primary/5 text-primary' %}
+
 <nav class="px-4">
   <ul class="space-y-0.5 text-sm text-muted-foreground font-semibold">
     <!-- Home -->
-    <li class="{% if page.url == '/' %} bg-primary/5 text-primary {% endif %} nav-item">
+    <li class="{% if page.url == '/' %}{{ active_class }}{% endif %} nav-item">
       <a href="{{ '/' | relative_url }}" class="nav-link">
         {% include components/shared/icon.html name="home" %}
         <span>{{ 'sidebar.home' | t | upcase }}</span>
@@ -9,7 +11,7 @@
     </li>
 
     <!-- About -->
-    <li class="{% if page.url contains '/about' %}bg-primary/5 text-primary{% endif %} nav-item">
+    <li class="{% if page.url contains '/about' %}{{ active_class }}{% endif %} nav-item">
       <a class="nav-link" href="{{ '/about' | relative_url }}">
         {% include components/shared/icon.html name="information-circle" %}
         <span>{{ 'sidebar.about' | t | upcase }}</span>
@@ -19,7 +21,7 @@
     <!-- Categories -->
     {% capture category_class %}
       {% if page.url contains '/categories/' or page.url contains '/posts/' %}
-        bg-primary/5 text-primary
+        {{ active_class }}
       {% endif %}
     {% endcapture %}
 
@@ -35,8 +37,11 @@
     </li>
 
     <!-- Tags -->
-    <li class="nav-item">
-      <a href="{{ '/tags' | relative_url }}" class="nav-link">
+    <li class="{% if page.url contains '/tags' %}{{ active_class }}{% endif %}  nav-item">
+      <a
+        href="{{ '/tags' | relative_url }}"
+        class="nav-link"
+      >
         {% include components/shared/icon.html name="tag" %}
         <span>{{ 'sidebar.tags' | t | upcase }}</span>
       </a>
@@ -44,7 +49,7 @@
     </li>
 
     <!-- archives -->
-    <li class="nav-item">
+    <li class="{% if page.url contains '/archives' %}{{ active_class }}{% endif %} nav-item">
       <a href="{{ '/archives' | relative_url }}" class="nav-link">
         {% include components/shared/icon.html name="archive-box" %}
         <span>{{ 'sidebar.archives' | t | upcase }}</span>

@@ -19,6 +19,6 @@
       "@/*": ["_app/*"]
     }
   },
-  "include": ["_app/**/*.ts", "_app/**/*.d.ts"],
+  "include": ["_app/**/*.ts", "_app/**/*.d.ts", "types.ts"],
   "exclude": ["node_modules", "_site", ".jekyll-cache", "assets/dist"]
 }

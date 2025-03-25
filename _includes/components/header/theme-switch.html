@@ -16,22 +16,3 @@
     </button>
   {% endfor %}
 </div>
-
-<script>
-  // Immediate theme application to prevent flickering
-  (function () {
-    const THEME_KEY = 'notiva-theme';
-    const themeContainer = document.querySelector('[data-default-theme]');
-    const defaultTheme = themeContainer ? themeContainer.getAttribute('data-default-theme') : 'auto';
-
-    const savedTheme = localStorage.getItem(THEME_KEY) || defaultTheme;
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const appliedTheme = savedTheme === 'auto' ? (systemPrefersDark ? 'dark' : 'light') : savedTheme;
-
-    // Apply theme immediately
-    document.documentElement.setAttribute('data-theme', appliedTheme);
-
-    // Apply active state directly to the correct button using ID
-    document.getElementById(`theme-${savedTheme}`)?.setAttribute('data-active', '');
-  })();
-</script>

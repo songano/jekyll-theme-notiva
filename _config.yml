@@ -99,7 +99,7 @@ post:
 # [CUSTOMIZABLE] Pagination Settings
 # ----------------------------------------------------------------------
 paginate: 10                          # Posts per page
-paginate_path: "/page:num/"           # Pagination path
+# paginate_path: "/page:num/"           # Pagination path
 
 # [CUSTOMIZABLE] PWA Settings
 # ----------------------------------------------------------------------

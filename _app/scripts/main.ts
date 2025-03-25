@@ -5,25 +5,45 @@
 
 import { initSidebar } from './common/sidebar';
 import { initThemeToggle } from './common/theme-switch';
+import { initScrollHandlers } from './core/scroll-handlers';
+import * as utils from './utils';
 
-// const cleanupFunctions: Record<string, () => void> = {};
+// declare global {
+//   interface Window {
+//     siteConfig: NotivaSiteConfig;
+//   }
+// }
 
 /**
- * Initialize common components
+ * Initialize the common functionality across all pages
  */
-function initializeCommon(): void {
-  // Initialize dark
-  //  mode
-  initThemeToggle();
-  initSidebar();
+function initializeApp(): void {
+  // DOM ready check
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onDOMReady);
+  } else {
+    onDOMReady();
+  }
 }
 
 /**
- * Initialize on DOM content loaded
+ * Handle DOM ready event
  */
-document.addEventListener('DOMContentLoaded', () => {
-  initializeCommon();
+function onDOMReady(): void {
+  console.log('Notiva theme initialized');
 
-  // Dispatch event for page-specific scripts
-  document.dispatchEvent(new CustomEvent('notiva:ready'));
-});
+  initSidebar();
+  initThemeToggle();
+
+  // Initialize utility helpers
+  utils.initHelpers();
+
+  // Initialize scroll handlers
+  initScrollHandlers();
+}
+
+// Initialize the application
+initializeApp();
+
+// Export public API if needed
+export { initializeApp };

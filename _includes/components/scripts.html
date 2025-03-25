@@ -1,6 +1,12 @@
 <!-- Main JavaScript -->
 <script src="{{ '/assets/dist/js/main.min.js' | relative_url }}"></script>
 
+{% if page.layout == 'post' %}
+  {% assign layout_script = '/assets/dist/js/' | append: page.layout | append: '.min.js' %}
+  {% assign layout_script_path = layout_script | relative_url %}
+  <script type="module" src="{{ layout_script_path }}"></script>
+{% endif %}
+
 <!-- Page-specific JavaScript, if available -->
 {% comment %}
   {% if page.layout %}

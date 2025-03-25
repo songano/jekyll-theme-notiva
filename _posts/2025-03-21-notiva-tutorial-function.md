@@ -2,7 +2,7 @@
 title: Notiva tutorial function
 author: Gano
 categories: [Projects, Notiva]
-tags: [jekyll]
+tags: [jekyll, document, tag4, document]
 ---
 
 ## Hi THis is post

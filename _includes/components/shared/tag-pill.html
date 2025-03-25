@@ -1,0 +1,45 @@
+{% comment %}
+  Tag Pill Component
+
+  Parameters:
+  - tag: The tag name to display
+  - count: (Optional) The number of posts with this tag
+  - class: (Optional) Additional CSS classes to apply
+  - size: (Optional) Size variant - default, sm, lg
+  - hover: (Optional) Whether to apply hover effects - true/false
+  - animate: (Optional) Whether to apply animation - true/false
+  - color_index: (Optional) Index for color cycling - 1-6
+{% endcomment %}
+
+{% assign size_class = 'px-3 py-1.5 text-sm' %}
+{% if include.size == 'sm' %}
+  {% assign size_class = 'px-2.5 py-0.5 text-xs' %}
+{% elsif include.size == 'lg' %}
+  {% assign size_class = 'px-4 py-2 text-base' %}
+{% endif %}
+
+{% assign color_index = include.color_index | default: 1 %}
+{% assign colors = 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300,bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300,bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300,bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300,bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300,bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-300'
+  | split: ','
+%}
+{% assign color_class = colors[color_index | modulo: 6] %}
+
+{% assign hover_class = '' %}
+{% if include.hover == true %}
+  {% assign hover_class = 'hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-colors duration-200' %}
+{% endif %}
+
+{% assign animation_class = '' %}
+{% if include.animate == true %}
+  {% assign animation_class = 'animate-in fade-in zoom-in-50 duration-500' %}
+{% endif %}
+
+<a
+  href="{{ site.baseurl }}/tags/{{ include.tag | slugify }}/"
+  class="inline-flex items-center rounded-full {{ size_class }} {{ color_class }} {{ hover_class }} {{ animation_class }} {{ include.class }}"
+>
+  <span>#{{ include.tag }}</span>
+  {% if include.count %}
+    <span class="ml-1.5 text-xs opacity-70">{{ include.count }}</span>
+  {% endif %}
+</a>

@@ -102,8 +102,19 @@ export default defineConfig(({ mode }) => {
           },
           // Extract common chunks
           manualChunks: (id) => {
+            // Vendor chunks for node_modules
             if (id.includes('node_modules')) {
-              return 'vendor';
+              // Split large libraries into separate chunks
+              if (id.includes('node_modules/lodash')) {
+                return 'vendor/lodash';
+              } else if (id.includes('node_modules/dayjs')) {
+                return 'vendor/dayjs';
+              } else if (id.includes('node_modules/tocbot')) {
+                return 'vendor/tocbot';
+              } else {
+                // Group remaining node_modules
+                return 'vendor/common';
+              }
             }
           },
         },
