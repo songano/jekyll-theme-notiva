@@ -1,8 +1,8 @@
 ---
-title: 마크다운 스타일 테스트 문서1
+title: 마크다운 스타일 테스트 문서2
 author: Gano
 categories: [Test, document]
-tags: [jekyll]
+tags: [jekyll, document, test]
 ---
 
 이 문서는 마크다운 스타일이 올바르게 적용되는지 테스트하기 위한 예제입니다.

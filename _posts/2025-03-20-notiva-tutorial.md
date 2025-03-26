@@ -1,5 +1,5 @@
 ---
-title: Notival Tutorial First Start
+title: Notival Tutorial
 author: Gano
 categories: [Projects, Notiva]
 tags: [jekyll, document]

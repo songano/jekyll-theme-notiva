@@ -1,7 +1,7 @@
 ---
-title: 마크다운 스타일 테스트 문서1
+title: 마크다운 스타일 테스트 문서3
 author: Gano
-categories: [Test, document]
+categories: [markdown, document]
 tags: [jekyll]
 ---
 

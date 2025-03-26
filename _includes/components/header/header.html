@@ -2,10 +2,10 @@
   id="header"
   class="
     {% if site.appearance.sidebar_position == 'left' %}
-      sm:ml-70 sidebar-collapsed:sm:ml-0
+      sm:ml-72 sidebar-collapsed:sm:ml-0
     {% else %}
-      sm:mr-70 sidebar-collapsed:sm:mr-0
-    {% endif %} header fixed top-0 left-0 right-0 h-14
+      sm:mr-72 sidebar-collapsed:sm:mr-0
+    {% endif %} header fixed top-0 left-0 right-0 h-14 z-30
   "
 >
   <div class="flex items-center justify-between h-full container">
@@ -14,7 +14,7 @@
       <button id="sidebar-toggle" class="size-8 btn btn-ghost" aria-label="Sidebar toggle">
         {% include components/shared/icon.html type="custom" name="sidebar-layout" %}
       </button>
-      <h1 class="text-base font-semibold">{{ site.title | capitalize }}</h1>
+      <a href="/" class="text-lg font-semibold">{{ site.title | capitalize }}</a>
     </div>
 
     <!-- Right Side: Search & Theme Toggle -->

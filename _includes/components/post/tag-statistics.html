@@ -10,68 +10,61 @@
 {% assign tag_posts_count = tag_posts | size %}
 {% assign recent_posts = tag_posts | sort: 'date' | reverse | limit: 3 %}
 
-<div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden animate-in fade-in slide-in-from-bottom-3 duration-700">
-  <div class="p-6">
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-xl font-bold text-gray-900 dark:text-white">#{{ include.tag_name }}</h3>
-      <span class="px-2.5 py-0.5 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-300 rounded-full text-xs font-medium">
-        {{ tag_posts_count }} posts
-      </span>
-    </div>
+<div class="rounded-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-3 duration-300">
+  <h3 class="text-xl font-semibold">#{{ include.tag_name }}</h3>
 
-    <!-- Tag Statistics -->
-    <div class="grid grid-cols-2 gap-4 mb-6">
-      <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-        <div class="text-sm text-gray-500 dark:text-gray-400">First Post</div>
-        {% assign first_post = tag_posts | sort: 'date' | first %}
-        <div class="text-gray-900 dark:text-white font-medium mt-1">
-          {{ first_post.date | date: '%b %d, %Y' }}
-        </div>
-      </div>
-
-      <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-        <div class="text-sm text-gray-500 dark:text-gray-400">Latest Post</div>
-        {% assign latest_post = tag_posts | sort: 'date' | reverse | first %}
-        <div class="text-gray-900 dark:text-white font-medium mt-1">
-          {{ latest_post.date | date: '%b %d, %Y' }}
-        </div>
+  <!-- Tag Statistics -->
+  <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+      <div class="text-sm text-gray-500 dark:text-gray-400">First Post</div>
+      {% assign first_post = tag_posts | sort: 'date' | first %}
+      <div class="text-gray-900 dark:text-white font-medium mt-1">
+        {{ first_post.date | date: '%b %d, %Y' }}
       </div>
     </div>
 
-    <!-- Recent Posts with this Tag -->
-    <div>
-      <h4 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Recent Posts</h4>
-      <ul class="space-y-2">
-        {% for post in recent_posts %}
-          <li>
-            <a
-              href="{{ post.url | relative_url }}"
-              class="block py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
-            >
-              <div class="text-gray-900 dark:text-white font-medium">{{ post.title }}</div>
-              <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ post.date | date: '%b %d, %Y' }}</div>
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
+    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+      <div class="text-sm text-gray-500 dark:text-gray-400">Latest Post</div>
+      {% assign latest_post = tag_posts | sort: 'date' | reverse | first %}
+      <div class="text-gray-900 dark:text-white font-medium mt-1">
+        {{ latest_post.date | date: '%b %d, %Y' }}
+      </div>
     </div>
+  </div>
 
-    <div class="mt-6">
-      <a
-        href="{{ site.baseurl }}/tags/{{ include.tag_name | slugify }}/"
-        class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-sm font-medium transition-colors duration-200"
+  <!-- Recent Posts with this Tag -->
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Recent Posts</h4>
+    <ul class="space-y-2">
+      {% for post in recent_posts %}
+        <li>
+          <a
+            href="{{ post.url | relative_url }}"
+            class="block py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+          >
+            <div class="text-gray-900 dark:text-white font-medium">{{ post.title }}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ post.date | date: '%b %d, %Y' }}</div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="mt-6">
+    <a
+      href="{{ site.baseurl }}/tags/{{ include.tag_name | slugify }}/"
+      class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-sm font-medium transition-colors duration-200"
+    >
+      <span>View all posts</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4 ml-1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
       >
-        <span>View all posts</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 ml-1"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
-      </a>
-    </div>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      </svg>
+    </a>
   </div>
 </div>

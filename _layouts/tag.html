@@ -1,78 +1,23 @@
 ---
-layout: default
+layout: page
 ---
 <!-- Tag Header with Hero Section -->
-<div class="relative bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl overflow-hidden mb-12">
-  <div class="absolute inset-0 bg-grid-white/[0.2] bg-[size:16px_16px]"></div>
-  <div class="relative z-10 px-6 py-16 md:px-12 md:py-24 text-center text-white">
-    <span class="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-4 animate-in fade-in slide-in-from-bottom-3 duration-700">
-      Tag Details
-    </span>
-    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animate-in fade-in slide-in-from-bottom-5 duration-700">
-      #{{ page.title }}
-    </h1>
-    <p class="text-xl text-white/80 max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-3 duration-700 delay-150">
-      Explore all posts related to this topic
-    </p>
+<div class="space-y-4">
+  <p class="text-muted-foreground">Explore all posts related to this topic</p>
 
-    <!-- Statistics Badge -->
-    <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mt-6 animate-in fade-in slide-in-from-bottom-3 duration-700 delay-300">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5 mr-2"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-      </svg>
-      <span>
-        {{- page.posts.size }}
-        {% if page.posts.size == 1 %}post{% else %}posts{% endif -%}
-      </span>
-    </div>
-  </div>
-</div>
-
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-  <!-- Main Posts Column -->
-  <div class="lg:col-span-2">
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8 animate-in fade-in slide-in-from-bottom-3 duration-700">
-      <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 mr-2 text-indigo-500"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-        All Posts with #{{ page.title }}
+  <div class="gap-6 flex flex-col lg:flex-row">
+    <!-- Main Posts Column -->
+    <div class="rounded-2xl flex-1 min-w-0 mb-8 animate-in fade-in slide-in-from-bottom-3 duration-700">
+      <h2 class="text-2xl font-semibold mb-6">
+        All Posts
+        <span>({{ page.posts.size }})</span>
       </h2>
 
-      <div class="divide-y divide-gray-200 dark:divide-gray-700">
-        {% for post in page.posts %}
-          <article class="py-6 {% if forloop.first %}pt-0{% endif %} animate-in fade-in slide-in-from-bottom-3 duration-700 delay-[{{ forloop.index | times: 100 }}ms]">
-            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
-              <time datetime="{{ post.date | date_to_xmlschema }}">
-                {{ post.date | date: '%B %d, %Y' }}
-              </time>
-              {% if post.categories.size > 0 %}
-                <span class="mx-2">•</span>
-                <a
-                  href="{{ site.baseurl }}/categories/{{ post.categories.first | slugify }}/"
-                  class="text-indigo-600 dark:text-indigo-400 hover:underline"
-                >
-                  {{ post.categories.first }}
-                </a>
-              {% endif %}
-              {% if post.read_time %}
-                <span class="mx-2">•</span>
-                <span>{{ post.read_time }} min read</span>
-              {% endif %}
-            </div>
+      ({{ paginator.total_posts }})
 
+      <div class="space-y-4">
+        {% for post in page.posts %}
+          <article class="p-6 border border-border animate-in fade-in slide-in-from-bottom-3 duration-700 delay-[{{ forloop.index | times: 100 }}ms] bg-card rounded-xl">
             <h3 class="text-xl font-bold mb-2">
               <a
                 href="{{ post.url | relative_url }}"
@@ -82,14 +27,34 @@ layout: default
               </a>
             </h3>
 
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-              {{ post.excerpt | strip_html | truncate: 160 }}
+            <div class="flex items-center text-sm text-muted-foreground mb-4">
+              <time datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: '%B %d, %Y' }}
+              </time>
+              {% if post.categories.size > 0 %}
+                <span class="mx-2">•</span>
+                <a
+                  href="{{ site.baseurl }}/categories/{{ post.categories.first | slugify }}/"
+                  class="text-indigo-600 dark:text-indigo-400 hover:underline flex gap-1 items-center"
+                >
+                  {% include components/shared/icon.html name="folder" class="size-4" %}
+                  {{ post.categories | join: ' > ' }}
+                </a>
+              {% endif %}
+              {% if post.read_time %}
+                <span class="mx-2">•</span>
+                <span>{{ post.read_time }} min read</span>
+              {% endif %}
+            </div>
+
+            <p class="text-secondary-foreground mb-4 line-clamp-3">
+              {{ post.excerpt | strip_html }}
             </p>
 
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-1 text-xs">
               {% for tag in post.tags %}
                 {% if tag != page.title %}
-                  {% comment %} {% include components/shared/tag-pill.html tag=tag size="sm" color_index=forloop.index %} {% endcomment %}
+                  {% include components/shared/tag-pill.html tag=tag hover=true color_index=0 size="sm" %}
                 {% endif %}
               {% endfor %}
             </div>
@@ -97,148 +62,132 @@ layout: default
         {% endfor %}
       </div>
     </div>
-  </div>
 
-  <!-- Sidebar -->
-  <div class="space-y-8">
-    <!-- Tag Statistics -->
+    {% include components/shared/divider.html orientation='vertical' class="w-1" %}
 
-    {% include components/post/tag-statistics.html tag_name=page.title %}
+    <!-- Sidebar -->
+    <div class="space-y-4 min-w-[200px]">
+      <!-- Tag Statistics -->
+      {% include components/post/tag-statistics.html tag_name=page.title %}
 
-    <!-- Related Tags -->
-    {% comment %} {% include components/related-tags.html tag_name=page.title %} {% endcomment %}
+      <!-- Recent Posts Widget -->
+      <div class="rounded-2xl animate-in fade-in slide-in-from-bottom-3 duration-300 delay-300">
+        <h3 class="text-lg font-semibold mb-4">Recent Posts</h3>
 
-    <!-- Recent Posts Widget -->
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 animate-in fade-in slide-in-from-bottom-3 duration-700 delay-300">
-      <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Recent Posts</h3>
+        <div class="space-y-4">
+          {% for post in site.posts limit: 5 %}
+            <a href="{{ post.url | relative_url }}" class="block group">
+              <div class="flex items-start">
+                {% if post.image %}
+                  <div class="flex-shrink-0 h-12 w-12 rounded-md overflow-hidden mr-4">
+                    <img
+                      src="{{ post.image | relative_url }}"
+                      alt="{{ post.title }}"
+                      class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    >
+                  </div>
+                {% else %}
+                  <div class="flex-shrink-0 h-12 w-12 rounded-md overflow-hidden mr-4 bg-muted text-muted-foreground flex items-center justify-center">
+                    {% include components/shared/icon.html name="photo" %}
+                  </div>
+                {% endif %}
 
-      <div class="space-y-4">
-        {% for post in site.posts limit: 5 %}
-          <a href="{{ post.url | relative_url }}" class="block group">
-            <div class="flex items-start">
-              {% if post.image %}
-                <div class="flex-shrink-0 h-12 w-12 rounded-md overflow-hidden mr-4">
-                  <img
-                    src="{{ post.image | relative_url }}"
-                    alt="{{ post.title }}"
-                    class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  >
+                <div>
+                  <h4 class="text-sm font-medium text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
+                    {{ post.title | truncate: 40 }}
+                  </h4>
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    {{ post.date | date: '%b %d, %Y' }}
+                  </p>
                 </div>
-              {% else %}
-                <div class="flex-shrink-0 h-12 w-12 rounded-md overflow-hidden mr-4 bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 text-gray-500 dark:text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1M19 20a2 2 0 002-2V8a2 2 0 00-2-2h-1M8 7h4m0 0H8m4 0V4m-2 12v1m-2-1v1m6-1v1" />
-                  </svg>
-                </div>
-              {% endif %}
-
-              <div>
-                <h4 class="text-sm font-medium text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
-                  {{ post.title | truncate: 40 }}
-                </h4>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {{ post.date | date: '%b %d, %Y' }}
-                </p>
               </div>
-            </div>
-          </a>
-        {% endfor %}
-      </div>
+            </a>
+          {% endfor %}
+        </div>
 
-      <div class="mt-6 text-center">
-        <a
-          href="{{ site.baseurl }}/"
-          class="inline-flex items-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium transition-colors duration-200"
-        >
-          <span>View all posts</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-4 w-4 ml-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+        <div class="mt-6 text-center">
+          <a
+            href="{{ site.baseurl }}/"
+            class="inline-flex items-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium transition-colors duration-200"
           >
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
-        </a>
+            <span>View all posts</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 ml-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Visual Tag Network (Pinterest-style) -->
-<section class="mt-16 animate-in fade-in slide-in-from-bottom-5 duration-1000 delay-500">
-  <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Explore Other Tags</h2>
+  <!-- Visual Tag Network -->
+  <section class="mt-16 animate-in fade-in slide-in-from-bottom-5 duration-1000 delay-500">
+    <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Explore Other Tags</h2>
 
-  <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-5 gap-3 space-y-3">
-    {% assign tags_sorted = site.tags | sort %}
-    {% for tag in tags_sorted limit: 20 %}
-      {% assign tag_name = tag | first %}
-      {% if tag_name != page.title %}
-        {% assign posts_count = tag | last | size %}
-        {% assign color_index = forloop.index | modulo: 6 %}
-        {% assign random_height = forloop.index | modulo: 3 %}
-        {% assign height_class = 'min-h-[80px]' %}
+    <div class="columns-2 sm:columns-2 md:columns-3 lg:columns-6 gap-3 space-y-3">
+      {% assign tags_sorted = site.tags | sort %}
+      {% for tag in tags_sorted limit: 20 %}
+        {% assign tag_name = tag | first %}
+        {% if tag_name != page.title %}
+          {% assign posts_count = tag | last | size %}
 
-        {% if random_height == 0 %}
-          {% assign height_class = 'min-h-[100px]' %}
-        {% elsif random_height == 1 %}
-          {% assign height_class = 'min-h-[120px]' %}
-        {% endif %}
+          <div class="break-inside-avoid animate-in fade-in slide-in-from-bottom-3 duration-700 delay-[{{ forloop.index | times: 50 }}ms]">
+            <a
+              href="{{ site.baseurl }}/tags/{{ tag_name | slugify }}/"
+              class="block h-24 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden relative group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+            >
+              <div class="relative h-full flex flex-col justify-between">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:translate-y-[-2px] transition-transform duration-300">
+                  #{{ tag_name }}
+                </h3>
 
-        {% assign gradient_classes = 'from-indigo-500 to-purple-600,from-pink-500 to-rose-500,from-emerald-500 to-teal-600,from-amber-500 to-orange-600,from-blue-500 to-cyan-600,from-violet-500 to-fuchsia-600'
-          | split: ','
-        %}
-        {% assign gradient_class = gradient_classes[color_index] %}
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-600 dark:text-gray-400 text-xs">
+                    {{ posts_count }}
+                    {% if posts_count == 1 %}post{% else %}posts{% endif %}
+                  </span>
 
-        <div class="break-inside-avoid animate-in fade-in slide-in-from-bottom-3 duration-700 delay-[{{ forloop.index | times: 50 }}ms]">
-          <a
-            href="{{ site.baseurl }}/tags/{{ tag_name | slugify }}/"
-            class="block bg-gradient-to-br {{ gradient_class }} {{ height_class }} rounded-xl p-4 shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden relative group"
-          >
-            <div
-              class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"
-            ></div>
-
-            <div class="relative z-10">
-              <h3 class="text-lg font-bold text-white mb-1 group-hover:translate-y-[-4px] transition-transform duration-300">
-                #{{ tag_name }}
-              </h3>
-
-              <div class="flex items-center">
-                <span class="text-white/80 text-xs">
-                  {{ posts_count }}
-                  {% if posts_count == 1 %}post{% else %}posts{% endif %}
-                </span>
+                  <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </span>
+                </div>
               </div>
-            </div>
-          </a>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
 
-  <div class="text-center mt-8">
-    <a
-      href="{{ site.baseurl }}/tags/"
-      class="inline-flex items-center justify-center px-5 py-3 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors duration-300 shadow-md hover:shadow-lg animate-in fade-in zoom-in-50 duration-1000 delay-700"
-    >
-      <span class="font-medium">Explore All Tags</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5 ml-2"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+    <div class="text-center mt-8">
+      <a
+        href="{{ site.baseurl }}/tags/"
+        class="inline-flex items-center justify-center px-5 py-3 rounded-full bg-gray-900 dark:bg-gray-800 text-white hover:bg-black dark:hover:bg-gray-700 transition-colors duration-300 shadow-md hover:shadow-lg animate-in fade-in zoom-in-50 delay-400"
       >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-      </svg>
-    </a>
-  </div>
-</section>
+        <span class="font-medium">Explore All Tags</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 ml-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </section>
+</div>

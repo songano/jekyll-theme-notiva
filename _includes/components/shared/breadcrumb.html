@@ -1,0 +1,40 @@
+{% comment %}
+  Component that automatically extracts breadcrumb paths from URL
+  Usage: {% include {PATH}/breadcrumb.html %}
+{% endcomment %}
+
+{% assign url_parts = page.url | split: '/' %}
+{% assign url_parts_size = url_parts | size %}
+{% assign breadcrumb_url = '' %}
+
+<nav aria-label="Breadcrumb">
+  <ol class="flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400">
+    <li class="flex items-center">
+      <a href="{{ site.baseurl }}/" class="hover:text-accent-foreground transition-colors duration-200">
+        <span>Home</span>
+      </a>
+    </li>
+
+    {% for part in url_parts %}
+      {% if part != '' and part != 'index.html' %}
+        {% assign breadcrumb_url = breadcrumb_url | append: '/' | append: part %}
+
+        <li class="flex items-center">
+          {% include components/shared/icon.html name="chevron-right" class="size-3 mx-1.5" %}
+
+          <!-- Current Page -->
+          {% if forloop.last and page.title %}
+            <span class="font-medium text-foreground" aria-current="page">{{ page.title }}</span>
+          {% else %}
+            <a
+              href="{{ site.baseurl }}{{ breadcrumb_url }}/"
+              class="hover:text-accent-foreground transition-colors duration-200"
+            >
+              {{ part | capitalize | replace: '-', ' ' | replace: '_', ' ' }}
+            </a>
+          {% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</nav>
