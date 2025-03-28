@@ -21,7 +21,11 @@
     <div class="flex items-center space-x-2">
       <!-- Search Button -->
       {% if site.features.site_search %}
-        <button class="bg-muted px-3 py-1 h-8 rounded-full" aria-label="Search button">
+        <button
+          id="search-button"
+          class="bg-muted px-3 py-1 h-8 rounded-full focus:outline-0"
+          aria-label="Search button"
+        >
           {% include components/shared/icon.html name="magnifying-glass" class="size-4 mr-1" %}
           <kbd class="font-mono text-xs/4 text-gray-500 dark:text-gray-400 [.os-macos_&amp;]:block">⌘K</kbd>
           <kbd class="hidden font-sans text-xs/4 text-gray-500 not-[.os-macos_&amp;]:block dark:text-gray-400"
@@ -31,6 +35,7 @@
         </button>
       {% endif %}
 
+      <!-- Theme Switch Button Group -->
       {% include components/header/theme-switch.html %}
     </div>
   </div>
@@ -38,10 +43,7 @@
 
 <!-- Search Modal -->
 {% if site.features.site_search %}
-  <div
-    id="search-modal"
-    class="fixed inset-0 z-50 items-center justify-center p-4 bg-foreground/20 backdrop-blur-sm hidden"
-  ></div>
+  {% include components/header/search-modal.html %}
 {% endif %}
 
 <!-- Space for fixed header -->

@@ -1,5 +1,8 @@
 ---
 layout: page
+pagination:
+  enabled: true
+  per_page: 4
 ---
 <!-- Tag Header with Hero Section -->
 <div class="space-y-4">
@@ -13,7 +16,11 @@ layout: page
         <span>({{ page.posts.size }})</span>
       </h2>
 
-      ({{ paginator.total_posts }})
+      {% for post in page.posts %}
+        <ul class="space-y-3">
+          {% include components/post/post-list-item.html item=post %}
+        </ul>
+      {% endfor %}
 
       <div class="space-y-4">
         {% for post in page.posts %}
@@ -68,7 +75,7 @@ layout: page
     <!-- Sidebar -->
     <div class="space-y-4 min-w-[200px]">
       <!-- Tag Statistics -->
-      {% include components/post/tag-statistics.html tag_name=page.title %}
+      {% comment %} {% include components/post/tag-statistics.html tag_name=page.title %} {% endcomment %}
 
       <!-- Recent Posts Widget -->
       <div class="rounded-2xl animate-in fade-in slide-in-from-bottom-3 duration-300 delay-300">
@@ -191,3 +198,8 @@ layout: page
     </div>
   </section>
 </div>
+
+{% comment %}
+  Jekyll-archives 플러그인과 호환되는 태그 페이지 레이아웃
+  페이지네이션 지원 추가
+{% endcomment %}

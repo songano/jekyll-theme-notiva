@@ -53,23 +53,12 @@ function initSidebarToggle(): void {
     }
   };
 
-  const handleEscapeKey = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      if (isDesktop()) {
-        body.setAttribute('data-sidebar-collapsed', '');
-      } else {
-        hideMobileSidebar();
-      }
-    }
-  };
-
   const handleResize = () => {
     if (!isDesktop()) hideMobileSidebar();
   };
 
   sidebarToggle.addEventListener('click', toggleSidebar);
   sidebarOverlay.addEventListener('click', hideMobileSidebar);
-  document.addEventListener('keydown', handleEscapeKey);
   window.addEventListener('resize', handleResize);
 
   // Initialize Settings

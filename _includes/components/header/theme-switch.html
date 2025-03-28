@@ -5,13 +5,13 @@
 
 <div
   data-default-theme="{{ default_theme }}"
-  class="flex items-center bg-muted h-8 px-1 !mr-0 rounded-full **:data-active:bg-accent-foreground **:data-active:text-accent"
+  class="flex items-center bg-muted h-8 px-1 !mr-0 rounded-full **:data-active:bg-primary **:data-active:text-primary-foreground"
 >
   {% for mode in theme_modes %}
     {% assign index = forloop.index0 %}
     {% assign icon_name = icon_names[index] %}
 
-    <button class="btn btn-ghost size-6 rounded-full" id="theme-{{ mode }}">
+    <button class="btn btn-ghost size-6 rounded-full" id="theme-{{ mode }}" aria-label="Theme {{ mode }}">
       {% include components/shared/icon.html name=icon_name class='size-4' %}
     </button>
   {% endfor %}

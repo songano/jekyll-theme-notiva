@@ -186,14 +186,10 @@ features:
 # [CUSTOMIZABLE] Pagination Settings
 # ----------------------------------------------------------------------
 # 아카이브 페이지네이션 설정
-archive_pagination:
+pagination:
   enabled: true
-  per_page: 4  # 기본 페이지당 포스트 수
-  layouts:  # 페이지네이션을 적용할 레이아웃
-    - tag
-    - category
-    - year
-    - month
+  per_page: 4  # 페이지당 표시할 포스트 수
+
 
 # pagination:
 #   enabled: true

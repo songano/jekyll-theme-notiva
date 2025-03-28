@@ -22,5 +22,5 @@ scripts:
   #   crossorigin: anonymous
   #   async: true
 
-  - url: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js
+  # - url: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js
   - url: https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js

@@ -1,3 +1,17 @@
+{% if site.data.cdn %}
+  {% for resource in site.data.cdn.scripts %}
+    <script
+      src="{{ resource.url }}"
+      {% if resource.crossorigin %}
+        crossorigin
+      {% endif %}
+      {% if resource.async %}
+        async="true"
+      {% endif %}
+    ></script>
+  {% endfor %}
+{% endif %}
+
 <!-- Main JavaScript -->
 <script src="{{ '/assets/dist/js/main.min.js' | relative_url }}"></script>
 

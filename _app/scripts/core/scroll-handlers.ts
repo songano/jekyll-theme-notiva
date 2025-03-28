@@ -81,10 +81,8 @@ function updateBackToTopButton(scrollPos: number): void {
   if (!backToTopBtn) return;
 
   if (scrollPos > 300) {
-    backToTopBtn.classList.add('visible');
     backToTopBtn.setAttribute('aria-hidden', 'false');
   } else {
-    backToTopBtn.classList.remove('visible');
     backToTopBtn.setAttribute('aria-hidden', 'true');
   }
 }

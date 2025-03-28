@@ -4,17 +4,27 @@ script: home
 ---
 <div>
   <!-- Page header -->
-  <div class="page-header mb-8">
-    <h1 class="text-4xl font-semibold mt-5 mb-2">{{ site.title }}</h1>
-    {% if site.tagline %}
-      <p class="text-xl text-light-muted dark:text-dark-muted">{{ site.tagline }}</p>
-    {% endif %}
+  <div class="bg-primary rounded-2xl text-primary-foreground py-4 px-10 mt-5">
+    <div class="mb-4">
+      <h2 class="text-3xl font-bold">Welcome to Notiva!!</h2>
+      <p class="text-secondary">{{ site.tagline }}</p>
+    </div>
+    <a href="#" class="btn btn-accent btn-md">Read more</a>
   </div>
 
-  <div>업청 길게 작성할게</div>
   {% comment %} <div class="h-[1200px]">업청 길게 작성할게</div> {% endcomment %}
 
   {{ site.posts.length }}
+
+  <div class="grid grid-cols-2">
+    <!-- col1 -->
+    <div>
+      <h2>Profile</h2>
+      <div class="bg-card">
+        <div class="avatar">image</div>
+      </div>
+    </div>
+  </div>
 
   {{ content }}
 </div>

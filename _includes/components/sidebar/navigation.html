@@ -27,7 +27,12 @@
 
     <li class="nav-item rounded-xl {{ category_class }}">
       <a href="{{ '/categories' | relative_url }}" class="nav-link" id="categories-header">
-        <button class="btn btn-link">
+        <button
+          class="btn btn-link"
+          aria-label="Collapse categories"
+          aria-expanded="false"
+          aria-controls="categories-content"
+        >
           {% include components/shared/icon.html name="folder" %}
         </button>
         <span>{{ 'sidebar.categories' | t | upcase }}</span>

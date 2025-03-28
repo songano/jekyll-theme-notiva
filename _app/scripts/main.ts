@@ -6,13 +6,8 @@
 import { initSidebar } from './common/sidebar';
 import { initThemeToggle } from './common/theme-switch';
 import { initScrollHandlers } from './core/scroll-handlers';
+import { initSearch } from './common/search';
 import * as utils from './utils';
-
-// declare global {
-//   interface Window {
-//     siteConfig: NotivaSiteConfig;
-//   }
-// }
 
 /**
  * Initialize the common functionality across all pages
@@ -34,6 +29,7 @@ function onDOMReady(): void {
 
   initSidebar();
   initThemeToggle();
+  initSearch();
 
   // Initialize utility helpers
   utils.initHelpers();

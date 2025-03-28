@@ -7,7 +7,7 @@ import prettierPluginRecommended from 'eslint-plugin-prettier/recommended';
 export default tseslint.config(
   {
     // config with just ignores is the replacement for `.eslintignore`
-    ignores: ['**/build/**', '**/dist/**', '**node_modules**', '**/*.d.ts'],
+    ignores: ['**/build/**', '**/dist/**', '**node_modules**', '**/*.d.ts', 'search.json'],
   },
   {
     files: ['**/*.ts'],

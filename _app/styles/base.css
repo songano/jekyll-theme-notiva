@@ -16,6 +16,6 @@
     @apply flex items-center justify-center;
     @apply cursor-pointer;
   }
-}
 
-@import './base/typography.css';
+  @import './base/typography.css';
+}
