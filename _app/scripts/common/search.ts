@@ -74,8 +74,10 @@ function handleResultNavigation(e: KeyboardEvent): void {
     updateSelectedResult(resultItems);
   } else if (e.key === KEY_CODES.ENTER && selectedResultIndex >= 0) {
     e.preventDefault();
-    const selectedItem = resultItems[selectedResultIndex] as HTMLAnchorElement;
-    if (selectedItem) {
+    const selectedItem = resultItems[selectedResultIndex].querySelector(
+      '.search-result-link'
+    ) as HTMLAnchorElement;
+    if (selectedItem && selectedItem.href) {
       window.location.href = selectedItem.href;
     }
   }
@@ -112,8 +114,8 @@ function handleKeyboardShortcuts(e: KeyboardEvent): void {
 function updateSelectedResult(resultItems: NodeListOf<Element>): void {
   resultItems.forEach((item, index) => {
     if (index === selectedResultIndex) {
-      item.classList.add('bg-secondary');
-      item.classList.remove('hover:bg-secondary');
+      item.classList.add('bg-accent');
+      item.classList.remove('hover:bg-accent');
 
       // 선택된 항목이 뷰에 보이도록 스크롤
       (item as HTMLElement).scrollIntoView({
@@ -121,8 +123,8 @@ function updateSelectedResult(resultItems: NodeListOf<Element>): void {
         block: 'nearest',
       });
     } else {
-      item.classList.remove('bg-secondary');
-      item.classList.add('hover:bg-secondary');
+      item.classList.remove('bg-accent');
+      item.classList.add('hover:bg-accent');
     }
   });
 }

@@ -7,19 +7,19 @@
 <div
   aria-hidden="true"
   id="search-modal"
-  class="fixed inset-0 z-50 justify-center px-4 py-40 bg-background/70 backdrop-blur-sm aria-hidden:hidden"
+  class="search-modal"
 >
-  <div class="search-container overflow-hidden mx-auto flex flex-col bg-background dark:bg-sidebar max-w-3xl w-full rounded-2xl min-h-48 max-h-full shadow-2xl">
-    <header class="px-5 flex gap-2 items-center border-b border-border">
+  <div class="search-container">
+    <header>
       {% include components/shared/icon.html name="search" %}
       <input
         type="text"
         id="search-input"
         autocomplete="off"
-        class="search-input w-full h-14 focus:outline-0"
+        class="search-input"
         placeholder="{{ "search.placeholder" | t }}"
       >
-      <kbd class="hidden md:block text-xs bg-secondary px-2 py-1 rounded-sm">esc</kbd>
+      <kbd>esc</kbd>
     </header>
 
     <div class="hidden md:block text-xs text-gray-500 my-1 px-4">
@@ -27,26 +27,38 @@
     </div>
 
     <!-- Search Results -->
-    <div id="search-results" class="search-results overflow-y-auto scrollbar-thin max-h-full min-h-32"></div>
+    <div id="search-results" class="search-results"></div>
   </div>
 </div>
 
 {% capture result_template %}
-  <a href="{url}" class="search-result-item block p-4 hover:bg-secondary transition-colors">
-    <h3 class="search-result-title text-base font-medium">{title}</h3>
-    <div class="search-result-meta flex gap-2 text-sm text-muted-foreground mt-1">
-      <span class="search-result-date">{date}</span>
-      <span class="search-result-category bg-primary/10 text-primary rounded-full px-2 py-0.5 text-xs">{category}</span>
-    </div>
-    <p class="search-result-excerpt text-sm text-muted-foreground mt-2">{excerpt}</p>
-  </a>
+  <li class="search-result-item hover:bg-accent">
+    <a href="{url}" class="search-result-link">
+      <div class="flex gap-3">
+        <div class="rounded-lg size-9 border border-border flex items-center justify-center shrink-0">
+          {% include components/shared/icon.html name="document" class="size-4 text-gray-500" %}
+        </div>
+        <div class="">
+          <h3 class="search-result-title">{title}</h3>
+          <p class="flex items-center gap-2 text-xs text-muted-foreground">{categories}</p>
+          <p class="search-result-excerpt text-sm">{excerpt}</p>
+          <ul class="gap-1 text-xs flex flex-wrap text-muted-foreground *:rounded-full *:px-1.5 *:py-0.5 *:border *:border-border">{tags}</ul>
+        </div>
+      </div>
+    {% include components/shared/icon.html name="chevron-right" class="size-4 text-muted-foreground" %}
+    </a>
+  </li>
 {% endcapture %}
 
 {% capture no_results %}
-  <div class="p-8 flex items-center flex-col text-muted-foreground gap-1">
+  <div class="no-results">
     {% include components/shared/icon.html name="archive-box-x-mark" class="size-6" %}
     {{ "search.no_results" | t }}
   </div>
+{% endcapture %}
+
+{% capture folder_icon %}
+  {% include components/shared/icon.html name="folder" class="size-4" %}
 {% endcapture %}
 
 <!-- Inline Jekyll Search Script -->
@@ -61,6 +73,23 @@
       json: '{{ '/assets/data/search.json' | relative_url }}',
       searchResultTemplate: '{{ result_template | strip_newlines }}',
       noResultsText: '{{ no_results }}',
+      templateMiddleware: function(prop, value, template) {
+        if (prop === 'categories') {
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `{{ folder_icon }} ${value.split(', ').join(' > ')}`;
+          }
+        }
+
+        if (prop === 'tags') {
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `${value.split(', ').map(tag => `<li>#${tag}</li>`).join('')}`;
+          }
+        }
+      }
     });
   });
 </script>

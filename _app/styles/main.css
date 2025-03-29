@@ -120,7 +120,10 @@
 }
 
 @import './base.css';
+
 @import './components/button.css';
 @import './components/divider.css';
 @import './components/navigation.css';
+@import './components/search.css';
+
 @import './jekyll-theme-notiva.css';
