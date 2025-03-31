@@ -1,7 +1,7 @@
 ---
 title: Notival Tutorial
 author: Gano
-categories: [Projects, Notiva]
+categories: ['02-Projects', Notiva]
 tags: [jekyll, document]
 pin: true
 ---

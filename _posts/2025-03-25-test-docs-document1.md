@@ -1,7 +1,7 @@
 ---
 title: 마크다운 스타일 테스트 문서1
 author: Gano
-categories: [Test, document]
+categories: ['01-Inbox', document]
 tags: [jekyll]
 ---
 

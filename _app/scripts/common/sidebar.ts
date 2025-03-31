@@ -6,6 +6,7 @@ const DESKTOP_BREAKPOINT = 640;
 
 export function initSidebar(): void {
   initSidebarToggle();
+  initCategoryToggle();
 }
 
 /**
@@ -64,4 +65,8 @@ function initSidebarToggle(): void {
   // Initialize Settings
   if (isDesktop()) body.removeAttribute('data-sidebar-collapsed');
   else hideMobileSidebar();
+}
+
+function initCategoryToggle(): void {
+  console.log('initCategoryToggle');
 }

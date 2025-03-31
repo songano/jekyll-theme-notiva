@@ -4,7 +4,8 @@
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-@custom-variant sidebar-collapsed (&:where([data-sidebar-collapsed] *));
+@custom-variant sidebar-collapsed ([data-sidebar-collapsed] &);
+@custom-variant expanded ([aria-expanded="true"] &);
 
 :root {
   --background: oklch(1 0 0);

@@ -25,24 +25,8 @@
       {% endif %}
     {% endcapture %}
 
-    <li class="nav-item rounded-xl {{ category_class }}">
-      <a href="{{ '/categories' | relative_url }}" class="nav-link" id="categories-header">
-        <button
-          class="btn btn-link"
-          aria-label="Collapse categories"
-          aria-expanded="false"
-          aria-controls="categories-content"
-        >
-          {% include components/shared/icon.html name="folder" %}
-        </button>
-        <span>{{ 'sidebar.categories' | t | upcase }}</span>
-      </a>
-
-      {% include components/sidebar/category-tree.html %}
-    </li>
-
     <!-- Tags -->
-    <li class="{% if page.url contains '/tags' %}{{ active_class }}{% endif %}  nav-item">
+    <li class="{% if page.url contains '/tags' %}{{ active_class }}{% endif %} nav-item">
       <a
         href="{{ '/tags' | relative_url }}"
         class="nav-link"
@@ -50,18 +34,28 @@
         {% include components/shared/icon.html name="tag" %}
         <span>{{ 'sidebar.tags' | t | upcase }}</span>
       </a>
-      <ul></ul>
     </li>
 
-    <!-- archives -->
-    <li class="{% if page.url contains '/archives' %}{{ active_class }}{% endif %} nav-item">
-      <a href="{{ '/archives' | relative_url }}" class="nav-link">
-        {% include components/shared/icon.html name="archive-box" %}
-        <span>{{ 'sidebar.archives' | t | upcase }}</span>
-      </a>
-      <ul>
-        {{ site.archives }}
-      </ul>
+    <li class="py-2">
+      {% include components/shared/divider.html text="Categories" text_align="start" line_style="dotted" %}
+    </li>
+
+    <li class="rounded-xl">
+      {% comment %}
+        <a href="{{ '/categories' | relative_url }}" class="nav-link" id="categories-header">
+          <button
+            class="btn btn-link"
+            aria-label="Collapse categories"
+            aria-expanded="false"
+            aria-controls="categories-content"
+          >
+            {% include components/shared/icon.html name="folder" %}
+          </button>
+          <span>{{ 'sidebar.categories' | t | upcase }}</span>
+        </a>
+      {% endcomment %}
+
+      {% include components/sidebar/category-tree.html %}
     </li>
   </ul>
 </nav>

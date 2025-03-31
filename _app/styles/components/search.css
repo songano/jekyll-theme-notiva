@@ -1,49 +1,66 @@
 @layer components {
+  /* Search Modal */
   .search-modal {
     @apply fixed inset-0 z-50 justify-center px-4 py-40 bg-background/70 backdrop-blur-sm aria-hidden:hidden;
   }
+
+  /* Search Container */
   .search-container {
     @apply overflow-hidden mx-auto flex flex-col bg-background dark:bg-sidebar max-w-3xl w-full rounded-2xl min-h-48 max-h-full shadow-2xl;
-
-    header {
-      @apply px-5 flex gap-2 items-center border-b border-border;
-    }
-
-    kbd {
-      @apply hidden md:block text-xs bg-secondary px-2 py-1 rounded-sm;
-    }
   }
 
+  .search-container header {
+    @apply px-5 flex gap-2 items-center border-b border-border;
+  }
+
+  .search-container kbd {
+    @apply hidden md:block text-xs bg-secondary px-2 py-1 rounded-sm;
+  }
+
+  /* Search Input */
   .search-input {
     @apply w-full h-14 focus:outline-0;
   }
 
+  /* Search Results Container */
   .search-results {
-    @apply overflow-y-auto scrollbar-thin max-h-full min-h-32;
-    @apply p-3 space-y-0.5;
+    @apply overflow-y-auto scrollbar-thin max-h-full min-h-32 p-3 space-y-0.5;
   }
 
+  /* Search Result Item */
   .search-result-item {
     @apply block p-2 md:p-3 transition-colors rounded-2xl;
-
-    .search-result-link {
-      @apply flex justify-between items-center gap-3;
-    }
-
-    .search-result-title {
-      @apply mt-0;
-      @apply text-sm md:text-base font-semibold;
-    }
-
-    .search-result-categories {
-      @apply text-xs flex gap-1 items-center;
-    }
-
-    .search-result-excerpt {
-      @apply text-xs md:text-sm text-secondary-foreground mt-2 line-clamp-2 mb-2;
-    }
   }
 
+  .search-result-link {
+    @apply flex justify-between items-center gap-3;
+  }
+
+  .search-result-icon {
+    @apply rounded-lg size-9 border border-border flex items-center justify-center shrink-0;
+  }
+
+  .search-result-title {
+    @apply mt-0 text-sm md:text-base font-semibold;
+  }
+
+  .search-result-categories {
+    @apply text-xs flex gap-1 items-center;
+  }
+
+  .search-result-excerpt {
+    @apply text-xs md:text-sm text-secondary-foreground mt-2 line-clamp-2 mb-2;
+  }
+
+  .search-result-tags {
+    @apply gap-1 text-xs flex flex-wrap text-muted-foreground;
+  }
+
+  .search-result-tags li {
+    @apply rounded-full px-1.5 py-0.5 border border-border;
+  }
+
+  /* No Results */
   .no-results {
     @apply p-8 flex items-center flex-col text-muted-foreground gap-1;
   }

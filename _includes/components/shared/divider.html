@@ -6,7 +6,7 @@
 
   Parameters:
   - text: Text to display in the divider (optional)
-  - text_align: Text alignment - 'left', 'center', 'right' (default: 'center')
+  - text_align: Text alignment - 'start', 'middle', 'end' (default: 'center')
   - orientation: Divider orientation - 'horizontal', 'vertical' (default: 'horizontal')
   - line_style: Line style - 'solid', 'dashed', 'dotted', 'double' (default: 'solid')
   - class: Additional CSS classes (optional)
@@ -21,7 +21,7 @@
 {% endcomment %}
 
 {% assign text = include.text %}
-{% assign text_align = include.text_align | default: 'center' %}
+{% assign text_align = include.text_align | default: 'middle' %}
 {% assign orientation = include.orientation | default: 'horizontal' %}
 {% assign line_style = include.line_style | default: 'solid' %}
 {% assign additional_class = include.class | default: '' %}
@@ -29,6 +29,7 @@
 
 <div
   class="divider divider-{{ orientation }} divider-{{ line_style }} {{ additional_class }}"
+  aria-label="Divider"
   style="{{ additional_style }}"
 >
   {% if text %}

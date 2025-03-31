@@ -1,7 +1,7 @@
 ---
 title: Welcome Notiva theme
 author: Gano
-categories: [Resources, React]
+categories: ['03-Resources', React]
 tags: [react, tag1, tag2, document]
 ---
 

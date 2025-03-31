@@ -1,7 +1,7 @@
 ---
 title: 마크다운 스타일 테스트 문서3
 author: Gano
-categories: [markdown, document]
+categories: ['04-Archives', document]
 tags: [jekyll]
 ---
 
@@ -48,9 +48,9 @@ tags: [jekyll]
 
 ### 언어 없는 코드 블록
 
-```
+```javascript
 function greeting() {
-  console.log("Hello, World!");
+  console.log('Hello, World!');
 }
 ```
 

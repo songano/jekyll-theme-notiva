@@ -22,7 +22,7 @@
       <kbd>esc</kbd>
     </header>
 
-    <div class="hidden md:block text-xs text-gray-500 my-1 px-4">
+    <div class="hidden md:block text-xs text-gray-500 mt-2 px-4">
       {{ 'search.shortcut_tip' | t }}
     </div>
 
@@ -35,17 +35,17 @@
   <li class="search-result-item hover:bg-accent">
     <a href="{url}" class="search-result-link">
       <div class="flex gap-3">
-        <div class="rounded-lg size-9 border border-border flex items-center justify-center shrink-0">
+        <div class="search-result-icon">
           {% include components/shared/icon.html name="document" class="size-4 text-gray-500" %}
         </div>
         <div class="">
           <h3 class="search-result-title">{title}</h3>
           <p class="flex items-center gap-2 text-xs text-muted-foreground">{categories}</p>
-          <p class="search-result-excerpt text-sm">{excerpt}</p>
-          <ul class="gap-1 text-xs flex flex-wrap text-muted-foreground *:rounded-full *:px-1.5 *:py-0.5 *:border *:border-border">{tags}</ul>
+          <p class="search-result-excerpt">{excerpt}</p>
+          <ul class="search-result-tags">{tags}</ul>
         </div>
       </div>
-    {% include components/shared/icon.html name="chevron-right" class="size-4 text-muted-foreground" %}
+    {% include components/shared/icon.html name="chevron-right" class="size-4 text-muted-foreground shrink-0" %}
     </a>
   </li>
 {% endcapture %}

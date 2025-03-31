@@ -2,3 +2,32 @@
 layout: page
 ---
 {{ content }}
+
+<h1>Category Hierarchy Debug</h1>
+
+<style>
+  pre.debug-json {
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+  }
+
+  .dark pre.debug-json {
+  }
+</style>
+
+<pre class="debug-json">
+{% capture json %}{{ site.data.category_hierarchy | jsonify }}{% endcapture %}
+{% assign pretty_json = json | replace: '},{', '},
+{' | replace: ',"', ',
+"' | replace: ':{', ':{
+  ' | replace: ':[{', ':[
+  {' | replace: '}]', '
+  }]' | replace: '}}', '}
+}' %}
+{{ pretty_json }}
+</pre>
