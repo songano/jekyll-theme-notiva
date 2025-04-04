@@ -1,13 +1,99 @@
-<div class="overflow-hidden" id="categories-content">
-  <div class="pt-3">
-    <ul class="list-none pl-0 ml-0">
-      {% for category_pair in site.data.category_hierarchy %}
-        {% assign category_name = category_pair[0] %}
-        {% assign category = category_pair[1] %}
+{% comment %}
+  Recursive category menu component
 
-        {% assign next_level = 1 %}
-        {% include components/sidebar/category-item.html category=category level=next_level %}
-      {% endfor %}
-    </ul>
-  </div>
+  Parameters:
+  - hierarchy: Category hierarchy object
+  - parent_id: Parent category ID for grouping same-level categories (optional)
+  - level: Current nesting level (optional, defaults to 0)
+{% endcomment %}
+
+{% assign hierarchy = include.hierarchy %}
+{% assign parent_id = include.parent_id | default: 'root' %}
+{% assign level = include.level | default: 0 %}
+{% assign indent_class = '' %}
+
+{% if level > 0 %}
+  {% assign indent_class = 'ml-4' %}
+{% endif %}
+
+<div class="category-level {{ indent_class }}">
+  {% for category_item in hierarchy %}
+    {% assign category_name = category_item[0] %}
+    {% assign category = category_item[1] %}
+    {% assign category_id = category.slug | append: '-' | append: level %}
+    {% assign has_children = category.children.size > 0 %}
+    {% assign has_posts = category.direct_posts.size > 0 %}
+    {% assign category_url = site.baseurl | append: '/categories/' | append: category.slug %}
+
+    <div class="category-item mb-2">
+      <!-- Category header with content and toggle button -->
+      <div class="category-header flex items-center justify-between group">
+        <!-- Category name and icon (clickable for navigation) -->
+        <a
+          href="{{ category_url }}"
+          class="flex items-center flex-grow py-1 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+        >
+          {% if has_children %}
+            <span class="folder-icon mr-2">
+              <span class="folder-closed inline-block">{% include components/shared/icon.html name="folder" %}</span>
+              <span class="folder-open hidden">{% include components/shared/icon.html name="folder-open" %}</span>
+            </span>
+          {% else %}
+            {% include components/shared/icon.html name="document-text" class="mr-2" %}
+          {% endif %}
+
+          <span class="category-name text-sm">
+            {{ category_name }}
+            <span class="text-xs text-gray-500 dark:text-gray-400 ml-1">({{ category.total_posts }})</span>
+          </span>
+        </a>
+
+        <!-- Toggle button (if has children or posts) -->
+        {% if has_children or has_posts %}
+          <button
+            class="category-toggle flex items-center ml-1 p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            data-category-id="{{ category_id }}"
+            data-parent-id="{{ parent_id }}"
+            aria-expanded="false"
+            aria-controls="category-content-{{ category_id }}"
+            type="button"
+          >
+            <span class="toggle-icon rotate-0 transition-transform duration-200">
+              {% include components/shared/icon.html name="chevron-right" %}
+            </span>
+          </button>
+        {% endif %}
+      </div>
+
+      <!-- Category content (posts and subcategories) -->
+      <div
+        id="category-content-{{ category_id }}"
+        data-category-content="{{ category_id }}"
+        class="category-content max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out"
+      >
+        <!-- Direct posts -->
+        {% if has_posts %}
+          <ul class="post-list ml-6 mb-2 pt-1">
+            {% for post in category.direct_posts %}
+              <li class="post-item py-1">
+                <a
+                  href="{{ site.baseurl }}{{ post.url }}"
+                  class="text-sm flex gap-1 hover:text-primary-600 dark:hover:text-primary-400 transition-colors {% if page.url == post.url %}font-bold{% endif %}"
+                >
+                  {% include components/shared/icon.html name="document-text" %}
+                  {{ post.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        <!-- Subcategories (recursive call) -->
+        {% if has_children %}
+          {% assign next_level = level | plus: 1 %}
+          {% include components/sidebar/category-tree.html hierarchy=category.children parent_id=category_id level=next_level %}
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
 </div>

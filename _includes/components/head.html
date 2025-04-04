@@ -43,9 +43,6 @@
 
 <link rel="preload" href="{{ '/assets/dist/js/main.min.js' | relative_url }}" as="script">
 
-<!-- CSS -->
-<link rel="stylesheet" href="{{ '/assets/dist/css/styles.min.css' | relative_url }}">
-
 <!-- External resources (fonts, icons, etc.) -->
 {% if site.data.cdn %}
   {% for resource in site.data.cdn.styles %}
@@ -58,3 +55,6 @@
     >
   {% endfor %}
 {% endif %}
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{ '/assets/dist/css/styles.min.css' | relative_url }}">

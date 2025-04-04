@@ -13,7 +13,14 @@ styles:
   - url: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.1/css/all.min.css
     crossorigin: anonymous
   
-  - url: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css
+  # PrismJS (for code highlighting)
+  # - url: https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism-okaidia.min.css
+  # - url: https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-numbers/prism-line-numbers.min.css
+  # - url: https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/toolbar/prism-toolbar.min.css
+  # - url: https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-highlight/prism-line-highlight.min.css
+
+  # Highlight.js (for code highlighting)
+  - url: https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-dark.min.css
 
 scripts:
   # Font Awesome (for social icons)
@@ -22,5 +29,16 @@ scripts:
   #   crossorigin: anonymous
   #   async: true
 
-  # - url: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js
   - url: https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js
+
+  # PrismJS for code highlighting
+  # - url: https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js
+  # - url: https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js
+  # - url: https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-numbers/prism-line-numbers.min.js
+  # - url: https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-highlight/prism-line-highlight.min.js
+  # - url: https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/toolbar/prism-toolbar.min.js
+  # - url: https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js
+
+  # Highlight.js for code highlighting
+  - url: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js
+  

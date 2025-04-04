@@ -1,4 +1,4 @@
-# _hooks/pre_render/build_category_hierarchy.rb
+# _plugins/hooks/category_hierarchy.rb
 # Purpose: Build a hierarchical structure of categories for use in navigation and templates
 # This hook runs before site rendering and processes all post categories into a nested tree structure
 

@@ -1,18 +1,9 @@
-/**
- * Sidebar functionality: toggle, submenu expansion, etc.
- */
-
 const DESKTOP_BREAKPOINT = 640;
-
-export function initSidebar(): void {
-  initSidebarToggle();
-  initCategoryToggle();
-}
 
 /**
  * Initialize sidebar toggle behavior
  */
-function initSidebarToggle(): void {
+export function initSidebarToggle(): void {
   const body = document.body;
   const sidebarToggle = document.getElementById('sidebar-toggle');
   const sidebar = document.getElementById('sidebar');
@@ -65,8 +56,4 @@ function initSidebarToggle(): void {
   // Initialize Settings
   if (isDesktop()) body.removeAttribute('data-sidebar-collapsed');
   else hideMobileSidebar();
-}
-
-function initCategoryToggle(): void {
-  console.log('initCategoryToggle');
 }

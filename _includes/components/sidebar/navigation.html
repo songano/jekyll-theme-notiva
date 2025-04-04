@@ -18,13 +18,6 @@
       </a>
     </li>
 
-    <!-- Categories -->
-    {% capture category_class %}
-      {% if page.url contains '/categories/' or page.url contains '/posts/' %}
-        {{ active_class }}
-      {% endif %}
-    {% endcapture %}
-
     <!-- Tags -->
     <li class="{% if page.url contains '/tags' %}{{ active_class }}{% endif %} nav-item">
       <a
@@ -39,6 +32,13 @@
     <li class="py-2">
       {% include components/shared/divider.html text="Categories" text_align="start" line_style="dotted" %}
     </li>
+
+    <!-- Categories -->
+    {% capture category_class %}
+      {% if page.url contains '/categories/' or page.url contains '/posts/' %}
+        {{ active_class }}
+      {% endif %}
+    {% endcapture %}
 
     <li class="rounded-xl">
       {% comment %}
@@ -55,7 +55,11 @@
         </a>
       {% endcomment %}
 
-      {% include components/sidebar/category-tree.html %}
+      {% comment %} {% include components/sidebar/category-tree.html %} {% endcomment %}
+
+      {% if site.data.category_hierarchy %}
+        {% include components/sidebar/category-tree.html hierarchy=site.data.category_hierarchy %}
+      {% endif %}
     </li>
   </ul>
 </nav>

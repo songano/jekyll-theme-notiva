@@ -3,11 +3,12 @@
  * This file loads common components and functionality used across all pages
  */
 
-import { initSidebar } from './common/sidebar';
-import { initThemeToggle } from './common/theme-switch';
+import { initSidebarToggle } from './components/sidebar-toggle';
+import { initThemeToggle } from './components/theme-switch';
 import { initScrollHandlers } from './core/scroll-handlers';
-import { initSearch } from './common/search';
+import { initSearch } from './components/search';
 import * as utils from './utils';
+import { initializeCategory } from './components/category';
 
 /**
  * Initialize the common functionality across all pages
@@ -27,7 +28,8 @@ function initializeApp(): void {
 function onDOMReady(): void {
   console.log('Notiva theme initialized');
 
-  initSidebar();
+  initSidebarToggle();
+  initializeCategory();
   initThemeToggle();
   initSearch();
 
