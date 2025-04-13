@@ -57,9 +57,11 @@
 
       {% comment %} {% include components/sidebar/category-tree.html %} {% endcomment %}
 
-      {% if site.data.category_hierarchy %}
-        {% include components/sidebar/category-tree.html hierarchy=site.data.category_hierarchy %}
-      {% endif %}
+      {% comment %}
+        {% if site.data.category_hierarchy %}
+          {% include components/sidebar/category-tree.html hierarchy=site.data.category_hierarchy %}
+        {% endif %}
+      {% endcomment %}
     </li>
   </ul>
 </nav>

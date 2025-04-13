@@ -1,6 +1,8 @@
 declare global {
   interface Window {
     SimpleJekyllSearch: SimpleJekyllSearch;
+    hljs_config: HljsConfig;
+    useClipboard: boolean;
   }
 }
 
@@ -25,3 +27,10 @@ export interface SimpleJekyllSearchOptions {
 }
 
 export type SimpleJekyllSearch = (options: SimpleJekyllSearchOptions) => void;
+
+// Config interface for highlight.js
+interface HljsConfig {
+  theme: string;
+  lineNumbers: boolean;
+  copyButton: boolean;
+}

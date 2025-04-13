@@ -16,7 +16,7 @@
     }
 
     h1 {
-      @apply text-[32px] mt-8 mb-4 bg-accent;
+      @apply text-[32px] mt-8 mb-4;
     }
     h2 {
       @apply text-[28px] mt-7 mb-3 pb-1 border-b border-border;
@@ -55,6 +55,10 @@
     /* Horizontal rule */
     hr {
       @apply my-8 border-t border-border;
+    }
+
+    pre {
+      @apply text-sm;
     }
 
     /* ------------- Lists ------------- */

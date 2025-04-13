@@ -4,14 +4,7 @@
  * https://github.com/christian-fei/Simple-Jekyll-Search
  */
 
-import { SimpleJekyllSearch } from '../types';
 import { debounce } from '../utils';
-
-declare global {
-  interface Window {
-    SimpleJekyllSearch: SimpleJekyllSearch;
-  }
-}
 
 // Constants
 const SEARCH_SHORTCUT_KEYS = ['k'];

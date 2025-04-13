@@ -72,6 +72,7 @@ appearance:
   theme_mode: auto                    # [light|dark] - Default theme mode
   code_highlight: true                # Enable syntax highlighting
   code_copy: true                     # Enable code copy button
+  code_line_number: true              # Enable code line numbers
   animated: true                      # Enable animations
   back_to_top: true                   # Enable back to top button
   toc_enabled: true                   # Enable table of contents
@@ -213,11 +214,11 @@ pagination:
 # ----------------------------------------------------------------------
 markdown: kramdown
 kramdown:
-  footnote_backlink: "&#8617;&#xfe0e;"
+  input: GFM                       # GitHub Flavored Markdown
   syntax_highlighter_opts:
-    disable: true
-  input: GFM
-  hard_wrap: false
+    disable: true                  # Disable kramdown's syntax highlighting
+  hard_wrap: false                 # Preserve line breaks in paragraphs
+  auto_ids: true                   # Auto-generate IDs for headings
 
 # [NOT CUSTOMIZABLE] Jekyll Archives Configuration
 # ----------------------------------------------------------------------

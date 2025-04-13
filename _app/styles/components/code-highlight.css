@@ -1,0 +1,93 @@
+.markdown-content {
+  pre {
+    @apply relative rounded-lg mb-6 overflow-hidden;
+    padding-top: 0;
+  }
+
+  /* Code title styles */
+  .code-title {
+    @apply text-sm font-mono font-medium px-4 py-2 rounded-t-lg;
+    @apply bg-gray-700 text-gray-200;
+    @apply dark:bg-gray-800 dark:text-gray-200;
+  }
+
+  pre.has-title {
+    @apply rounded-t-none;
+  }
+
+  /* Line numbers container */
+  .line-numbers {
+    @apply absolute left-0 top-0 pt-4 pb-4 w-10 text-right;
+    @apply bg-gray-800 text-gray-500 select-none;
+    @apply dark:bg-gray-900 dark:text-gray-500;
+    counter-reset: line;
+  }
+
+  /* Line number styling */
+  .line-number {
+    @apply block h-6 text-xs pr-2;
+    counter-increment: line;
+  }
+
+  /* Highlighted line number */
+  .line-number.highlighted {
+    @apply bg-blue-900/30 text-blue-300 font-medium;
+  }
+
+  /* Main code container with line numbers */
+  pre.with-line-numbers code {
+    @apply pl-12;
+  }
+
+  /* Highlighted line in code */
+  .highlighted-line {
+    @apply block bg-blue-900/30 -mx-12 px-12;
+  }
+
+  /* Code copy button */
+  .copy-button {
+    @apply absolute top-2 right-2 p-1.5 rounded-md opacity-70 transition-opacity;
+    @apply text-gray-300 bg-gray-700 hover:bg-gray-600 hover:opacity-100;
+    @apply dark:text-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600;
+  }
+
+  /* Button tooltip */
+  .copy-button .tooltip {
+    @apply absolute top-full right-0 mt-1 px-2 py-1 text-xs rounded;
+    @apply bg-gray-800 text-gray-200 opacity-0 transition-opacity;
+    @apply dark:bg-gray-700 dark:text-gray-200;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .copy-button:hover .tooltip {
+    @apply opacity-100;
+  }
+
+  /* Code block theme customization - can be adjusted based on preference */
+  .hljs {
+    @apply p-4 rounded;
+    @apply bg-gray-800 text-gray-100;
+    @apply dark:bg-gray-900 dark:text-gray-100;
+  }
+
+  /* Code fonts */
+  pre,
+  code,
+  .hljs {
+    font-family: 'Victor Mono', monospace;
+  }
+
+  /* Scrollbar styling */
+  pre::-webkit-scrollbar {
+    @apply h-2 w-2;
+  }
+
+  pre::-webkit-scrollbar-track {
+    @apply bg-gray-700 dark:bg-gray-800;
+  }
+
+  pre::-webkit-scrollbar-thumb {
+    @apply bg-gray-500 dark:bg-gray-600 rounded;
+  }
+}

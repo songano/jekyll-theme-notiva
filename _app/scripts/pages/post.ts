@@ -1,3 +1,5 @@
+import { initializeCodeHighlight } from '../components/code-highlight';
+
 document.addEventListener('DOMContentLoaded', () => {
   const markdownContent = document.querySelectorAll('.markdown-content');
 
@@ -11,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addHeadingAnchors(content);
     handleExternalLinks(content);
   });
+
+  initializeCodeHighlight();
 });
 
 /**
